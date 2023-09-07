@@ -31,6 +31,6 @@ public class Usuario {
     private Date fecharegistro;
     private Date fechabaja;
     private Date ultimavez;
-    
+    private Imagen imagen;
     
 }
