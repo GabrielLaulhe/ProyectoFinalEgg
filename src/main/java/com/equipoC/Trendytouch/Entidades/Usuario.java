@@ -3,6 +3,7 @@ package com.equipoC.Trendytouch.Entidades;
 import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Usuario {
     
     @Id
