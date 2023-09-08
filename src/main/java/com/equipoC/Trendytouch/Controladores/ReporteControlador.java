@@ -54,7 +54,10 @@ public class ReporteControlador {
         return "reporte.html";
     }
     
-    
+//    @GetMapping("/lista")
+//    public String listaReportes(){
+//        return null;
+//    }
     
     
 }

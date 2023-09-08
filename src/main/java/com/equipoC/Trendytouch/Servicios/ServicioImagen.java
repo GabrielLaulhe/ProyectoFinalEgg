@@ -5,7 +5,7 @@
 package com.equipoC.Trendytouch.Servicios;
 
 import com.equipoC.Trendytouch.Entidades.Imagen;
-import com.equipoC.Trendytouch.excepciones.MiException;
+import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.repositorio.ImagenRepositorio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class ServicioImagen {
     private ImagenRepositorio imagenRepositorio;
 
     
-    public Imagen guardar(MultipartFile archivo) throws MiException {
+    public Imagen guardar(MultipartFile archivo) throws MyException {
 
         if (archivo.getContentType().contains("octet")) {
             try {
@@ -40,7 +40,7 @@ public class ServicioImagen {
         return null;
     }
     
-    public Imagen actualizar (MultipartFile archivo, String id) throws MiException {
+    public Imagen actualizar (MultipartFile archivo, String id) throws MyException {
         
         if (archivo.getContentType().contains("octet")) {
             try {
