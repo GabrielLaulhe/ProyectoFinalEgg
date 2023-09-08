@@ -32,12 +32,15 @@ public class ReporteServicio {
         if (id == null){
             throw new MyException("El id es nulo o no existe.");
         }
-        Optional<Reporte> respuesta = reporteRepositorio.findById(id);
-        
+        Optional<Reporte> respuesta = reporteRepositorio.findById(id);        
         if (respuesta.isPresent()){
             Reporte reporte = respuesta.get();
             reporteRepositorio.delete(reporte);
         }        
+    }
+    
+    public Reporte getOne(String id){
+        return reporteRepositorio.getOne(id);
     }
 
     private void validar(Usuario emisor, String categoria) throws MyException {
