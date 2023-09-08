@@ -1,0 +1,18 @@
+<section>
+    <div class="container text-center">
+        <div th:each="publicacion: ${publicaciones}">
+            <div class="card border-info" style="width: 28rem;">
+                <div th:each="imagen: ${publicacion.imagenes}">
+                    <img src="${imagen}" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 th:text="${publicacion.categoria}" class="card-title"></h5>
+                    <p th:text="${publicacion.descripcion}" class="card-text"></p>
+                    <a class="btn btn-primary"
+                       th:href="@{/publicacion/megustear/__${publicacion.id}__/__${session.usuariosession.id}__}"
+                       >Me Gusta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
