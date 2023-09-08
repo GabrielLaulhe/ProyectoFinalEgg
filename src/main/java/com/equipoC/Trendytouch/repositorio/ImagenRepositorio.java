@@ -4,10 +4,16 @@
  */
 package com.equipoC.Trendytouch.repositorio;
 
+import com.equipoC.Trendytouch.Entidades.Imagen;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author Asus
  */
-public interface ImagenRepositorio {
+
+@Repository
+public interface ImagenRepositorio extends JpaRepository<Imagen, String> {
     
 }
