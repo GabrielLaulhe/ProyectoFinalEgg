@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.equipoC.Trendytouch.servicio;
+package com.equipoC.Trendytouch.Servicios;
 
 import com.equipoC.Trendytouch.Entidades.Imagen;
 import com.equipoC.Trendytouch.excepciones.MiException;
