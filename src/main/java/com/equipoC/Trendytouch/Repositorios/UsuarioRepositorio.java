@@ -1,4 +1,4 @@
-package com.equipoC.Trendytouch.Repositorio;
+package com.equipoC.Trendytouch.Repositorios;
 
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
