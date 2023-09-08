@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Asus
  */
 @Service
-public class ServicioImagen {
+public class ImagenServicio {
 
     @Autowired
     private ImagenRepositorio imagenRepositorio;
