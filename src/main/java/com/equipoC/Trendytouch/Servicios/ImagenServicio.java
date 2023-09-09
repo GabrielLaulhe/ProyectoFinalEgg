@@ -10,60 +10,97 @@ import com.equipoC.Trendytouch.Repositorios.ImagenRepositorio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
  * @author Asus
  */
+
 @Service
 public class ImagenServicio {
 
     @Autowired
-    private ImagenRepositorio imagenRepositorio;
+    private ImagenRepositorio ir;
 
-    
-    public Imagen guardar(MultipartFile archivo) throws MyException {
+    @Transactional
+    public Imagen guardar(MultipartFile archivo) throws MyException  {
 
-        if (archivo.getContentType().contains("octet")) {
+        archivo = validar(archivo);
+
+        if (archivo != null) {
             try {
                 Imagen imagen = new Imagen();
+
                 imagen.setMime(archivo.getContentType());
                 imagen.setNombre(archivo.getName());
                 imagen.setContenido(archivo.getBytes());
-                return imagenRepositorio.save(imagen);
 
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+                return ir.save(imagen);
+
+            } catch (Exception  e) {
+
+                throw new MyException ("No se pudo guardar la imagen");
             }
         }
+
         return null;
     }
-    
-    public Imagen actualizar (MultipartFile archivo, String id) throws MyException {
-        
-        if (archivo.getContentType().contains("octet")) {
+
+    @Transactional
+    public Imagen actualizar(MultipartFile archivo, String id) throws MyException  {
+
+        archivo = validar(archivo);
+
+        if (archivo != null) {
+
             try {
+
                 Imagen imagen = new Imagen();
-                
-                if(id != null) {
-                    Optional<Imagen> respuesta = imagenRepositorio.findById(id);
+
+                if (id != null) {
+
+                    Optional<Imagen> respuesta = ir.findById(id);
+
                     if (respuesta.isPresent()) {
                         imagen = respuesta.get();
                     }
                 }
+
                 imagen.setMime(archivo.getContentType());
                 imagen.setNombre(archivo.getName());
                 imagen.setContenido(archivo.getBytes());
-                return imagenRepositorio.save(imagen);
 
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+                return ir.save(imagen);
+
+            } catch (Exception  e) {
+                throw new MyException ("No se pudo actualizar la imagen");
             }
         }
+
+        if (id != null) {
+            ir.deleteById(id);
+        }
+
         return null;
-        
     }
+
+    public Imagen getOne(String id) {
+        return ir.getOne(id);
+    }
+
+    public MultipartFile validar(MultipartFile archivo) {
+        if (archivo != null && archivo.getContentType().contains("octet")) {
+            return null;
+        }
+
+
+        return archivo;
+    }
+} 
+
+
     
     
-}
+
