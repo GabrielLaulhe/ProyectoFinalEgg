@@ -18,46 +18,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/reporte")
 @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-public class ReporteControlador {    
-    
+public class ReporteControlador {
+
     @Autowired
-    private ReporteServicio reporteServicio;    
-    
+    private ReporteServicio reporteServicio;
+
     @GetMapping("/crear")
-    public String crear(){
+    public String crear() {
         return "crear_reporte.html";
     }
-    
+
     @PostMapping
-    public String crear(@RequestParam String categoria, @RequestParam(required = false) String contenido, 
-            HttpSession session, ModelMap modelo){        
+    public String crear(@RequestParam String categoria, @RequestParam(required = false) String contenido,
+            HttpSession session, ModelMap modelo) {
         try {
             Usuario usuario = (Usuario) session.getAttribute("usuariosession");
             reporteServicio.crear(contenido, usuario, categoria);
             modelo.put("exito", "El reporte ha sido enviado con exito.");
-            return "redirect:/index";
+            return "redirect:/inicio";
         } catch (MyException ex) {
             modelo.put("error", ex.getMessage());
             return "crear_reporte.html";
-        }        
+        }
     }
-    
+
     @GetMapping("/{id}")
-    public String reporte(@PathVariable String id, ModelMap modelo){      
+    public String reporte(@PathVariable String id, ModelMap modelo) {
         try {
             Reporte reporte = reporteServicio.getOne(id);
             modelo.put("reporte", reporte);
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
-            return "redirect:/index";
-        }              
+            return "redirect:/inicio";
+        }
         return "reporte.html";
     }
-    
-//    @GetMapping("/lista")
-//    public String listaReportes(){
-//        return null;
-//    }
-    
-    
+
+    /*  @GetMapping("/lista")
+        public String listaReportes(ModelMap modelo){        
+        List<Reporte> reportes = reporteServicio.buscarTodo();
+        modelo.put("reportes", reportes)
+        return     ;
+        } */
 }
