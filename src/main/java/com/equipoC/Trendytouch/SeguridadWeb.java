@@ -5,7 +5,6 @@
 package com.equipoC.Trendytouch;
 
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
-import static javafx.scene.input.KeyCode.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
