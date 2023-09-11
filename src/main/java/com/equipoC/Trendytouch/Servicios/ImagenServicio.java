@@ -7,6 +7,8 @@ package com.equipoC.Trendytouch.Servicios;
 import com.equipoC.Trendytouch.Entidades.Imagen;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.ImagenRepositorio;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,6 +86,31 @@ public class ImagenServicio {
         }
 
         return null;
+    }
+
+     @Transactional
+    public List<Imagen> guardarLista(List<MultipartFile> archivos) throws MyException {
+        List<Imagen> imagenesGuardadas = new ArrayList<>();
+
+        for (MultipartFile archivo : archivos) {
+            archivo = validar(archivo);
+
+            if (archivo != null) {
+                try {
+                    Imagen imagen = new Imagen();
+
+                    imagen.setMime(archivo.getContentType());
+                    imagen.setNombre(archivo.getName()); 
+                    imagen.setContenido(archivo.getBytes());
+
+                    imagenesGuardadas.add(ir.save(imagen));
+                } catch (Exception e) {
+                    throw new MyException("No se pudo guardar una o varias imágenes");
+                }
+            }
+        }
+
+        return imagenesGuardadas;
     }
 
     public Imagen getOne(String id) {
