@@ -33,6 +33,8 @@ public class Comentario {
     @OneToMany
     private List<Reporte> reportes;
     
+    private Boolean alta;
+    
     @ManyToOne
     private Usuario usuario;
     
