@@ -4,7 +4,6 @@
             <img
                 src="/img/logo.png"
                 alt="Logo Touch"
-                height="200"
                 class="d-inline-block"
                 />
         </a>
@@ -21,22 +20,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul th:if="${session.usuariosession == null}" class="navbar-nav ms-auto gap-3">
-                <li class="nav-item">  
-                   
-                    <a class="icon-link icon-link-hover" href="/registrar"> Registrate
-        
-                        
+                <li class="nav-item">
+                    <a class="icon-link icon-link-hover" href="/registrar">
+                        Registrate
                     </a>
-                      
                 </li>
                 <li class="nav-item">
-<<<<<<< HEAD
-                    <a class="icon-link icon-link-hover" href="/login"> Logueate
-                      
-                    </a>
-=======
                     <a class="icon-link icon-link-hover" href="/loguear"> Logueate </a>
->>>>>>> b21c851bb42280c2db24054a6e05214cb4bc2d88
                 </li>
             </ul>
 
@@ -53,7 +43,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li sec:authorize="hasRole('ADMIN')">
-                            <a class="dropdown-item" href="/seccion/registrar">Nuevo</a>
+                            <a class="dropdown-item" href="/seccion/registrar">Nueva</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="/seccion/lista">Explorar</a>
