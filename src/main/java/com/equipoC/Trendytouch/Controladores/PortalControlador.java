@@ -1,11 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.equipoC.Trendytouch.Controladores;
 
+import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +35,7 @@ public class PortalControlador {
     @GetMapping("/registrar") //localhost:8080
     public String registrar() {
 
-        return "registrar.html";
+        return "usuario_form.html";
     }
     
     @PostMapping("/registro")
@@ -55,6 +54,7 @@ public class PortalControlador {
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", nombre);
+            modelo.put("apellido", apellido);
             modelo.put("email", email);
             modelo.put("nombreUsuario", nombreUsuario);
             modelo.put("pregunta", pregunta);
@@ -62,12 +62,32 @@ public class PortalControlador {
             return "registrar.html";
         }
     }
+    
+    @GetMapping("/loguear") //localhost:8080
+    public String login() {
+        
+        return "login.html";
+    }
 
     @GetMapping("/login") //localhost:8080
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
         if (error != null) {
             modelo.put("error", "usuario o contrasena invalido");
         }
-        return "login.html";
+        return "index.html";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/inicio")
+    public String inicio(HttpSession session) {
+
+//        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+//
+//        if (logueado.getRol().toString().equalsIgnoreCase("admin")) {
+//
+//            return "redirect:/admin/dashboard";
+//        }
+
+        return "inicio.html";
     }
 }
