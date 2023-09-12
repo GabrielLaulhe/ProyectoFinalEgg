@@ -6,6 +6,9 @@ import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Enums.Categoria;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -71,8 +74,32 @@ public class PublicacionServicio {
             publicacionRepo.deleteById(idpublicacion);
         }
     }
-    
-    
+
+    @Transactional(readOnly = true)
+    public List<Publicacion> listarPublicaciones() {
+
+        List<Publicacion> publicaciones = publicacionRepo.findAll();
+
+        return publicaciones;
+    }
+ 
+    @Transactional(readOnly = true)
+    public List<Publicacion> listarPublicacionesMegustas() {
+        List<Publicacion> publicaciones = publicacionRepo.findAll();
+
+        Comparator<Publicacion> comparadorMeGustas = new Comparator<Publicacion>() {
+            @Override
+            public int compare(Publicacion p1, Publicacion p2) {
+                return Integer.compare(p2.getMegusta().size(), p1.getMegusta().size());
+            }
+        };
+
+        Collections.sort(publicaciones, comparadorMeGustas);
+
+        int numPublicacionesDeseadas = Math.min(10, publicaciones.size()); // Para evitar un índice fuera de rango
+        List<Publicacion> primeras10Publicaciones = publicaciones.subList(0, numPublicacionesDeseadas);
+
+        return primeras10Publicaciones;
+    }        
 
 }
-
