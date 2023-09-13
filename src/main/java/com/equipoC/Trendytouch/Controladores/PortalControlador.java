@@ -1,7 +1,9 @@
 package com.equipoC.Trendytouch.Controladores;
 
-import com.equipoC.Trendytouch.Entidades.Usuario;
+import com.equipoC.Trendytouch.Entidades.Publicacion;
+import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,18 +26,20 @@ public class PortalControlador {
     
     @Autowired
     private UsuarioServicio usuarioServicio;
+    @Autowired
+    private PublicacionServicio publicacionServicio;
     
     @GetMapping("/")
-    public String index() {
-        //List<Publicacion> publicaciones = publicacionServicio.listarPublicaciones();
-        //modelo.addAttribute("publicaciones", publicaciones);
+    public String index(ModelMap modelo) {
+        List<Publicacion> publicaciones = publicacionServicio.listarPublicacionesMegustas();
+        modelo.addAttribute("publicaciones", publicaciones);
         return "index.html";
     }
     
     @GetMapping("/registrar") //localhost:8080
     public String registrar() {
 
-        return "usuario_form.html";
+        return "usuario_registro.html";
     }
     
     @PostMapping("/registro")

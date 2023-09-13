@@ -159,15 +159,7 @@ public class UsuarioServicio implements UserDetailsService {
         }
     }
 
-    @Transactional(readOnly = true)
-    public List<Usuario> listarUsuario() {
 
-        List<Usuario> usuarios = new ArrayList();
-
-        usuarios = usuariorepo.findAll();
-
-        return usuarios;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
