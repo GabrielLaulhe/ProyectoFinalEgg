@@ -31,7 +31,7 @@ public class PublicacionServicio {
     ImagenServicio imagenservicio;
 
     @Transactional
-    public void registrarPublicacion(String descripcion, String idUsuario, String categoria,
+    public void registrarPublicacion(String descripcion, Usuario usuario, String categoria,
             List<MultipartFile> Fotos) throws MyException {
 
         List<MultipartFile> primeras5Fotos = Fotos.stream().limit(5).collect(Collectors.toList());
@@ -40,9 +40,6 @@ public class PublicacionServicio {
 
         Publicacion publi = new Publicacion();
         Date fecha = new Date();
-        Usuario usuario = new Usuario();
-
-        usuario = usuarioServicio.getOne(idUsuario);
         publi.setFechaPublicacion(fecha);
         publi.setDescripcion(descripcion);
         publi.setUsuario(usuario);
@@ -102,4 +99,9 @@ public class PublicacionServicio {
         return primeras10Publicaciones;
     }        
 
+    
+    public Publicacion getOne(String id) {
+        return publicacionRepo.getOne(id);
+    }
+    
 }

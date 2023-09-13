@@ -5,10 +5,55 @@
  */
 package com.equipoC.Trendytouch.Controladores;
 
+import com.equipoC.Trendytouch.Entidades.Usuario;
+import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
+import java.util.List;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  *
  * @author Facu
  */
+@Controller
+@RequestMapping("/publicacion")
 public class PublicacionControlador {
-    
+
+    @Autowired
+    private PublicacionServicio publicacionServicio;
+
+     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/crear") //localhost:8080
+    public String crear() {
+
+        return "publicacion_form.html";
+    }
+
+    @PostMapping("/crear")
+    public String crear(@RequestParam(required = false) String descripcion, HttpSession session,
+            @RequestParam List<MultipartFile> archivos, @RequestParam String categoria, ModelMap modelo) {
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        
+        try {
+            publicacionServicio.registrarPublicacion(descripcion, usuario, categoria, archivos);
+            modelo.put("exito","Plublicacion ok");
+            return"redirect:/inicio";
+        } catch (Exception e) {
+
+            modelo.put("error",e.getMessage());
+            
+            return "publicacion_form.html";
+            
+        }
+
+    }
+
 }
