@@ -1,0 +1,29 @@
+<section class="hero">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="hero-content">
+          <h1 class="text-center">Bienvenid@ a trendy touch</h1>
+
+          <p th:if="${session.usuariosession == null}" class="text-center">
+            Powered by SpringBoot
+          </p>
+
+          <div th:if="${session.usuariosession != null}">
+            <img
+              class="logo"
+              th:src="@{/imagen/perfil/__${session.usuariosession.id}__}"
+              alt="Imagen usuario"
+            />
+          </div>
+
+          <p
+            th:if="${session.usuariosession != null}"
+            th:text="'Bienvenido/a ' + ${session.usuariosession.nombre} + '!'"
+            class="text-center"
+          ></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
