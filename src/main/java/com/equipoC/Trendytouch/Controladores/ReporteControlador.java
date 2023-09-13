@@ -4,6 +4,7 @@ import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/reporte")
-@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 public class ReporteControlador {
 
     @Autowired
-    private ReporteServicio reporteServicio;
-
+    private ReporteServicio reporteServicio;    
+    
     @GetMapping("/crear")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public String crear() {
         return "crear_reporte.html";
     }
@@ -43,6 +44,7 @@ public class ReporteControlador {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public String reporte(@PathVariable String id, ModelMap modelo) {
         try {
             Reporte reporte = reporteServicio.getOne(id);
@@ -54,10 +56,17 @@ public class ReporteControlador {
         return "reporte.html";
     }
 
-    /*  @GetMapping("/lista")
-        public String listaReportes(ModelMap modelo){        
-        List<Reporte> reportes = reporteServicio.buscarTodo();
-        modelo.put("reportes", reportes)
-        return     ;
-        } */
+    @GetMapping("/lista")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String listaReportes(ModelMap modelo) {
+        
+        try {
+            List<Reporte> reportes = reporteServicio.listarReportes();
+            modelo.put("reportes", reportes);            
+        } catch (Exception ex) {
+            modelo.put("error", ex.getMessage());
+            return "redirect:/inicio";            
+        }
+        return "lista_reportes.html";
+    }
 }

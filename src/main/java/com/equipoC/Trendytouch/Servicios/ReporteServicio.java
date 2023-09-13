@@ -2,6 +2,7 @@ package com.equipoC.Trendytouch.Servicios;
 
 import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
+import com.equipoC.Trendytouch.Enums.EstadoReporte;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.ReporteRepositorio;
 import java.util.List;
@@ -25,6 +26,7 @@ public class ReporteServicio {
         reporte.setContenido(contenido);
         reporte.setEmisor(emisor);
         reporte.setCategoria(categoria);
+        reporte.setEstado(EstadoReporte.PENDIENTE);
 
         reporteRepositorio.save(reporte);
     }

@@ -1,5 +1,6 @@
 package com.equipoC.Trendytouch.Entidades;
 
+import com.equipoC.Trendytouch.Enums.EstadoReporte;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,4 +25,5 @@ public class Reporte {
     @OneToOne
     private Usuario emisor;
     private String categoria;
+    private EstadoReporte estado;
 }

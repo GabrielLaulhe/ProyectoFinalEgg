@@ -1,6 +1,7 @@
 package com.equipoC.Trendytouch.Controladores;
 
 import com.equipoC.Trendytouch.Entidades.Publicacion;
+import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
 import java.util.List;
@@ -55,7 +56,7 @@ public class PortalControlador {
                                         nombreUsuario, password, password2, pregunta, respuesta);
             
             modelo.put("exito", "El usuario se registro correctamente");
-            return "index.html";
+            return "login.html";
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", nombre);
@@ -86,12 +87,12 @@ public class PortalControlador {
     @GetMapping("/inicio")
     public String inicio(HttpSession session, ModelMap modelo) {
 
-//        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-//
-//        if (logueado.getRol().toString().equalsIgnoreCase("admin")) {
-//
-//            return "redirect:/admin/dashboard";
-//        }
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+
+        if (logueado.getRol().toString().equalsIgnoreCase("admin")) {
+
+            return "redirect:/admin/dashboard";
+        }
         List<Publicacion> publicaciones1 = publicacionServicio.listarPublicaciones();
         modelo.addAttribute("publicaciones1", publicaciones1);
 
