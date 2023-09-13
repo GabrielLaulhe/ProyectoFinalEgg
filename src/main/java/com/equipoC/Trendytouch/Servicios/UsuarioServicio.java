@@ -38,6 +38,7 @@ public class UsuarioServicio implements UserDetailsService {
             String nombreUsuario, String password, String password2, String pregunta, String respuesta) throws MyException {
 
         validar(nombre, apellido, email, nombreUsuario, password, password2);
+        validar2(email,nombreUsuario);
 
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
@@ -57,6 +58,16 @@ public class UsuarioServicio implements UserDetailsService {
 
     }
 
+    public void validar2(String email, String nombreUsuario ) throws MyException {
+        if (usuariorepo.buscarPorEmail(email) != null) {
+            throw new MyException("ERROR, EMAIL YA SE ENCUENTRA EN USO!");
+        }
+        if (usuariorepo.buscarPorNombreUsuario(nombreUsuario) != null) {
+            throw new MyException("ERROR, EL NOMBRE DE USUARIO YA SE ENCUENTRA EN USO!");
+        }
+        
+    }
+
     private void validar(String nombre, String apellido, String email, String nombreUsuario,
             String password, String password2) throws MyException {
 
@@ -68,9 +79,6 @@ public class UsuarioServicio implements UserDetailsService {
         }
         if (email.isEmpty() || email == null) {
             throw new MyException("EL email no puede estar vacio.");
-        }
-        if (nombreUsuario.isEmpty() || nombreUsuario == null) {
-            throw new MyException("EL nombreUsuario no puede estar vacio.");
         }
         if (nombreUsuario.isEmpty() || nombreUsuario == null) {
             throw new MyException("EL nombreUsuario no puede estar vacio.");
@@ -110,6 +118,8 @@ public class UsuarioServicio implements UserDetailsService {
     @Transactional
     public void actualizar(String idUsuario, String nombre, String apellido, String email,
             String nombreUsuario, String password, String password2) throws MyException {
+
+        validar(nombre, apellido, email, nombreUsuario, password, password2);
 
         Optional<Usuario> respuesta = usuariorepo.findById(idUsuario);
         if (respuesta.isPresent()) {
@@ -159,8 +169,6 @@ public class UsuarioServicio implements UserDetailsService {
         }
     }
 
-
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
@@ -182,7 +190,6 @@ public class UsuarioServicio implements UserDetailsService {
 
     }
 
-    
     public UserDetails loadUserByUsernameUsuario(String nombreUsuario) throws UsernameNotFoundException {
 
         Usuario usuario = usuariorepo.buscarPorNombreUsuario(nombreUsuario);

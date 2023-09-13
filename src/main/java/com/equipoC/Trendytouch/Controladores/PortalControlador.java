@@ -64,7 +64,7 @@ public class PortalControlador {
             modelo.put("nombreUsuario", nombreUsuario);
             modelo.put("pregunta", pregunta);
             modelo.put("respuesta", respuesta);
-            return "registrar.html";
+            return "usuario_registro.html";
         }
     }
     

@@ -6,7 +6,6 @@ import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Enums.Categoria;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -79,7 +78,7 @@ public class PublicacionServicio {
 
         return publicaciones;
     }
- 
+
     @Transactional(readOnly = true)
     public List<Publicacion> listarPublicacionesMegustas() {
         List<Publicacion> publicaciones = publicacionRepo.findAll();
@@ -97,11 +96,15 @@ public class PublicacionServicio {
         List<Publicacion> primeras10Publicaciones = publicaciones.subList(0, numPublicacionesDeseadas);
 
         return primeras10Publicaciones;
-    }        
+    }
 
-    
     public Publicacion getOne(String id) {
         return publicacionRepo.getOne(id);
     }
-    
+
+    @Transactional(readOnly = true)
+    public List<Publicacion> buscarUsuario(Usuario usuario) {
+        return publicacionRepo.buscarUsuario(usuario);
+    }
+
 }
