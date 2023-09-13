@@ -5,6 +5,7 @@
  */
 package com.equipoC.Trendytouch.Controladores;
 
+import com.equipoC.Trendytouch.Entidades.Publicacion;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import java.util.List;
@@ -56,4 +57,12 @@ public class PublicacionControlador {
 
     }
 
+    @GetMapping("/usuario")
+    public String PublicacionesdeUsuario(HttpSession session, ModelMap modelo) {
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        List<Publicacion> publicaciones1 = publicacionServicio.buscarUsuario(usuario);
+        modelo.addAttribute("publicaciones1", publicaciones1);
+        return "inicio.html";
+    }
+    
 }
