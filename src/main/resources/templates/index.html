@@ -3,16 +3,15 @@
     <head>
     <head th:replace="/fragments/head :: head"></head>
 </head>
-<body>
+<body class="index-body flex-col-center">
     <header>
         <nav th:replace="/fragments/navbar :: nav"></nav>
-        
     </header>
+    <main class="index-main">
+        <section th:replace="/fragments/errores :: section"></section>
 
-    <section th:replace="/fragments/errores :: section"></section>
-   
         <section th:if="${session.usuariosession == null}" th:replace="/fragments/vista_inicio :: section"></section>
-   
+    </main>
 
     <script th:replace="/fragments/scripts :: script"></script>
 </body>

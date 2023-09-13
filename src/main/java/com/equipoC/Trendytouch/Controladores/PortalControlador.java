@@ -33,6 +33,7 @@ public class PortalControlador {
     public String index(ModelMap modelo) {
         List<Publicacion> publicaciones = publicacionServicio.listarPublicacionesMegustas();
         modelo.addAttribute("publicaciones", publicaciones);
+
         return "index.html";
     }
     
@@ -83,7 +84,7 @@ public class PortalControlador {
     
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/inicio")
-    public String inicio(HttpSession session) {
+    public String inicio(HttpSession session, ModelMap modelo) {
 
 //        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 //
@@ -91,6 +92,8 @@ public class PortalControlador {
 //
 //            return "redirect:/admin/dashboard";
 //        }
+        List<Publicacion> publicaciones1 = publicacionServicio.listarPublicaciones();
+        modelo.addAttribute("publicaciones1", publicaciones1);
 
         return "inicio.html";
     }
