@@ -40,6 +40,18 @@ public class ReporteServicio {
             reporteRepositorio.delete(reporte);
         }
     }
+    
+    @Transactional
+    public void cambiarEstado(String id, String estado) throws MyException{
+        if (id == null || estado == null || estado.isEmpty()){
+            throw new MyException(("El id o el estado es inválido."));
+        }
+        Optional<Reporte> respuesta = reporteRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            Reporte reporte = respuesta.get();
+            reporte.se;
+        }
+    }
 
     @Transactional
     public List<Reporte> listarReportes() {
