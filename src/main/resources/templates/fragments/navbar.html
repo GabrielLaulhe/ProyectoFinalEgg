@@ -1,37 +1,29 @@
-<nav class="navbar navbar-expand-sm bg-body-tertiary px-2">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+<nav class="navbar">
+    <div class="contenedor">
+        <a class="nav-link" href="/">
             <img
                 src="/img/logo.png"
                 alt="Logo Touch"
-                class="d-inline-block"
+                class="logo"
                 />
         </a>
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul th:if="${session.usuariosession == null}" class="navbar-nav ms-auto gap-3">
-                <li class="nav-item">
-                    <a class="icon-link icon-link-hover" href="/registrar">
-                        Registrate
+
+        <div >
+            <ul th:if="${session.usuariosession == null}" class="nav-ul">
+                <li class="item">
+                    <a class="links" href="/registrar">
+                        Registrate                     
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="icon-link icon-link-hover" href="/loguear"> Logueate </a>
+                <li class="item">
+                    <a class="links" href="/loguear">
+                        Logueate
+                    </a>
                 </li>
             </ul>
 
-            <ul th:if="${session.usuariosession != null}" class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
+            <ul th:if="${session.usuariosession != null}" class="nav-ul">
+                <li class="item dropdown">
                     <a
                         class="nav-link dropdown-toggle"
                         href="#"
@@ -43,15 +35,36 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li sec:authorize="hasRole('ADMIN')">
-                            <a class="dropdown-item" href="/seccion/registrar">Nueva</a>
+                            <a class="dropdown-item" href="/seccion/editar">Editar</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/lista">Explorar</a>
+                            <a class="dropdown-item" href="/seccion/tendencias">Tendencias</a>
+                        </li>
+                         <li>
+                            <a class="dropdown-item" href="/seccion/moda_sostenible">Moda sostenible</a>
+                        </li>
+                         <li>
+                            <a class="dropdown-item" href="/seccion/estampados">Estampados</a>
+                        </li>
+                         <li>
+                            <a class="dropdown-item" href="/seccion/cabello">Cabello</a>
+                        </li>
+                         <li>
+                            <a class="dropdown-item" href="/seccion/maquillaje">Maquillaje</a>
+                        </li>
+                         <li>
+                            <a class="dropdown-item" href="/seccion/accesorios">Accesorios</a>
+                        </li>
+                         <li>
+                            <a class="dropdown-item" href="/seccion/calzado">Calzado</a>
+                        </li>
+                         <li>
+                            <a class="dropdown-item" href="/seccion/indumentaria">Indumentaria</a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
                     <a
                         class="nav-link dropdown-toggle"
                         href="#"
@@ -65,10 +78,29 @@
                         <li>
                             <a class="dropdown-item" href="/admin/usuarios">Gestionar</a>
                         </li>
+                        
+                    </ul>
+                </li>
+                
+                <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        >
+                        Publicaciones
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="/admin/publicaciones">Gestionar</a>
+                        </li>
+                        
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="item dropdown">
                     <a
                         class="nav-link dropdown-toggle"
                         href="#"
