@@ -7,29 +7,31 @@
     <header>
         <nav th:replace="/fragments/navbar :: nav"></nav>
     </header>
-    <main class="inicio-main">
+    <section>
+
         <section th:replace="/fragments/errores :: section"></section>
         <section th:replace="/fragments/hero :: section"></section>
 
+        <div>
+            <form class="form" th:action="@{/reporte/crear}" method="POST">
+                <div class="mb-3 form-control">
+                    <label for="floatingRespuesta">Descripción</label>
+                    <input type="text" class="form-control" id="floatingRespuesta" placeholder="descripcion"
+                        name="contenido" />
 
-        <form class="form" th:action="@{/reporte/crear}" method="POST">
-            <div class="mb-3 form-floating">
-                <label for="floatingRespuesta">Descripción</label>
-                <input type="text" class="form-control" id="floatingRespuesta" placeholder="descripcion"
-                    name="contenido" />
+                </div>
+                <div class="mb-3 form-control">
+                    <label for="floatingRespuesta">Castegoria</label>
+                    <input type="text" class="form-control" id="floatingRespuesta" placeholder="Categoria"
+                        name="categoria" required />
+                </div>
 
-            </div>
-            <div class="mb-3 form-floating">
-                <label for="floatingRespuesta">Castegoria</label>
-                <input type="text" class="form-control" id="floatingRespuesta" placeholder="Categoria" name="categoria"
-                    required />
-            </div>
-
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
         <script th:replace="/fragments/scripts :: script"></script>
-    </main>
+    </section>
+
 
 </body>
 
