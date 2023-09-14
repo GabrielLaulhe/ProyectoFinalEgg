@@ -26,10 +26,10 @@ public class ReporteControlador {
     @GetMapping("/crear")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public String crear() {
-        return "crear_reporte.html";
+        return "reporte_form.html";
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public String crear(@RequestParam String categoria, @RequestParam(required = false) String contenido,
             HttpSession session, ModelMap modelo) {
         try {
@@ -39,7 +39,7 @@ public class ReporteControlador {
             return "redirect:/inicio";
         } catch (MyException ex) {
             modelo.put("error", ex.getMessage());
-            return "crear_reporte.html";
+            return "reporte_form.html";
         }
     }
 
@@ -54,6 +54,31 @@ public class ReporteControlador {
             return "redirect:/inicio";
         }
         return "reporte.html";
+    }
+    
+    @GetMapping("/editar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String editarEstado(@PathVariable String id, ModelMap modelo) {
+        try {
+            Reporte reporte = reporteServicio.getOne(id);
+            modelo.put("reporte", reporte);
+        } catch (Exception ex) {
+            modelo.put("error", ex.getMessage());
+            return "redirect:/inicio";
+        }
+        return "reporte_form.html";
+    }
+    
+    @PostMapping("/editar/{id}")
+    public String editarEstado(@PathVariable String id, @RequestParam String estado, ModelMap modelo) {
+        try {
+            reporteServicio.cambiarEstado(id, estado);
+            modelo.put("exito", "El reporte se ha actualizado con exito.");
+        } catch (Exception ex) {
+            modelo.put("error", ex.getMessage());
+            return "reporte_form.html";
+        }
+        return "redirect:/admin/dashboard";
     }
 
     @GetMapping("/lista")
