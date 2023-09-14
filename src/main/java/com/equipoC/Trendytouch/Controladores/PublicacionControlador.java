@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  * @author Facu
  */
+
 @Controller
 @RequestMapping("/publicacion")
 public class PublicacionControlador {
@@ -32,10 +33,9 @@ public class PublicacionControlador {
     @Autowired
     private PublicacionServicio publicacionServicio;
 
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN')")
     @GetMapping("/crear") //localhost:8080
     public String crear() {
-
         return "publicacion_registro.html";
     }
 
