@@ -1,18 +1,14 @@
 <nav class="navbar">
     <div class="contenedor">
         <a class="nav-link" href="/">
-            <img
-                src="/img/logo.png"
-                alt="Logo Touch"
-                class="logo"
-                />
+            <img src="/img/logo.png" alt="Logo Touch" class="logo" />
         </a>
 
-        <div >
+        <div>
             <ul th:if="${session.usuariosession == null}" class="nav-ul">
                 <li class="item">
                     <a class="links" href="/registrar">
-                        Registrate                     
+                        Registrate
                     </a>
                 </li>
                 <li class="item">
@@ -24,13 +20,8 @@
 
             <ul th:if="${session.usuariosession != null}" class="nav-ul">
                 <li class="item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        >
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         Secciones
                     </a>
                     <ul class="dropdown-menu">
@@ -40,56 +31,46 @@
                         <li>
                             <a class="dropdown-item" href="/seccion/tendencias">Tendencias</a>
                         </li>
-                         <li>
+                        <li>
                             <a class="dropdown-item" href="/seccion/moda_sostenible">Moda sostenible</a>
                         </li>
-                         <li>
+                        <li>
                             <a class="dropdown-item" href="/seccion/estampados">Estampados</a>
                         </li>
-                         <li>
+                        <li>
                             <a class="dropdown-item" href="/seccion/cabello">Cabello</a>
                         </li>
-                         <li>
+                        <li>
                             <a class="dropdown-item" href="/seccion/maquillaje">Maquillaje</a>
                         </li>
-                         <li>
+                        <li>
                             <a class="dropdown-item" href="/seccion/accesorios">Accesorios</a>
                         </li>
-                         <li>
+                        <li>
                             <a class="dropdown-item" href="/seccion/calzado">Calzado</a>
                         </li>
-                         <li>
+                        <li>
                             <a class="dropdown-item" href="/seccion/indumentaria">Indumentaria</a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        >
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         Usuarios
                     </a>
                     <ul class="dropdown-menu">
                         <li>
                             <a class="dropdown-item" href="/admin/usuarios">Gestionar</a>
                         </li>
-                        
+
                     </ul>
                 </li>
-                
+
                 <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        >
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         Publicaciones
                     </a>
                     <ul class="dropdown-menu">
@@ -99,18 +80,13 @@
                         <li>
                             <a class="dropdown-item" href="/publicaciones/usuario/">Gestionar</a>
                         </li>
-                        
+
                     </ul>
                 </li>
 
                 <li class="item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        >
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         Perfil
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
