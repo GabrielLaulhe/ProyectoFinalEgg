@@ -24,7 +24,7 @@ public class ReporteControlador {
     private ReporteServicio reporteServicio;    
     
     @GetMapping("/crear")
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     public String crear() {
         return "crear_reporte.html";
     }
@@ -44,7 +44,7 @@ public class ReporteControlador {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     public String reporte(@PathVariable String id, ModelMap modelo) {
         try {
             Reporte reporte = reporteServicio.getOne(id);

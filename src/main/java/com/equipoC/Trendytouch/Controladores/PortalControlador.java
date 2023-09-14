@@ -83,7 +83,7 @@ public class PortalControlador {
         return "index.html";
     }
     
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/inicio")
     public String inicio(HttpSession session, ModelMap modelo) {
 
