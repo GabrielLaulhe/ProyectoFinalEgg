@@ -150,18 +150,6 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void eliminar(String id) throws MyException {
-
-        try {
-            Usuario usuario = usuariorepo.getById(id);
-            usuariorepo.delete(usuario);
-        } catch (Exception e) {
-            throw new MyException(e.getMessage());
-        }
-
-    }
-
-    @Transactional
     public void cambiarRol(String id, String rol) {
         Optional<Usuario> respuesta = usuariorepo.findById(id);
 
@@ -171,6 +159,18 @@ public class UsuarioServicio implements UserDetailsService {
             Usuario usuario = respuesta.get();
             usuario.setRol(Rol.valueOf(rol));
         }
+    }
+
+    @Transactional
+    public void eliminar(String id) throws MyException {
+
+        try {
+            Usuario usuario = usuariorepo.getById(id);
+            usuariorepo.delete(usuario);
+        } catch (Exception e) {
+            throw new MyException(e.getMessage());
+        }
+
     }
 
     @Override
