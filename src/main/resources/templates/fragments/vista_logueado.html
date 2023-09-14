@@ -1,17 +1,17 @@
-<section class="vista vista-logueado">
-    <div class="container text-center">
-        <div th:each="publicacion: ${publicaciones1}">
-            <div class="card border-info" style="width: 28rem;">
-                <div th:each="imagen: ${publicacion.fotos}">
-                    <img th:src="@{/imagen/__${imagen.id}__}" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <a href="https://chat.openai.com/">
-                        <h5 th:text="${publicacion.categoria}" class="card-title"></h5>
-                    </a>
-                    <p th:text="${publicacion.descripcion}" class="card-text"></p>
-                </div>
-            </div>
+<section class="section">
+
+    <div th:each="publicacion: ${publicaciones1}" class="tarjeta">
+        <div class="contenedor-imagen-usuario">
+            <img th:src="@{imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
+            <p th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></p>
+        </div>
+        <div class="contenedor-imagen" th:each="imagen: ${publicacion.fotos}">
+            <img th:src="@{/imagen/__${imagen.id}__}" class="imagen" alt="imagen">
+        </div>
+        <div class="contenedor-texto">
+            <a id="texto-categoria" th:text="${publicacion.categoria}" href="/"></a>
+            <p th:text="${publicacion.descripcion}" class="descripcion"></p>
         </div>
     </div>
+
 </section>

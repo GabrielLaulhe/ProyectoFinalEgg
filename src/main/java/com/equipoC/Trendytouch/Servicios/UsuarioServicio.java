@@ -137,10 +137,22 @@ public class UsuarioServicio implements UserDetailsService {
 
     }
 
+    @Transactional
+    public void eliminar(String id) throws MyException {
+
+        try {
+            Usuario usuario = usuariorepo.getById(id);
+            usuariorepo.delete(usuario);
+        } catch (Exception e) {
+            throw new MyException(e.getMessage());
+        }
+
+    }
+
     public Usuario getOne(String id) {
         return usuariorepo.getOne(id);
     }
-
+ 
     @Transactional(readOnly = true)
     public List<Usuario> listarUsuarios() {
 
@@ -160,19 +172,7 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setRol(Rol.valueOf(rol));
         }
     }
-
-    @Transactional
-    public void eliminar(String id) throws MyException {
-
-        try {
-            Usuario usuario = usuariorepo.getById(id);
-            usuariorepo.delete(usuario);
-        } catch (Exception e) {
-            throw new MyException(e.getMessage());
-        }
-
-    }
-
+    
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
