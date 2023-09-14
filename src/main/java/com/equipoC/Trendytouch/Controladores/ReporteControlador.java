@@ -26,10 +26,10 @@ public class ReporteControlador {
     @GetMapping("/crear")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public String crear() {
-        return "crear_reporte.html";
+        return "reporte_form.html";
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public String crear(@RequestParam String categoria, @RequestParam(required = false) String contenido,
             HttpSession session, ModelMap modelo) {
         try {
@@ -39,7 +39,7 @@ public class ReporteControlador {
             return "redirect:/inicio";
         } catch (MyException ex) {
             modelo.put("error", ex.getMessage());
-            return "crear_reporte.html";
+            return "reporte_form.html";
         }
     }
 
