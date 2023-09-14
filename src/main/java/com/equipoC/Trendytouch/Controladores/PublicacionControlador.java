@@ -7,6 +7,7 @@ package com.equipoC.Trendytouch.Controladores;
 
 import com.equipoC.Trendytouch.Entidades.Publicacion;
 import com.equipoC.Trendytouch.Entidades.Usuario;
+import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  * @author Facu
  */
+
 @Controller
 @RequestMapping("/publicacion")
 public class PublicacionControlador {
@@ -31,28 +33,27 @@ public class PublicacionControlador {
     @Autowired
     private PublicacionServicio publicacionServicio;
 
-     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN')")
     @GetMapping("/crear") //localhost:8080
     public String crear() {
-
-        return "publicacion_form.html";
+        return "publicacion_registro.html";
     }
 
     @PostMapping("/crear")
     public String crear(@RequestParam(required = false) String descripcion, HttpSession session,
             @RequestParam List<MultipartFile> archivos, @RequestParam String categoria, ModelMap modelo) {
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-        
+
         try {
             publicacionServicio.registrarPublicacion(descripcion, usuario, categoria, archivos);
-            modelo.put("exito","Plublicacion ok");
-            return"redirect:/inicio";
-        } catch (Exception e) {
+            modelo.put("exito", "Plublicacion ok");
+            return "redirect:/inicio";
+        } catch (MyException e) {
 
-            modelo.put("error",e.getMessage());
-            
-            return "publicacion_form.html";
-            
+            modelo.put("error", e.getMessage());
+
+            return "publicacion_registro.html";
+
         }
 
     }
@@ -64,5 +65,5 @@ public class PublicacionControlador {
         modelo.addAttribute("publicaciones1", publicaciones1);
         return "inicio.html";
     }
-    
+
 }

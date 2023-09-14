@@ -37,7 +37,6 @@ public class Usuario {
     private String pregunta;
     private String respuesta;
     private boolean alta;
-    private boolean diseñador;
     private Rol rol;
     
     @Temporal(TemporalType.DATE)

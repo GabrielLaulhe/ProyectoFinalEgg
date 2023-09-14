@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <head th:replace="/fragments/head :: head"></head>
+</head>
+
+<body class="index-body flex-col-center">
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
+    <main class="index-main">
+        <section class="contenedorError">
+            <a class="error-codigo" th:text="'Error ' + ${codigo}"></a>
+            <p class="error-mensaje" th:text="${mensaje}"></p>
+        </section>
+    </main>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
+
+</html>

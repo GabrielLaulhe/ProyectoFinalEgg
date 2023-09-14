@@ -38,7 +38,7 @@ public class UsuarioServicio implements UserDetailsService {
             String nombreUsuario, String password, String password2, String pregunta, String respuesta) throws MyException {
 
         validar(nombre, apellido, email, nombreUsuario, password, password2);
-        validar2(email,nombreUsuario);
+        validar2(email, nombreUsuario);
 
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
@@ -58,14 +58,14 @@ public class UsuarioServicio implements UserDetailsService {
 
     }
 
-    public void validar2(String email, String nombreUsuario ) throws MyException {
+    public void validar2(String email, String nombreUsuario) throws MyException {
         if (usuariorepo.buscarPorEmail(email) != null) {
             throw new MyException("ERROR, EMAIL YA SE ENCUENTRA EN USO!");
         }
         if (usuariorepo.buscarPorNombreUsuario(nombreUsuario) != null) {
             throw new MyException("ERROR, EL NOMBRE DE USUARIO YA SE ENCUENTRA EN USO!");
         }
-        
+
     }
 
     private void validar(String nombre, String apellido, String email, String nombreUsuario,
@@ -132,8 +132,6 @@ public class UsuarioServicio implements UserDetailsService {
 
             usuario.setPassword(new BCryptPasswordEncoder().encode(password));
 
-            usuario.setRol(Rol.USER);
-
             usuariorepo.save(usuario);
         }
 
@@ -152,21 +150,27 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void cambiarRol(String id) {
+    public void cambiarRol(String id, String rol) {
         Optional<Usuario> respuesta = usuariorepo.findById(id);
 
+        rol = rol.toUpperCase();
+
         if (respuesta.isPresent()) {
-
             Usuario usuario = respuesta.get();
-
-            if (usuario.getRol().equals(Rol.USER)) {
-
-                usuario.setRol(Rol.ADMIN);
-
-            } else if (usuario.getRol().equals(Rol.ADMIN)) {
-                usuario.setRol(Rol.USER);
-            }
+            usuario.setRol(Rol.valueOf(rol));
         }
+    }
+
+    @Transactional
+    public void eliminar(String id) throws MyException {
+
+        try {
+            Usuario usuario = usuariorepo.getById(id);
+            usuariorepo.delete(usuario);
+        } catch (Exception e) {
+            throw new MyException(e.getMessage());
+        }
+
     }
 
     @Override
