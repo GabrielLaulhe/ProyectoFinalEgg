@@ -8,18 +8,18 @@
         </a>
 
         <div>
-            <ul th:if="${session.usuariosession == null}" class="nav-ul">
-                <li class="item">
+            <div th:if="${session.usuariosession == null}" class="nav-ul">
+                <div class="item">
                     <a class="links" href="/registrar">
                         Registrate
                     </a>
-                </li>
-                <li class="item">
+                </div>
+                <div class="item">
                     <a class="links" href="/loguear">
                         Logueate
                     </a>
-                </li>
-            </ul>
+                </div>
+            </div>
 
             <ul th:if="${session.usuariosession != null}" class="nav-ul">
                 <li class="item dropdown">
