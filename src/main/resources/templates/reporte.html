@@ -13,9 +13,9 @@
 
     <div>
         <p th:value="${reporte.estado}" th:text="${reporte.estado}"></p>
-        <button th:href="@{/reporte/editar/__${reporte.id}__}" sec:authorize="hasRole('ADMIN')">Cambiar estado</button>
-        
-        
+        <button sec:authorize="hasRole('ADMIN')" th:href="@{/reporte/editar/__${reporte.id}__}">Cambiar estado</button>
+
+
         <br />
         <h4 th:value="${reporte.categoria}" th:text="${reporte.categoria}"></h4>
         <h5 th:if="${reporte.contenido != null}" th:value="${reporte.contenido}" th:text="${reporte.contenido}"></h5>
