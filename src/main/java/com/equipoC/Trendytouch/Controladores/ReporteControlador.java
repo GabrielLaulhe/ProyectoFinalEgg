@@ -56,6 +56,20 @@ public class ReporteControlador {
         return "reporte.html";
     }
     
+    @GetMapping("/usuario")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    public String reportesPorUsuario(HttpSession session, ModelMap modelo) {
+     
+            
+            Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+            List<Reporte> reportes = reporteServicio.listarReportesPorEmisor(usuario);
+            modelo.put("reportes", reportes);
+      
+        return "reporte.html";
+    }
+    
+    
+    
     @GetMapping("/editar/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String editarEstado(@PathVariable String id, ModelMap modelo) {
