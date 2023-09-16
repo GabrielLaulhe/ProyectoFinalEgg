@@ -32,10 +32,10 @@ public class PortalControlador {
     
     @GetMapping("/")
     public String index(ModelMap modelo) {
-        List<Publicacion> publicaciones = publicacionServicio.listarPublicacionesMegustas();
-        modelo.addAttribute("publicaciones", publicaciones);
+        List<Publicacion> publicaciones1 = publicacionServicio.listarPublicacionesMegustas();
+        modelo.addAttribute("publicaciones1", publicaciones1);
 
-        return "index.html";
+        return "inicio.html";
     }
     
     @GetMapping("/registrar") //localhost:8080
