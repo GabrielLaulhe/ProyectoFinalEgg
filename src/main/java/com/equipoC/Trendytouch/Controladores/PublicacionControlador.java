@@ -25,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
  *
  * @author Facu
  */
-
 @Controller
 @RequestMapping("/publicacion")
 public class PublicacionControlador {
@@ -64,6 +63,17 @@ public class PublicacionControlador {
         List<Publicacion> publicaciones1 = publicacionServicio.buscarUsuario(usuario);
         modelo.addAttribute("publicaciones1", publicaciones1);
         return "inicio.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN')")
+    @PostMapping("/borrar/{id}")
+    public String eliminar(@RequestParam("id") String id, ModelMap modelo) throws MyException {
+        try {
+            publicacionServicio.eliminarPublicacionPorId(id);
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+        }
+        return "redirect:/";
     }
 
 }

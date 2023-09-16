@@ -36,7 +36,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/*", "/js/*", "/img/*", "/**")
                 .permitAll()
             .and().formLogin()
-                .loginPage("/login")
+                .loginPage("/loguear")
                 .loginProcessingUrl("/logincheck")//debe coincidir con el action del html
                 .usernameParameter("email")
                 .passwordParameter("password")
