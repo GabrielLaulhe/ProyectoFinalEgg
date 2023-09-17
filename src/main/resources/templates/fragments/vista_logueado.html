@@ -2,7 +2,7 @@
 
     <div th:each="publicacion: ${publicaciones1}" class="tarjeta">
         <div class="contenedor-imagen-usuario">
-            <img th:src="@{imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
+            <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
             <p th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></p>
         </div>
         <div class="contenedor-imagen" th:each="imagen: ${publicacion.fotos}">

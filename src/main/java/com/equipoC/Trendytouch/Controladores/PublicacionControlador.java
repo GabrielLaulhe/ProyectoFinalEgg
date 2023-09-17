@@ -46,7 +46,7 @@ public class PublicacionControlador {
         try {
             publicacionServicio.registrarPublicacion(descripcion, usuario, categoria, archivos);
             modelo.put("exito", "Plublicacion ok");
-            return "redirect:/inicio";
+            return "inicio.html";
         } catch (MyException e) {
 
             modelo.put("error", e.getMessage());
