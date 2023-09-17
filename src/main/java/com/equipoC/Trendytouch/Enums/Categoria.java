@@ -8,5 +8,6 @@ public enum Categoria {
     MAQUILLAJE,
     ACCESORIOS,
     CALZADO,
+    SIN_CATEGORIA,
     INDUMENTARIA;
 }

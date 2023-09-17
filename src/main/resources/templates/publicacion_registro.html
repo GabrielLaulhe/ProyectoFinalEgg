@@ -26,7 +26,7 @@
                     </div>
                     <div class="my-3 form-group">
                         <select name="categoria">
-                            <option>Seleccionar Categoria</option>
+                            <option th:value="SIN_CATEGORIA">Seleccionar Categoria</option>
                             <option
                                 th:value="TENDENCIAS"
                                 >Tendencias</option>
@@ -61,7 +61,8 @@
                     <input class="form-control" type="file" name="archivos" id="formFile" multiple />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Subir</button>
+                <button type="submit" style="background-color: #800000; color: #ffffff;
+                border: none; padding: 5px 10px; border-radius: 3px;" class="btn btn-primary">Subir</button>
             </form>
         </div>
 

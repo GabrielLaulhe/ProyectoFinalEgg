@@ -127,10 +127,13 @@ public class ImagenServicio {
         return archivo;
     }
 
-    public List<MultipartFile> validarLista(List<MultipartFile> archivo) {
+    public List<MultipartFile> validarLista(List<MultipartFile> archivo) throws MyException {
+        if (archivo.isEmpty() || archivo == null) {
+            throw new MyException("Debes subir al menos una foto.");
+        }
         for (MultipartFile multipartFile : archivo) {
             if (multipartFile != null && multipartFile.getContentType().contains("octet")) {
-                return null;
+                throw new MyException("Debe subir una imagen.");
             }
         }
         return archivo;

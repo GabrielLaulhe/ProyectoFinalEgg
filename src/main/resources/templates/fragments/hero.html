@@ -9,11 +9,12 @@
             Powered by SpringBoot
           </p>
 
-          <div th:if="${session.usuariosession != null}">
+          <div th:if="${session.usuariosession != null}" style="display: flex; justify-content: center; align-items: center;">
             <img
               class="logo"
               th:src="@{/imagen/perfil/__${session.usuariosession.id}__}"
               alt="Imagen usuario"
+              style="max-width: 150px; max-height: 150px;"
             />
           </div>
 

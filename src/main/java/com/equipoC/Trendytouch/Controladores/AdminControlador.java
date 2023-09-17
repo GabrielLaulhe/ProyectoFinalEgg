@@ -48,8 +48,8 @@ public class AdminControlador {
         return "usuariosLista.html"; // crear una vista
     }
 
-    @GetMapping("/modificarRol/{id}")
-    public String cambiarRol(@PathVariable String id, @RequestParam String rol) {
+    @PostMapping("/modificarRol/{id}")
+    public String cambiarRol(@RequestParam("id") String id, @RequestParam String rol) {
         usuarioServicio.cambiarRol(id, rol);
         return "redirect:/admin/usuarios";
     }
