@@ -6,10 +6,14 @@ body {
     width: 100%;
     min-height: 100vh;
     display: flex;
+    background-color: #FFFFFF;
+    color: #800000;
 }
 
 header {
     width: 11%;
+     background-color: #FFD3E0;
+    color: #800000;
 }
 
 main {
