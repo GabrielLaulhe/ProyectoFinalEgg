@@ -33,6 +33,8 @@ public class PublicacionServicio {
     public void registrarPublicacion(String descripcion, Usuario usuario, String categoria,
             List<MultipartFile> Fotos) throws MyException {
 
+        validar(descripcion, categoria, Fotos);
+        
         List<MultipartFile> primeras5Fotos = Fotos.stream().limit(5).collect(Collectors.toList());
 
         categoria = categoria.toUpperCase();
@@ -50,17 +52,6 @@ public class PublicacionServicio {
 
     }
 
-    @Transactional
-    public void editarPublicacion(String idpublicacion, String descripcion) throws MyException {
-
-        Optional<Publicacion> respuesta = publicacionRepo.findById(idpublicacion);
-
-        if (respuesta.isPresent()) {
-            Publicacion publicacion = respuesta.get();
-            publicacion.setDescripcion(descripcion);
-
-        }
-    }
 
     @Transactional
     public void eliminarPublicacionPorId(String idpublicacion) throws MyException {
@@ -107,4 +98,20 @@ public class PublicacionServicio {
         return publicacionRepo.buscarUsuario(usuario);
     }
 
+    private void validar(String descripcion, String categoria, List<MultipartFile> Fotos) throws MyException {
+
+        if (descripcion.isEmpty() || descripcion == null) {
+            throw new MyException("La descripcion no puede estar vacia.");
+        }
+        if (categoria.isEmpty() || categoria == null || categoria=="VACIO") {
+            throw new MyException("La categoria no puede estar vacia.");
+        }
+        if (categoria == "VACIO") {
+            throw new MyException("La categoria no puede estar vacia.");
+        }
+        if (Fotos.isEmpty() || Fotos == null) {
+            throw new MyException("Debes subir al menos una foto.");
+        }
+       
+    }
 }
