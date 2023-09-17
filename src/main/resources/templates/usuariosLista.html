@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="/fragments/head :: head"></head>
+
+
+<body class="inicio-body flex-col-center">
+
+  <header>
+    <nav th:replace="/fragments/navbar :: nav"></nav>
+  </header>
+  <main class="inicio-main">
+    <section th:replace="/fragments/errores :: section"></section>
+
+    <section th:replace="/fragments/hero :: section"></section>
+
+    <section th:replace="/fragments/listaUsuarios :: section"></section>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+  </main>
+</body>
+
+</html>
+>
