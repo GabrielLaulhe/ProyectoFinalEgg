@@ -64,6 +64,12 @@ public class ReporteServicio {
         List<Reporte> reportes = reporteRepositorio.findAll();
         return reportes;
     }
+    
+    @Transactional
+    public List<Reporte> listarReportesPorEmisor(Usuario emisor) {
+        List<Reporte> reportes = reporteRepositorio.buscarReportePorEmisor(emisor);
+        return reportes;
+    }
 
     public Reporte getOne(String id) {
         return reporteRepositorio.getOne(id);

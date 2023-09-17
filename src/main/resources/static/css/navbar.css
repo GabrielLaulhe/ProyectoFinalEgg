@@ -26,13 +26,18 @@
 }
 
 .links {
-    transition: 0.5s;
+    transition: 0.2s;
     text-decoration: none;
     color: black
 }
 
 .links:hover {
     color: rgb(217, 30, 30);
-    font-size: 1.2em;
+    font-size: 1.05em;
+}
 
+.item {
+    margin: 17px 0;
+    height: 20px;
+    width: 100%;
 }

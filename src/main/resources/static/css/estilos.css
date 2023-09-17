@@ -1,5 +1,6 @@
 @import "navbar.css";
 @import "tarjetas.css";
+@import "login.css";
 
 body {
     width: 100%;
