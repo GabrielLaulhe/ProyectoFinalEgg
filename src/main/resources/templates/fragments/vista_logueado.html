@@ -1,13 +1,27 @@
 <section class="section">
+    <div th:each="publicacion: ${publicaciones}" class="tarjeta">
 
-    <div th:each="publicacion: ${publicaciones1}" class="tarjeta">
         <div class="contenedor-imagen-usuario">
             <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
             <p th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></p>
         </div>
-        <div class="contenedor-imagen" th:each="imagen: ${publicacion.fotos}">
-            <img th:src="@{/imagen/__${imagen.id}__}" class="imagen" alt="imagen">
+
+        <div id="carouselExampleIndicators" class="carousel carousel-fade">
+            <div class="carousel-inner" th:each="foto, iterStat : ${publicacion.fotos}">
+                <div th:classappend="${iterStat.index == 0} ? 'carousel-item active contenedor-imagen' : 'carousel-item contenedor-imagen'">
+                    <img th:src="@{/imagen/__${foto.id}__}" class="imagen" alt="..." loading="lazy">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+
         <div class="contenedor-texto">
             <a id="texto-categoria" th:text="${publicacion.categoria}" href="/"></a>
             <p th:text="${publicacion.descripcion}" class="descripcion"></p>
@@ -16,6 +30,7 @@
                 <button type="submit">Eliminar</button>
             </form>
         </div>
+
     </div>
 
 </section>
