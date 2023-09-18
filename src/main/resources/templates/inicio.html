@@ -14,11 +14,11 @@
 
     <section th:replace="/fragments/hero :: section"></section>
 
-    <section th:replace="/fragments/vista_logueado :: section"></section>
+    <!--<section th:if="${session.usuariosession == null}" th:replace="/fragments/vista_inicio :: section"></section> -->
+    <section th:if="${session.usuariosession != null}" th:replace="/fragments/vista_logueado :: section"></section>
 
     <script th:replace="/fragments/scripts :: script"></script>
   </main>
 </body>
 
 </html>
->
