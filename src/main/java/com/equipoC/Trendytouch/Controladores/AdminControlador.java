@@ -34,8 +34,8 @@ public class AdminControlador {
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo) {
-        List<Publicacion> publicaciones1 = publicacionServicio.listarPublicacionesMegustas();
-        modelo.addAttribute("publicaciones1", publicaciones1);
+        List<Publicacion> publicaciones = publicacionServicio.listarPublicacionesMegustas();
+        modelo.addAttribute("publicaciones", publicaciones);
         return "inicio.html";
     }
 

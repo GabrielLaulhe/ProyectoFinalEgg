@@ -90,8 +90,8 @@ public class PortalControlador {
 
             return "redirect:/admin/dashboard";
         }
-        List<Publicacion> publicaciones1 = publicacionServicio.listarPublicaciones();
-        modelo.addAttribute("publicaciones1", publicaciones1);
+        List<Publicacion> publicaciones = publicacionServicio.listarPublicaciones();
+        modelo.addAttribute("publicaciones", publicaciones);
 
         return "inicio.html";
     }
