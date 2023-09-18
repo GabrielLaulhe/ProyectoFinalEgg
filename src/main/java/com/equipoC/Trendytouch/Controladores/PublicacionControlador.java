@@ -60,8 +60,8 @@ public class PublicacionControlador {
     @GetMapping("/usuario")
     public String PublicacionesdeUsuario(HttpSession session, ModelMap modelo) {
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-        List<Publicacion> publicaciones1 = publicacionServicio.buscarUsuario(usuario);
-        modelo.addAttribute("publicaciones1", publicaciones1);
+        List<Publicacion> publicaciones = publicacionServicio.buscarUsuario(usuario);
+        modelo.addAttribute("publicaciones", publicaciones);
         return "inicio.html";
     }
 
