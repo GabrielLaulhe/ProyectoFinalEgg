@@ -36,7 +36,7 @@ public class PortalControlador {
         List<Publicacion> publicaciones = publicacionServicio.listarPublicacionesMegustas();
         modelo.addAttribute("publicaciones", publicaciones);
 
-        return "inicio.html";
+        return "index.html";
     }
 
     @GetMapping("/registrar") //localhost:8080
