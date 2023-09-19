@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-
     <head th:replace="/fragments/head :: head"></head>
-</head>
 
-<body class="index-body">
-    <header>
-        <nav th:replace="/fragments/navbar :: nav"></nav>
-    </header>
-    <main class="index-main">
-        <section th:replace="/fragments/errores :: section"></section>
+    <body class="index-body">
+        <header>
+            <nav th:replace="/fragments/navbar :: nav"></nav>
+        </header>
 
-        
-    </main>
+        <main class="index-main">
+            <section th:replace="/fragments/errores :: section"></section>
+            <section th:replace="/fragments/vista_inicio :: section"></section>
+        </main>
 
-    <script th:replace="/fragments/scripts :: script"></script>
-</body>
+        <script th:replace="/fragments/scripts :: script"></script>
+    </body>
 
 </html>
