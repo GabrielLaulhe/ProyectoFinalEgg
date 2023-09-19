@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head th:replace="/fragments/head :: head"></head>
 
-    <body class="index-body">
-        <header>
-            <nav th:replace="/fragments/navbar :: nav"></nav>
-        </header>
+<head th:replace="/fragments/head :: head"></head>
 
-        <main class="index-main">
-            <section th:replace="/fragments/errores :: section"></section>
-            <section th:replace="/fragments/vista_inicio :: section"></section>
-        </main>
+<body class="index-body">
+    <div id="particles-js"></div>
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
 
-        <script th:replace="/fragments/scripts :: script"></script>
-    </body>
+    <main class="index-main">
+        <section th:replace="/fragments/errores :: section"></section>
+        <section th:replace="/fragments/vista_inicio :: section"></section>
+    </main>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
 
 </html>
