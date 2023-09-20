@@ -43,23 +43,24 @@ public class UsuarioControlador {
 
     @PostMapping("/actualizar/{id}")
     public String actualizar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam String email, @RequestParam String nombreUsuario, @RequestParam String password, String password2,
-            ModelMap modelo) {
+            @RequestParam String email, @RequestParam String nombreUsuario, @RequestParam String password,
+            String password2,
+            ModelMap modelo, HttpSession session) {
 
-        try {                       
-            usuarioServicio.actualizar(id, nombre, apellido, email, nombreUsuario, password, password2);            
+        try {
+            usuarioServicio.actualizar(id, nombre, apellido, email, nombreUsuario, password, password2);
             modelo.put("exito", "Usuario actualizado correctamente");
             return "redirect:/inicio";
 
         } catch (MyException ex) {
+            Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+            modelo.put("usuario", usuario);
             modelo.put("error", ex.getMessage());
-            modelo.put("nombre", nombre);
-            modelo.put("email", email);
 
             return "usuario_modificar.html";
 
         }
-        
+
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
