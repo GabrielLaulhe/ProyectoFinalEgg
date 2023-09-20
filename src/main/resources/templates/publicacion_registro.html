@@ -1,71 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head th:replace="/fragments/head :: head"></head>
 
-    <body>
-        <header>
-            <nav th:replace="/fragments/navbar :: nav"></nav>
-        </header>
+<head th:replace="/fragments/head :: head"></head>
 
-        <section th:replace="/fragments/errores :: section"></section>
+<body>
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
 
-        <div class="container text-center">
-            <div class="container">
-                <h1>Registrate</h1>
-            </div>
+    <section th:replace="/fragments/errores :: section"></section>
 
-            <form
-                th:action="@{/publicacion/crear}"
-                method="POST"
-                enctype="multipart/form-data"
-                >
-                <div class="d-flex justify-content-center gap-4">
-                    <div class="mb-3 form-floating">
-                        <textarea id="Comentarios" name="descripcion" rows="10" cols="40" placeholder=""></textarea>
-                        <label for="floatingName">Descripcion</label>
-                    </div>
-                    <div class="my-3 form-group">
-                        <select name="categoria">
-                            <option th:value="SIN_CATEGORIA">Seleccionar Categoria</option>
-                            <option
-                                th:value="TENDENCIAS"
-                                >Tendencias</option>
-                            <option
-                                th:value="MODA_SOSTENIBLE"
-                                >Moda Sostenible</option>
-                            <option
-                                th:value="ESTAMPADOS"
-                                >Estampados</option>
-                            <option
-                                th:value="CABELLO"
-                                >Cabello</option>
-                            <option
-                                th:value="MAQUILLAJE"
-                                >Maquillaje</option>
-                            <option
-                                th:value="ACCESORIOS"
-                                >Accesorios</option>
-                            <option
-                                th:value="CALZADO"
-                                >Calzado</option>
-                            <option
-                                th:value="INDUMENTARIA"
-                                >Indumentaria</option>
-                        </select>
-                    </div>
-                </div>
-
-
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Fotos</label>
-                    <input class="form-control" type="file" name="archivos" id="formFile" multiple />
-                </div>
-
-                <button type="submit" style="background-color: #800000; color: #ffffff;
-                border: none; padding: 5px 10px; border-radius: 3px;" class="btn btn-primary">Subir</button>
-            </form>
+    <div class="container text-center">
+        <div class="container">
+            <h1>Registrate</h1>
         </div>
 
-        <script th:replace="/fragments/scripts :: script"></script>
-    </body>
+        <form th:action="@{/publicacion/crear}" method="POST" enctype="multipart/form-data">
+            <div class="d-flex justify-content-center gap-4">
+                <div class="mb-3 form-floating">
+                    <textarea id="Comentarios" name="descripcion" rows="10" cols="40" placeholder=""></textarea>
+                    <label for="floatingName">Descripcion</label>
+                </div>
+                <div class="my-3 form-group">
+                    <select name="categoria">
+                        <option th:value="SIN_CATEGORIA">Seleccionar Categoria</option>
+                        <option th:value="TENDENCIAS">Tendencias</option>
+                        <option th:value="MODA_SOSTENIBLE">Moda Sostenible</option>
+                        <option th:value="ESTAMPADOS">Estampados</option>
+                        <option th:value="CABELLO">Cabello</option>
+                        <option th:value="MAQUILLAJE">Maquillaje</option>
+                        <option th:value="ACCESORIOS">Accesorios</option>
+                        <option th:value="CALZADO">Calzado</option>
+                        <option th:value="INDUMENTARIA">Indumentaria</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Fotos</label>
+                <input class="form-control" type="file" name="archivos" id="formFile" multiple />
+            </div>
+
+            <button type="submit" style="background-color: #800000; color: #ffffff;
+                border: none; padding: 5px 10px; border-radius: 3px;" class="btn btn-primary">Subir</button>
+        </form>
+    </div>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
+
 </html>

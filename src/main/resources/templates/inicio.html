@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head th:replace="/fragments/head :: head"></head>
+
+<head th:replace="/fragments/head :: head"></head>
 
 
-    <body class="inicio-body flex-col-center">
-        <header>
-            <nav th:replace="/fragments/navbar :: nav"></nav>
-        </header>
+<body class="inicio-body flex-col-center">
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
 
-        <main class="inicio-main">
-            <section th:replace="/fragments/errores :: section"></section>
-            <section th:replace="/fragments/hero :: section"></section>
-            <section th:if="${session.usuariosession != null}" th:replace="/fragments/vista_logueado :: section"></section>
-        </main>
+    <main class="inicio-main">
+        <section th:replace="/fragments/errores :: section"></section>
+        <section th:replace="/fragments/hero :: section"></section>
+        <section th:if="${session.usuariosession != null}" th:replace="/fragments/vista_logueado :: section"></section>
+    </main>
 
-        <script th:replace="/fragments/scripts :: script"></script>
-    </body>
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
 
 </html>
