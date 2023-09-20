@@ -1,9 +1,9 @@
 <nav class="navbar">
-    <div class="contenedor">
-        <a th:if="${session.usuariosession == null}" class="nav-link" href="/">
+    <div class="nav-contenedor">
+        <a th:if="${session.usuariosession == null}" class="nav-logo-link" href="/">
             <img src="/img/logo.png" alt="Logo Touch" class="logo" />
         </a>
-        <a th:if="${session.usuariosession != null}" class="nav-link" href="/inicio">
+        <a th:if="${session.usuariosession != null}" class="nav-logo-link" href="/inicio">
             <img src="/img/logo.png" alt="Logo Touch" class="logo" />
         </a>
 
@@ -22,7 +22,7 @@
             </div>
 
             <ul th:if="${session.usuariosession != null}" class="nav-ul">
-                <li class="item dropdown">
+                <li class="item dropdown" sec:authorize="hasAnyRole('ADMIN', 'DISENADOR')">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Secciones
@@ -58,6 +58,33 @@
                     </ul>
                 </li>
 
+                <ul sec:authorize="hasRole('USER')">
+                    <li>
+                        <a class="item" href="/seccion/tendencias">Tendencias</a>
+                    </li>
+                    <li>
+                        <a class="item" href="/seccion/moda_sostenible">Moda sostenible</a>
+                    </li>
+                    <li>
+                        <a class="item" href="/seccion/estampados">Estampados</a>
+                    </li>
+                    <li>
+                        <a class="item" href="/seccion/cabello">Cabello</a>
+                    </li>
+                    <li>
+                        <a class="item" href="/seccion/maquillaje">Maquillaje</a>
+                    </li>
+                    <li>
+                        <a class="item" href="/seccion/accesorios">Accesorios</a>
+                    </li>
+                    <li>
+                        <a class="item" href="/seccion/calzado">Calzado</a>
+                    </li>
+                    <li>
+                        <a class="item" href="/seccion/indumentaria">Indumentaria</a>
+                    </li>
+                </ul>
+
                 <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -81,27 +108,11 @@
                             <a class="dropdown-item" href="/publicacion/crear">Nueva</a>
                         </li>
                         <li>
-                            <a class="dropdown-item"
-                                th:href="@{/publicacion/usuario}">Gestionar</a>
+                            <a class="dropdown-item" th:href="@{/publicacion/usuario}">Gestionar</a>
                         </li>
+                    </ul>
+                </li>
 
-                    </ul>
-                </li>
-               
-                <li class="item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Perfil
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" th:href="@{/usuario/actualizar}">Editar</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/logout">Cerrar sesion</a>
-                        </li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>

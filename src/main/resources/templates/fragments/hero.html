@@ -1,31 +1,23 @@
 <section class="hero">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="hero-content">
-          <h1 class="text-center">Bienvenid@ a trendy touch</h1>
+  <div class="flex-center">
+    <img class="logo" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="Imagen usuario"
+      onerror="this.src='/img/sinfoto.jpg';" />
+  </div>
 
-          <p th:if="${session.usuariosession == null}" class="text-center">
-            Powered by SpringBoot
-          </p>
+  <h3 th:if="${session.usuariosession != null}"
+    th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h3>
 
-          <div th:if="${session.usuariosession != null}" style="display: flex; justify-content: center; align-items: center;">
-            <img
-              class="logo"
-              th:src="@{/imagen/perfil/__${session.usuariosession.id}__}"
-              alt="Imagen usuario"
-              style="max-width: 150px; max-height: 150px;"
-              onerror="this.src='/img/sinfoto.jpg';"
-            />
-          </div>
-
-          <p
-            th:if="${session.usuariosession != null}"
-            th:text="'Bienvenido/a ' + ${session.usuariosession.nombre} + '!'"
-            class="text-center"
-          ></p>
-        </div>
-      </div>
-    </div>
+  <div class="dropdown-center flex-center">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Perfil
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="dropdown-item" th:href="@{/usuario/actualizar}">Editar</a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="/logout">Cerrar sesion</a>
+      </li>
+    </ul>
   </div>
 </section>
