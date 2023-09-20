@@ -7,11 +7,12 @@
     <header>
         <nav th:replace="/fragments/navbar :: nav"></nav>
     </header>
+
+    <section th:replace="/fragments/errores :: section"></section>
+    
+    <section th:replace="/fragments/hero :: section"></section>
+
     <section>
-
-        <section th:replace="/fragments/errores :: section"></section>
-        <section th:replace="/fragments/hero :: section"></section>
-
         <div>
             <form class="form" th:action="@{/reporte/crear}" method="POST">
                 <div class="mb-3 form-control">

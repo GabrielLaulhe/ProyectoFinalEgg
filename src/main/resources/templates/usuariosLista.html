@@ -8,15 +8,16 @@
   <header>
     <nav th:replace="/fragments/navbar :: nav"></nav>
   </header>
+
+  <section th:replace="/fragments/errores :: section"></section>
+
+  <section th:replace="/fragments/hero :: section"></section>
+
   <main class="inicio-main">
-    <section th:replace="/fragments/errores :: section"></section>
-
-    <section th:replace="/fragments/hero :: section"></section>
-
     <section th:replace="/fragments/listaUsuarios :: section"></section>
-
-    <script th:replace="/fragments/scripts :: script"></script>
   </main>
+
+  <script th:replace="/fragments/scripts :: script"></script>
 </body>
 
 </html>

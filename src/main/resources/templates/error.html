@@ -5,6 +5,7 @@
     <header>
         <nav th:replace="/fragments/navbar :: nav"></nav>
     </header>
+    <section th:if="${session.usuariosession != null}" th:replace="/fragments/hero :: section"></section>
     <main class="index-main">
         <section class="contenedorError">
             <a class="error-codigo" th:text="'Error ' + ${codigo}"></a>
