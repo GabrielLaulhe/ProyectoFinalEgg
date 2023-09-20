@@ -31,6 +31,17 @@
 .contenedor-texto {
     height: 25%;
     width: 100%;
+    padding: 0.4rem;
+}
+
+.contenedor-texto a {
+    text-decoration: none;
+    color: black;
+    transition: all ease 0.25s;
+}
+
+.contenedor-texto a:hover {
+    color: red;
 }
 
 .imagen {
