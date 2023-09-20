@@ -4,7 +4,7 @@
 <head th:replace="/fragments/head :: head"></head>
 
 <body>
-    <div id="particles-js"></div>
+    
     <header>
         <nav th:replace="/fragments/navbar :: nav"></nav>
     </header>
@@ -12,7 +12,7 @@
     <section th:replace="/fragments/errores :: section"></section>
 
 
-                <form th:action="@{/cambiarFoto}" method="POST" enctype="multipart/form-data">
+                <form class="form" th:action="@{/cambiarFoto}" method="POST" enctype="multipart/form-data">
 
                     <div>
                         <label for="formFile" class="form-label">
@@ -46,12 +46,6 @@
             <div class="container">
                 <h1>Modificar Usuario</h1>
             </div>
-
-            <div>
-                <img class="logo mb-3" th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Imagen usuario"
-                    style="max-width: 150px; max-height: 150px;" />
-            </div>
-
 
             <form class="form" th:action="@{/perfil/__${usuario.id}__}" method="POST" enctype="multipart/form-data">
                 <input hidden th:value="${usuario.id}" name="id" />
