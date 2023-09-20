@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ReporteControlador {
 
     @Autowired
-    private ReporteServicio reporteServicio;    
-    
+    private ReporteServicio reporteServicio;
+
     @GetMapping("/crear")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     public String crear() {
-        return "reporte_form.html";
+        return "reporte_registro.html";
     }
 
     @PostMapping("/crear")
@@ -39,7 +39,7 @@ public class ReporteControlador {
             return "redirect:/inicio";
         } catch (MyException ex) {
             modelo.put("error", ex.getMessage());
-            return "reporte_form.html";
+            return "reporte_registro.html";
         }
     }
 
@@ -55,21 +55,7 @@ public class ReporteControlador {
         }
         return "reporte.html";
     }
-    
-    @GetMapping("/usuario")
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
-    public String reportesPorUsuario(HttpSession session, ModelMap modelo) {
-     
-            
-            Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-            List<Reporte> reportes = reporteServicio.listarReportesPorEmisor(usuario);
-            modelo.put("reportes", reportes);
-      
-        return "reporte.html";
-    }
-    
-    
-    
+
     @GetMapping("/editar/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String editarEstado(@PathVariable String id, ModelMap modelo) {
@@ -80,9 +66,9 @@ public class ReporteControlador {
             modelo.put("error", ex.getMessage());
             return "redirect:/inicio";
         }
-        return "reporte_form.html";
+        return "reporte.html";
     }
-    
+
     @PostMapping("/editar/{id}")
     public String editarEstado(@PathVariable String id, @RequestParam String estado, ModelMap modelo) {
         try {
@@ -90,22 +76,21 @@ public class ReporteControlador {
             modelo.put("exito", "El reporte se ha actualizado con exito.");
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
-            return "reporte_form.html";
+            return "reporte.html";
         }
         return "redirect:/admin/dashboard";
     }
 
-    @GetMapping("/lista")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String listaReportes(ModelMap modelo) {
-        
-        try {
-            List<Reporte> reportes = reporteServicio.listarReportes();
-            modelo.put("reportes", reportes);            
-        } catch (Exception ex) {
-            modelo.put("error", ex.getMessage());
-            return "redirect:/inicio";            
-        }
-        return "lista_reportes.html";
+    @GetMapping("/usuario")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    public String reportesPorUsuario(HttpSession session, ModelMap modelo) {
+
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        List<Reporte> reportes = reporteServicio.listarReportesPorEmisor(usuario);
+        modelo.put("reportes", reportes);
+
+        return "reportesListaUser.html";
     }
+
+    //lista de reportes para el admin completa en admin controlador /admin/reportes
 }

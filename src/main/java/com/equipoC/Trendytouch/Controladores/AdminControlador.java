@@ -5,16 +5,18 @@
 package com.equipoC.Trendytouch.Controladores;
 
 import com.equipoC.Trendytouch.Entidades.Publicacion;
+import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
+import com.equipoC.Trendytouch.Servicios.ReporteServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +33,8 @@ public class AdminControlador {
     private UsuarioServicio usuarioServicio;
     @Autowired
     private PublicacionServicio publicacionServicio;
+    @Autowired
+    private ReporteServicio reporteServicio;
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo) {
@@ -46,6 +50,20 @@ public class AdminControlador {
         modelo.addAttribute("usuarios", usuarios);
 
         return "usuariosLista.html"; // crear una vista
+    }
+    
+    @GetMapping("/reportes")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String listaReportes(ModelMap modelo) {
+
+        try {
+            List<Reporte> reportes = reporteServicio.listarReportes();
+            modelo.put("reportes", reportes);
+        } catch (Exception ex) {
+            modelo.put("error", ex.getMessage());
+            return "redirect:/reporte/reportesLista";
+        }
+        return "reportesLista.html";
     }
 
     @PostMapping("/modificarRol/{id}")
