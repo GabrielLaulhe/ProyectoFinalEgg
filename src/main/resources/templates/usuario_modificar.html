@@ -35,104 +35,16 @@
                 <br>
                 <form
                     class="form"
-                    th:action="@{/usuario/actualizar/__${usuario.id}__}"
+                    th:action="@{/perfil/__${usuario.id}__}"
                     method="POST"
                     enctype="multipart/form-data"
                     >
                     <input hidden th:value="${usuario.id}" name="id" />
-<<<<<<< HEAD
-                    
-                    
-                    <div class="d-flex justify-content-center gap-4">
-                        <div class="mb-3 form-floating">
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="floatingName"
-                                placeholder="Nombre"
-                                name="nombre"
-                                th:value="${usuario.nombre}"
-                                required
-                                />
-                            <label for="floatingName">Nombre</label>
-                        </div>
-
-                        <div class="mb-3 form-floating">
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="floatingApellido"
-                                placeholder="apellido"
-                                name="apellido"
-                                th:value="${usuario.apellido}"
-                                required
-                                />
-                            <label for="floatingApellido">Apellido</label>
-                        </div>
-
-                        <div class="mb-3 form-floating">
-                            <input
-                                type="email"
-                                class="form-control"
-                                id="floatingInput"
-                                placeholder="Email"
-                                name="email"
-                                th:value="${usuario.email}"
-                                required
-                                />
-                            <label for="floatingInput">Email</label>
-                        </div>
-
-                        <div class="mb-3 form-floating">
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="floatingNameUser"
-                                placeholder="Alias"
-                                name="nombreUsuario"
-                                th:value="${usuario.nombreUsuario}"
-                                required
-                                />
-                            <label for="floatingNameUser">Nombre de usuario</label>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center gap-4">
-                        <div class="mb-3 form-floating">
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="floatingPassword"
-                                placeholder="Contraseña"
-                                name="password"
-                                required
-                                />
-                            <label for="floatingPassword">Contraseña</label>
-                        </div>
-                        <div class="mb-3 form-floating">
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="floatingPassword2"
-                                placeholder="Repita la contraseña"
-                                name="password2"
-                                required
-                                />
-                            <label for="floatingPassword">Repita la contraseña</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" style="background-color: #800000; color: #ffffff;
-                    border: none; padding: 5px 10px; border-radius: 3px;" class="btn btn-primary">Guardar</button>
-                   
-                </form>
-=======
 
     <section>
         <div class="container text-center">
             <div class="container">
                 <h1>Modificar Usuario</h1>
->>>>>>> 94f6492103e38e031199dc3adc58634a67430cf1
             </div>
 
             <form class="form" th:action="@{/perfil/__${usuario.id}__}" method="POST" enctype="multipart/form-data">
