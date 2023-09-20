@@ -11,6 +11,36 @@
 
     <section th:replace="/fragments/errores :: section"></section>
 
+
+                <form th:action="@{/cambiarFoto}" method="POST" enctype="multipart/form-data">
+
+                    <div>
+                        <label for="formFile" class="form-label">
+                            <img
+                            class="logo mb-3"
+                            th:src="@{/imagen/perfil/__${usuario.id}__}"
+                            alt="Imagen usuario"
+                            style="max-width: 150px; max-height: 150px; border-radius: 80px; "
+                            onerror="this.src='/img/sinfoto.jpg';"
+                            />
+                        </label>
+                         <input class="form-control" type="file" name="archivo" id="formFile" hidden />
+                    </div>
+                   
+                   <button type="submit" style="background-color: #800000; color: #ffffff;
+                    border: none; padding: 5px 10px; border-radius: 3px;" class="btn btn-primary">Guardar Foto</button>
+                </form>
+                
+
+                <br>
+                <form
+                    class="form"
+                    th:action="@{/perfil/__${usuario.id}__}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    >
+                    <input hidden th:value="${usuario.id}" name="id" />
+
     <section>
         <div class="container text-center">
             <div class="container">
@@ -21,6 +51,7 @@
                 <img class="logo mb-3" th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Imagen usuario"
                     style="max-width: 150px; max-height: 150px;" />
             </div>
+
 
             <form class="form" th:action="@{/perfil/__${usuario.id}__}" method="POST" enctype="multipart/form-data">
                 <input hidden th:value="${usuario.id}" name="id" />
