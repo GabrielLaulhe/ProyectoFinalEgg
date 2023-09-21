@@ -18,7 +18,7 @@
                 <h1>Modificar Usuario</h1>
             </div>
 
-            <form class="form" th:action="@{/cambiarFoto}" method="POST" enctype="multipart/form-data">
+            <form class="form" th:action="@{/usuario/cambiarFoto}" method="POST" enctype="multipart/form-data">
                 <div>
                     <label for="formFile" class="form-label">
                         <img class="logo mb-3" th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Imagen usuario"
