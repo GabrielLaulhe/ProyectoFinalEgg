@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;800&display=swap');
 @import "navbar.css";
 @import "tarjetas.css";
-@import "login.css";
 @import "errores.css";
 @import "hero.css";
+@import "formularios.css";
 
 * {
     font-family: 'Raleway', sans-serif;
