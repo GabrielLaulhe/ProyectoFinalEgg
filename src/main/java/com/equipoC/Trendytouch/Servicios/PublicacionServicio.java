@@ -1,5 +1,6 @@
 package com.equipoC.Trendytouch.Servicios;
 
+import com.equipoC.Trendytouch.Entidades.Comentario;
 import com.equipoC.Trendytouch.Entidades.Imagen;
 import com.equipoC.Trendytouch.Entidades.Publicacion;
 import com.equipoC.Trendytouch.Entidades.Usuario;
@@ -34,7 +35,7 @@ public class PublicacionServicio {
             List<MultipartFile> Fotos) throws MyException {
 
         validar(descripcion, categoria, Fotos);
-        
+
         List<MultipartFile> primeras5Fotos = Fotos.stream().limit(5).collect(Collectors.toList());
 
         categoria = categoria.toUpperCase();
@@ -51,7 +52,6 @@ public class PublicacionServicio {
         publicacionRepo.save(publi);
 
     }
-
 
     @Transactional
     public void eliminarPublicacionPorId(String idpublicacion) throws MyException {
@@ -103,7 +103,7 @@ public class PublicacionServicio {
         if (descripcion.isEmpty() || descripcion == null) {
             throw new MyException("La descripcion no puede estar vacia.");
         }
-        if (categoria.isEmpty() || categoria == null || categoria=="VACIO") {
+        if (categoria.isEmpty() || categoria == null || categoria == "VACIO") {
             throw new MyException("La categoria no puede estar vacia.");
         }
         if (categoria == "VACIO") {
@@ -112,6 +112,16 @@ public class PublicacionServicio {
         if (Fotos.isEmpty() || Fotos == null) {
             throw new MyException("Debes subir al menos una foto.");
         }
-       
+
     }
+
+    public void comentar(String id, Comentario comentario) {
+        Publicacion publicacion = getOne(id);
+        List<Comentario> comentarios = publicacion.getComentarios();
+        comentarios.add(comentario);
+        publicacion.setComentarios(comentarios);
+        System.out.println(publicacion.getComentarios().toString());
+    }
+
 }
+

@@ -13,11 +13,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor
-@Getter @Setter
+@Getter @Setter @ToString
 public class Comentario {
 
     @Id
@@ -37,5 +38,5 @@ public class Comentario {
     
     @ManyToOne
     private Usuario usuario;
-    
+ 
 }

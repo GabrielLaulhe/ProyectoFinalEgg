@@ -90,9 +90,5 @@ public class PortalControlador {
 
         return "inicio.html";
     }
-
-
-    //Perfil y modificar perfil en controlador usuario /usuario/perfil   
-    
-    
+   
 }
