@@ -2,6 +2,7 @@ package com.equipoC.Trendytouch.Controladores;
 
 import com.equipoC.Trendytouch.Entidades.Publicacion;
 import com.equipoC.Trendytouch.Entidades.Usuario;
+import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,6 +91,17 @@ public class PortalControlador {
         return "inicio.html";
     }
 
-    //Perfil y modificar perfil en controlador usuario /usuario/perfil    
-
+    //Perfil y modificar perfil en controlador usuario /usuario/perfil   
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @PostMapping("/cambiarFoto")
+    public String actualizarFoto(HttpSession session,MultipartFile archivo) throws MyException{
+        
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        
+        usuarioServicio.cambiarFoto(archivo, logueado.getId());
+        
+        return "inicio.html";
+    }
+    
 }

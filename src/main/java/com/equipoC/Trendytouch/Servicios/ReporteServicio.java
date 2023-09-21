@@ -18,7 +18,7 @@ public class ReporteServicio {
     private ReporteRepositorio reporteRepositorio;
 
     @Transactional
-    public void crear(String contenido, Usuario emisor, String categoria) throws MyException {
+    public Reporte crear(String contenido, Usuario emisor, String categoria) throws MyException {
         validar(emisor, categoria);
 
         Reporte reporte = new Reporte();
@@ -29,6 +29,7 @@ public class ReporteServicio {
         reporte.setEstado(EstadoReporte.PENDIENTE);
 
         reporteRepositorio.save(reporte);
+        return reporte;
     }
 
     @Transactional

@@ -9,10 +9,11 @@
         <nav th:replace="/fragments/navbar :: nav"></nav>
     </header>
 
+    <section th:replace="/fragments/hero :: section"></section>
+
     <main class="inicio-main">
         <section th:replace="/fragments/errores :: section"></section>
-        <section th:replace="/fragments/hero :: section"></section>
-        <section th:if="${session.usuariosession != null}" th:replace="/fragments/vista_logueado :: section"></section>
+        <section th:if="${session.usuariosession != null}" th:replace="/fragments/tarjetas :: section"></section>
     </main>
 
     <script th:replace="/fragments/scripts :: script"></script>

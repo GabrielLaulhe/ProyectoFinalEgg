@@ -5,16 +5,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const registroForm = document.getElementById('registro-form');
 
     btnRegistrarse.addEventListener('click', () => {
-        loginForm.classList.remove('formulario-visible');
+        loginForm.classList.remove('form');
         loginForm.classList.add('formulario-oculto');
         registroForm.classList.remove('formulario-oculto');
-        registroForm.classList.add('formulario-visible');
+        registroForm.classList.add('form');
     });
 
     btnIniciarSesion.addEventListener('click', () => {
-        registroForm.classList.remove('formulario-visible');
+        registroForm.classList.remove('form');
         registroForm.classList.add('formulario-oculto');
         loginForm.classList.remove('formulario-oculto');
-        loginForm.classList.add('formulario-visible');
+        loginForm.classList.add('form');
     });
 });
