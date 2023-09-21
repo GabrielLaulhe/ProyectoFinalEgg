@@ -9,6 +9,7 @@ import com.equipoC.Trendytouch.Entidades.Publicacion;
 import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
+import com.equipoC.Trendytouch.Servicios.ComentarioServicio;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
 import java.util.List;
@@ -34,9 +35,12 @@ public class PublicacionControlador {
 
     @Autowired
     private PublicacionServicio publicacionServicio;
-    
+
     @Autowired
     private ReporteServicio reporteServicio;
+    
+    @Autowired
+    private ComentarioServicio comentarioServicio;
 
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN')")
     @GetMapping("/crear") //localhost:8080
@@ -53,7 +57,7 @@ public class PublicacionControlador {
             publicacionServicio.registrarPublicacion(descripcion, usuario, categoria, archivos);
             modelo.put("exito", "Plublicacion ok");
             return "redirect:/inicio";
-            
+
         } catch (MyException e) {
 
             modelo.put("error", e.getMessage());
@@ -87,9 +91,9 @@ public class PublicacionControlador {
     public String reportar() {
         return "reporte_registro.html";
     }
-    
+
     @PostMapping("/reportar")
-    public String reportar(@PathVariable String idReportado, HttpSession session, 
+    public String reportar(@PathVariable String idReportado, HttpSession session,
             @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
         try {
             Usuario emisor = (Usuario) session.getAttribute("usuariosession");
@@ -104,4 +108,18 @@ public class PublicacionControlador {
         }
         return "redirect:/inicio";
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN')")
+    @PostMapping("/comentar")
+    public String comentar(@RequestParam String id,ModelMap modelo, String contenido, HttpSession session) throws MyException {
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        try {
+            publicacionServicio.comentar(id, comentarioServicio.registrarComentario(contenido, usuario.getId()));
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+            return "redirect:/inicio";
+        }
+        return "redirect:/inicio";
+    }
+    
 }

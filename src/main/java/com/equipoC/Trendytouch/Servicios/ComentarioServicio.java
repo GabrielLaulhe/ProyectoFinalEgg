@@ -38,7 +38,7 @@ public class ComentarioServicio {
     private UsuarioServicio usuarioServicio;
     
     @Transactional
-    public void registrarComentario(String contenido, String idUsuario) throws MyException {
+    public Comentario registrarComentario(String contenido, String idUsuario) throws MyException {
         
         validar(contenido, idUsuario);
         
@@ -56,6 +56,7 @@ public class ComentarioServicio {
         
         comentarioRepo.save(comentario);
         
+        return comentario;
     }
     
     @Transactional

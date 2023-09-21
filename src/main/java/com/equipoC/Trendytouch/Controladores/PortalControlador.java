@@ -137,7 +137,7 @@ public class PortalControlador {
         
         usuarioServicio.cambiarFoto(archivo, logueado.getId());
         
-        return "inicio.html";
+        return "redirect:/usuario/actualizar";
     }
     
 }

@@ -16,12 +16,13 @@ import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Data @ToString
 public class Publicacion {
     @Id
     @GeneratedValue(generator = "uuid")
