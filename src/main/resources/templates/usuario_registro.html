@@ -12,9 +12,8 @@
     <section th:replace="/fragments/errores :: section"></section>
 
     <div class="formulario-container">
-        
-        <form th:action="@{/registro}" class="form" id="registro-form" method="POST"
-            enctype="multipart/form-data">
+
+        <form th:action="@{/registro}" class="form" id="registro-form" method="POST" enctype="multipart/form-data">
             <h2 class="titulo">Regístrate!</h2>
             <div class="flex">
                 <label>
@@ -34,10 +33,6 @@
                 <input type="text" name="nombreUsuario" th:value="${nombreUsuario}" required class="input" />
                 <span>Nombre de usuario</span>
             </label>
-            <label>
-                <input type="file" name="archivo" class="input" />
-                <span>Imagen de perfil</span>
-            </label>
 
             <div class="flex">
                 <label>
@@ -50,17 +45,9 @@
                 </label>
             </div>
 
-            <div class="flex">
-                <label>
-                    <input type="text" name="pregunta" required class="input" />
-                    <span>Pregunta de seguridad</span>
-                </label>
-
-                <label>
-                    <input type="text" name="respuesta" required class="input" />
-                    <span>Respuesta</span>
-                </label>
-            </div>
+            <label>
+                <input type="file" name="archivo" class="input" />
+            </label>
 
             <button type="submit" class="submit">Registrarse</button>
             <p class="sign">Ya tienes una cuenta? <button type="button" id="btn-iniciar-sesion" class="a">Iniciar
@@ -77,9 +64,10 @@
                 <input type="password" name="password" required class="input" />
                 <span>Contraseña</span>
             </label>
-            
+
             <button type="submit" class="submit">Inicio</button>
-            <p class="sign">¿No tienes una cuenta? <button type="button" id="btn-registrarse" class="a">Regístrate</button></p>            
+            <p class="sign">¿No tienes una cuenta? <button type="button" id="btn-registrarse"
+                    class="a">Regístrate</button></p>
         </form>
     </div>
     <script th:replace="/fragments/scripts :: script"></script>
