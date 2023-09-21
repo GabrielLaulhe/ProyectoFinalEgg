@@ -91,17 +91,8 @@ public class PortalControlador {
         return "inicio.html";
     }
 
+
     //Perfil y modificar perfil en controlador usuario /usuario/perfil   
     
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
-    @PostMapping("/cambiarFoto")
-    public String actualizarFoto(HttpSession session,MultipartFile archivo) throws MyException{
-        
-        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-        
-        usuarioServicio.cambiarFoto(archivo, logueado.getId());
-        
-        return "inicio.html";
-    }
     
 }

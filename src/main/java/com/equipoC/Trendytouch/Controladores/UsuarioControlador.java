@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/usuario")
@@ -89,5 +90,16 @@ public class UsuarioControlador {
             return "reporte_registro.html";
         }
         return "redirect:/inicio";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @PostMapping("/cambiarFoto")
+    public String actualizarFoto(HttpSession session,MultipartFile archivo) throws MyException{
+        
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        
+        usuarioServicio.cambiarFoto(archivo, logueado.getId());
+        
+        return "inicio.html";
     }
 }
