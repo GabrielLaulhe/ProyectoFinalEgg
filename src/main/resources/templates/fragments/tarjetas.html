@@ -7,23 +7,12 @@
             <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
         </div>
 
-        <div id="carouselExampleIndicators" class="carousel carousel-fade">
-            <div class="carousel-inner" th:each="foto, iterStat : ${publicacion.fotos}">
-                <div
-                    th:classappend="${iterStat.index == 0} ? 'carousel-item active contenedor-imagen' : 'carousel-item contenedor-imagen'">
+        <div class="contenedor-imagen">
+            <div th:each="foto, iterStat : ${publicacion.fotos}">
+                <div>
                     <img th:src="@{/imagen/__${foto.id}__}" class="imagen" alt="..." loading="lazy">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
 
         <div class="contenedor-texto">
