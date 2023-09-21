@@ -29,7 +29,8 @@
   padding-left: 30px;
 }
 
-.form .titulo::before,.form .titulo::after {
+.form .titulo::before,
+.form .titulo::after {
   position: absolute;
   content: "";
   height: 16px;
@@ -51,7 +52,8 @@
   animation: pulse 1s linear infinite;
 }
 
-.form .mensaje, .form .sign {
+.form .mensaje,
+.form .sign {
   color: rgba(88, 87, 87, 0.822);
   font-size: 14px;
 }
@@ -86,7 +88,7 @@
   border-radius: 10px;
 }
 
-.form label .input + span {
+.form label .input+span {
   position: absolute;
   left: 10px;
   top: 15px;
@@ -96,18 +98,19 @@
   transition: 0.3s ease;
 }
 
-.form label .input:placeholder-shown + span {
+.form label .input:placeholder-shown+span {
   top: 15px;
   font-size: 0.9em;
 }
 
-.form label .input:focus + span,.form label .input:valid + span {
+.form label .input:focus+span,
+.form label .input:valid+span {
   top: 30px;
   font-size: 0.7em;
   font-weight: 600;
 }
 
-.form label .input:valid + span {
+.form label .input:valid+span {
   color: green;
 }
 
@@ -140,13 +143,13 @@
 
 @keyframes gather {
   0% {
-      transform: scale(2);
-      opacity: 0;
+    transform: scale(2);
+    opacity: 0;
   }
 
   100% {
-      transform: scale(1);
-      opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -158,12 +161,12 @@
 
 @keyframes scatter {
   0% {
-      transform: scale(1);
-      opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
 
   100% {
-      transform: scale(2);
-      opacity: 0;
+    transform: scale(2);
+    opacity: 0;
   }
 }
