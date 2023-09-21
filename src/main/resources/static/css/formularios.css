@@ -1,0 +1,169 @@
+.formulario-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 89%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  animation: gather 0.3s ease forwards;
+}
+
+.form .titulo {
+  font-size: 28px;
+  color: #820000;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.form .titulo::before,.form .titulo::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #820000;
+}
+
+.form .titulo::before {
+  width: 18px;
+  height: 18px;
+  background-color: #820000;
+}
+
+.form .titulo::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.form .mensaje, .form .sign {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+}
+
+.form .sign {
+  text-align: center;
+}
+
+.form .sign .a {
+  color: #820000;
+}
+
+.form .sign .a:hover {
+  text-decoration: underline #820000;
+}
+
+.form .flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,.form label .input:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.form label .input:valid + span {
+  color: green;
+}
+
+.form .submit {
+  border: none;
+  outline: none;
+  background-color: #820000;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+}
+
+.form .submit:hover {
+  background-color: #820000;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes gather {
+  0% {
+      transform: scale(2);
+      opacity: 0;
+  }
+
+  100% {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+/* Animación de dispersión */
+.formulario-oculto {
+  animation: scatter 0.3s ease forwards;
+  display: none;
+}
+
+@keyframes scatter {
+  0% {
+      transform: scale(1);
+      opacity: 1;
+  }
+
+  100% {
+      transform: scale(2);
+      opacity: 0;
+  }
+}
