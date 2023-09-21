@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * @author Asus
- */
+
 @Controller
 @RequestMapping("/")
 public class PortalControlador {
@@ -93,51 +90,5 @@ public class PortalControlador {
 
         return "inicio.html";
     }
-
-
-    //Perfil y modificar perfil en controlador usuario /usuario/perfil
-
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
-    @GetMapping("/perfil")
-    public String perfil(ModelMap modelo, HttpSession session) {
-
-        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-        modelo.put("usuario", usuario);
-
-        return "usuario_modificar.html"; //hacer el html
-    }
-
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
-    @PostMapping("/perfil/{id}")
-    public String actualizar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
-             @RequestParam String email, @RequestParam String nombreUsuario, @RequestParam String password, String password2,
-            ModelMap modelo) {
-
-        try {
-            usuarioServicio.actualizar(id, nombre, apellido, email, nombreUsuario, password, password2);
-            modelo.put("exito", "Usuario actualizado correctamente");
-            return "inicio.html";
-
-        } catch (MyException ex) {
-            modelo.put("error", ex.getMessage());
-            modelo.put("nombre", nombre);
-            modelo.put("email", email);
-
-            return "inicio.html";
-
-        }
-
-    }
-    
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
-    @PostMapping("/cambiarFoto")
-    public String actualizarFoto(HttpSession session,MultipartFile archivo) throws MyException{
-        
-        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-        
-        usuarioServicio.cambiarFoto(archivo, logueado.getId());
-        
-        return "redirect:/usuario/actualizar";
-    }
-    
+   
 }
