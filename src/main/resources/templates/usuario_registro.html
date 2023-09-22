@@ -33,6 +33,10 @@
                 <input type="text" name="nombreUsuario" th:value="${nombreUsuario}" required class="input" />
                 <span>Nombre de usuario</span>
             </label>
+            <label>
+                <input type="file" name="archivo" class="input" />
+                <span>Imagen de perfil</span>
+            </label>
 
             <div class="flex">
                 <label>
@@ -45,9 +49,17 @@
                 </label>
             </div>
 
-            <label>
-                <input type="file" name="archivo" class="input" />
-            </label>
+            <div class="flex">
+                <label>
+                    <input type="text" name="pregunta" class="input" />
+                    <span>Pregunta de seguridad</span>
+                </label>
+
+                <label>
+                    <input type="text" name="respuesta" class="input" />
+                    <span>Respuesta</span>
+                </label>
+            </div>
 
             <button type="submit" class="submit">Registrarse</button>
             <p class="sign">Ya tienes una cuenta? <button type="button" id="btn-iniciar-sesion" class="a">Iniciar
