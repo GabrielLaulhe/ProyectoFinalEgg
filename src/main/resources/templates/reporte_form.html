@@ -14,9 +14,11 @@
 
     <section>
         <div>
-            <form class="form" th:action="@{/reporte/crear}" method="POST">
+            <form class="form" th:action="@{/publicacion/reportarPublicacion}" method="POST">
+                <input hidden type="text" name="idReportado" th:value="${id}">
                 <div class="mb-3 form-control">
                     <label for="floatingRespuesta">Descripción</label>
+                    
                     <input type="text" class="form-control" id="floatingRespuesta" placeholder="descripcion"
                         name="contenido" />
 
@@ -27,7 +29,7 @@
                         name="categoria" required />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="">Enviar</button>
             </form>
         </div>
         <script th:replace="/fragments/scripts :: script"></script>
