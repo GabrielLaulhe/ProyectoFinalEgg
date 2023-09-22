@@ -46,7 +46,7 @@ public class PortalControlador {
     public String registro(@RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String password,
             String password2, @RequestParam String nombreUsuario,
-            @RequestParam String pregunta, @RequestParam String respuesta,
+            String pregunta, String respuesta,
             ModelMap modelo, MultipartFile archivo) {
 
         try {
