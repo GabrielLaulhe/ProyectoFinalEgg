@@ -24,7 +24,7 @@
                 <input type="hidden" name="id" th:value="${publicacion.id}" />
                 <button type="submit">Eliminar</button>
             </form>
-            <form action="/publicacion/comentar" method="post">
+            <form action="/publicacion/comentar" th:if="${session.usuariosession != null}" method="post">
                 <input type="hidden" name="id" th:value="${publicacion.id}" />
                 <input name="contenido" />
                 <button type="submit" style="background-color: #800000; color: #ffffff;
