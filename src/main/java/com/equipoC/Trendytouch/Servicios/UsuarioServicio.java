@@ -152,7 +152,7 @@ public class UsuarioServicio implements UserDetailsService {
     public Usuario getOne(String id) {
         return usuariorepo.getOne(id);
     }
- 
+
     @Transactional(readOnly = true)
     public List<Usuario> listarUsuarios() {
 
@@ -172,7 +172,7 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setRol(Rol.valueOf(rol));
         }
     }
-    
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
@@ -211,6 +211,18 @@ public class UsuarioServicio implements UserDetailsService {
         } else {
             throw new UsernameNotFoundException("Usuario no encontrado: " + nombreUsuario);
         }
+    }
+
+    public List<Usuario> busquedadeUsuarios(String consulta) {
+        List<Usuario> usuarios = listarUsuarios();
+        List<Usuario> resultados = new ArrayList<>();
+        for (Usuario usuario : usuarios) {
+            String nombre = usuario.getNombreUsuario();
+            if (nombre.toUpperCase().contains(consulta.toUpperCase())) {
+                resultados.add(usuario);
+            }
+        }
+        return resultados;
     }
 
 }
