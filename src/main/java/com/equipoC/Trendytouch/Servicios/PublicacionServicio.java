@@ -120,7 +120,7 @@ public class PublicacionServicio {
         List<Comentario> comentarios = publicacion.getComentarios();
         comentarios.add(comentario);
         publicacion.setComentarios(comentarios);
-        System.out.println(publicacion.getComentarios().toString());
+        publicacionRepo.save(publicacion);
     }
 
 }
