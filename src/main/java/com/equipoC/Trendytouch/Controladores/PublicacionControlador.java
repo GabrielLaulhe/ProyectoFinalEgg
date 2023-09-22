@@ -147,4 +147,17 @@ public class PublicacionControlador {
             return "reporte_form.html";
         }
     }
+    
+    @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
+    @PostMapping("/comentar")
+    public String comentar(@RequestParam String id,ModelMap modelo, String contenido, HttpSession session) throws MyException {
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        try {
+            publicacionServicio.comentar(id, comentarioServicio.registrarComentario(contenido, usuario.getId()));
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+            return "redirect:/inicio";
+        }
+        return "redirect:/inicio";
+    }
 }
