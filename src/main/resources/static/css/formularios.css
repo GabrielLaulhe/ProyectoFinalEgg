@@ -111,7 +111,7 @@
 }
 
 .form label .input:valid+span {
-  color: green;
+  color: #820000;
 }
 
 .form .submit {

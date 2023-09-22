@@ -33,12 +33,7 @@
                 <input type="text" name="nombreUsuario" th:value="${nombreUsuario}" required class="input" />
                 <span>Nombre de usuario</span>
             </label>
-            <label>
-                <input type="file" name="archivo" class="input" />
-                <span>Imagen de perfil</span>
-            </label>
-
-            <div class="flex">
+             <div class="flex">
                 <label>
                     <input type="password" name="password" required class="input" />
                     <span>Contraseña</span>
@@ -48,6 +43,10 @@
                     <span>Repita la contraseña</span>
                 </label>
             </div>
+            <label>
+                <input type="file" name="archivo" class="input" />
+               
+            </label>
 
             <div class="flex">
                 <label>
@@ -62,8 +61,8 @@
             </div>
 
             <button type="submit" class="submit">Registrarse</button>
-            <p class="sign">Ya tienes una cuenta? <button type="button" id="btn-iniciar-sesion" class="a">Iniciar
-                    sesion</button></p>
+            <p class="sign">Ya tienes una cuenta? 
+                <button type="button" id="btn-iniciar-sesion" class="submit" style="width: 140px; height: 40px;">Iniciar sesion</button></p>
         </form>
 
         <form th:action="@{/logincheck}" class="formulario-oculto" id="login-form" method="post">
@@ -79,7 +78,7 @@
 
             <button type="submit" class="submit">Inicio</button>
             <p class="sign">¿No tienes una cuenta? <button type="button" id="btn-registrarse"
-                    class="a">Regístrate</button></p>
+                    class="submit" style="width: 140px; height: 40px;">Regístrate</button></p>
         </form>
     </div>
     <script th:replace="/fragments/scripts :: script"></script>
