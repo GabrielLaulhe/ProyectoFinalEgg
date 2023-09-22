@@ -95,7 +95,9 @@ public class PublicacionControlador {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR', 'ROLE_USER')")
     @GetMapping("/reportar/{id}")
     public String reportar(@PathVariable("id") String id, ModelMap modelo) {
+        Publicacion publicacion = publicacionServicio.getOne(id);
         modelo.addAttribute("id", id);
+        modelo.addAttribute("publicacion", publicacion);
         return "reporte_form.html";
     }
 
@@ -120,7 +122,7 @@ public class PublicacionControlador {
 
     @GetMapping("/reportarComentario/{id}")
     public String guardarReporteComentario(@PathVariable("id") String id, ModelMap modelo) {
-
+        
         modelo.addAttribute("idComentario", id);
 
         return "reporte_form.html";
