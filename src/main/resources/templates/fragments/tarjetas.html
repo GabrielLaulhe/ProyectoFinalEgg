@@ -3,7 +3,8 @@
     <div th:each="publicacion: ${publicaciones}" class="tarjeta">
 
         <div class="contenedor-imagen-usuario">
-            <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
+            <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario" 
+                 onerror="this.src='/img/sinfoto.jpg';">
             <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
         </div>
 
@@ -20,6 +21,7 @@
                 href="/"></a>
             <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
             <p th:text="${publicacion.descripcion}" class="descripcion"></p>
+            <a th:href="@{/publicacion/reportar/{id}(id=${publicacion.id})}">Reportar</a>
             <form action="/publicacion/borrar/{__${publicacion.id}__}" method="post" sec:authorize="hasRole('ADMIN')">
                 <input type="hidden" name="id" th:value="${publicacion.id}" />
                 <button type="submit">Eliminar</button>

@@ -5,10 +5,12 @@
  */
 package com.equipoC.Trendytouch.Controladores;
 
+import com.equipoC.Trendytouch.Entidades.Comentario;
 import com.equipoC.Trendytouch.Entidades.Publicacion;
 import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
+import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
 import com.equipoC.Trendytouch.Servicios.ComentarioServicio;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
@@ -35,10 +37,13 @@ public class PublicacionControlador {
 
     @Autowired
     private PublicacionServicio publicacionServicio;
+    
+    @Autowired
+    private PublicacionRepositorio publicacionRepositorio;
 
     @Autowired
     private ReporteServicio reporteServicio;
-    
+
     @Autowired
     private ComentarioServicio comentarioServicio;
 
@@ -86,14 +91,16 @@ public class PublicacionControlador {
         return "redirect:/";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR')")
-    @GetMapping("/reportar")
-    public String reportar() {
-        return "reporte_registro.html";
+    // Reportar Publicacion
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR', 'ROLE_USER')")
+    @GetMapping("/reportar/{id}")
+    public String reportar(@PathVariable("id") String id, ModelMap modelo) {
+        modelo.addAttribute("id", id);
+        return "reporte_form.html";
     }
 
-    @PostMapping("/reportar")
-    public String reportar(@PathVariable String idReportado, HttpSession session,
+    @PostMapping("/reportarPublicacion")
+    public String reportarPublicacion(String idReportado, HttpSession session,
             @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
         try {
             Usuario emisor = (Usuario) session.getAttribute("usuariosession");
@@ -102,13 +109,45 @@ public class PublicacionControlador {
             List<Reporte> reportes = reportado.getReportes();
             reportes.add(reporte);
             reportado.setReportes(reportes);
+            publicacionRepositorio.save(reportado);
+            return "redirect:/inicio";
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
-            return "reporte_registro.html";
+            return "reporte_form.html";
         }
-        return "redirect:/inicio";
+
     }
 
+    @GetMapping("/reportarComentario/{id}")
+    public String guardarReporteComentario(@PathVariable("id") String id, ModelMap modelo) {
+
+        modelo.addAttribute("idComentario", id);
+
+        return "reporte_form.html";
+
+    }
+
+    @PostMapping("/guardarReporte")
+    public String guardarReporteComentario(@RequestParam String categoria, @RequestParam(required = false) String contenido,
+            @RequestParam("idComentario") String id, HttpSession session, ModelMap modelo) throws MyException {
+        try {
+
+            Comentario comentario = comentarioServicio.comentarioPorId(id);
+            Usuario emisor = (Usuario) session.getAttribute("usuariosession");
+            Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
+
+            List<Reporte> reportes = comentario.getReportes();
+            reportes.add(reporte);
+            comentario.setReportes(reportes);
+
+            return "redirect:/publicacion";
+
+        } catch (MyException ex) {
+            modelo.put("error", ex.getMessage());
+            return "reporte_form.html";
+        }
+    }
+    
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/comentar")
     public String comentar(@RequestParam String id,ModelMap modelo, String contenido, HttpSession session) throws MyException {
@@ -121,5 +160,4 @@ public class PublicacionControlador {
         }
         return "redirect:/inicio";
     }
-    
 }
