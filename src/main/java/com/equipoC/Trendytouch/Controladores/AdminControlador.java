@@ -82,5 +82,13 @@ public class AdminControlador {
 
         return "redirect:/admin/usuarios";
     }
+    
+     @PostMapping("/buscar")
+    public String buscarusuario(String consulta,ModelMap modelo) throws MyException {
+        List<Usuario> usuarios = usuarioServicio.busquedadeUsuarios(consulta);
+            modelo.addAttribute("usuarios", usuarios);
+       
+        return "usuariosLista.html";
+    }
 
 }
