@@ -37,7 +37,7 @@ public class PublicacionControlador {
 
     @Autowired
     private PublicacionServicio publicacionServicio;
-    
+
     @Autowired
     private PublicacionRepositorio publicacionRepositorio;
 
@@ -122,7 +122,7 @@ public class PublicacionControlador {
 
     @GetMapping("/reportarComentario/{id}")
     public String guardarReporteComentario(@PathVariable("id") String id, ModelMap modelo) {
-        
+
         modelo.addAttribute("idComentario", id);
 
         return "reporte_form.html";
@@ -149,10 +149,10 @@ public class PublicacionControlador {
             return "reporte_form.html";
         }
     }
-    
+
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/comentar")
-    public String comentar(@RequestParam String id,ModelMap modelo, String contenido, HttpSession session) throws MyException {
+    public String comentar(@RequestParam String id, ModelMap modelo, String contenido, HttpSession session) throws MyException {
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         try {
             publicacionServicio.comentar(id, comentarioServicio.registrarComentario(contenido, usuario.getId()));
@@ -161,5 +161,12 @@ public class PublicacionControlador {
             return "redirect:/inicio";
         }
         return "redirect:/inicio";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping("/categorias/{categoria}")
+    public String publicacionesCategoria(ModelMap modelo,@PathVariable("categoria")  String categoria) {
+        modelo.addAttribute("publicaciones", publicacionServicio.publicacionesxCategoria(categoria));
+        return "inicio.html";
     }
 }

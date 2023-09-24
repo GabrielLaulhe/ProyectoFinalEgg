@@ -7,6 +7,7 @@ import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Enums.Categoria;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -123,5 +124,15 @@ public class PublicacionServicio {
         publicacionRepo.save(publicacion);
     }
 
+    public List<Publicacion> publicacionesxCategoria(String categoria) {
+        List<Publicacion> publicaciones = listarPublicaciones();
+        List<Publicacion> categorias = new ArrayList<>();
+        for (Publicacion publicacion : publicaciones) {
+            if (publicacion.getCategoria().toString().toUpperCase().equals(categoria.toUpperCase())) {
+                categorias.add(publicacion);
+            }
+        }
+        System.out.println(categorias.toString());
+        return categorias;
+    }
 }
-
