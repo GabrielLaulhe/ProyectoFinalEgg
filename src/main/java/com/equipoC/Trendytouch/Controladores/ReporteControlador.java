@@ -84,11 +84,7 @@ public class ReporteControlador {
     @GetMapping("/usuario")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     public String reportesPorUsuario(HttpSession session, ModelMap modelo) {
-
-        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-        List<Reporte> reportes = reporteServicio.listarReportesPorEmisor(usuario);
-        modelo.put("reportes", reportes);
-
+        modelo.put("reportes", reporteServicio.listarReportesPorEmisor((Usuario) session.getAttribute("usuariosession")));
         return "reportesListaUser.html";
     }
 

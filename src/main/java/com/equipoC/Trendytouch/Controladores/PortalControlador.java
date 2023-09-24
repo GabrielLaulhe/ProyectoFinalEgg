@@ -30,9 +30,7 @@ public class PortalControlador {
 
     @GetMapping("/")
     public String index(ModelMap modelo) {
-        List<Publicacion> publicaciones = publicacionServicio.listarPublicacionesMegustas();
-        modelo.addAttribute("publicaciones", publicaciones);
-
+        modelo.addAttribute("publicaciones", publicacionServicio.listarPublicacionesMegustas());
         return "index.html";
     }
 
@@ -85,8 +83,7 @@ public class PortalControlador {
 
             return "redirect:/admin/dashboard";
         }
-        List<Publicacion> publicaciones = publicacionServicio.listarPublicaciones();
-        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("publicaciones", publicacionServicio.listarPublicaciones());
 
         return "inicio.html";
     }

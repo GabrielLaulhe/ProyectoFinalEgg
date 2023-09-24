@@ -56,10 +56,8 @@ public class PublicacionControlador {
     @PostMapping("/crear")
     public String crear(@RequestParam(required = false) String descripcion, HttpSession session,
             @RequestParam List<MultipartFile> archivos, @RequestParam String categoria, ModelMap modelo) {
-        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-
         try {
-            publicacionServicio.registrarPublicacion(descripcion, usuario, categoria, archivos);
+            publicacionServicio.registrarPublicacion(descripcion, (Usuario) session.getAttribute("usuariosession"), categoria, archivos);
             modelo.put("exito", "Plublicacion ok");
             return "redirect:/inicio";
 
@@ -74,9 +72,7 @@ public class PublicacionControlador {
 
     @GetMapping("/usuario")
     public String PublicacionesdeUsuario(HttpSession session, ModelMap modelo) {
-        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-        List<Publicacion> publicaciones = publicacionServicio.buscarUsuario(usuario);
-        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("publicaciones", publicacionServicio.buscarUsuario((Usuario) session.getAttribute("usuariosession")));
         return "inicio.html";
     }
 
@@ -95,9 +91,8 @@ public class PublicacionControlador {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR', 'ROLE_USER')")
     @GetMapping("/reportar/{id}")
     public String reportar(@PathVariable("id") String id, ModelMap modelo) {
-        Publicacion publicacion = publicacionServicio.getOne(id);
         modelo.addAttribute("id", id);
-        modelo.addAttribute("publicacion", publicacion);
+        modelo.addAttribute("publicacion", publicacionServicio.getOne(id));
         return "reporte_form.html";
     }
 
@@ -105,13 +100,7 @@ public class PublicacionControlador {
     public String reportarPublicacion(String idReportado, HttpSession session,
             @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
         try {
-            Usuario emisor = (Usuario) session.getAttribute("usuariosession");
-            Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
-            Publicacion reportado = publicacionServicio.getOne(idReportado);
-            List<Reporte> reportes = reportado.getReportes();
-            reportes.add(reporte);
-            reportado.setReportes(reportes);
-            publicacionRepositorio.save(reportado);
+            publicacionServicio.reportarPublicacion(idReportado, (Usuario) session.getAttribute("usuariosession"), contenido, categoria);
             return "redirect:/inicio";
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
@@ -165,7 +154,7 @@ public class PublicacionControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/categorias/{categoria}")
-    public String publicacionesCategoria(ModelMap modelo,@PathVariable("categoria")  String categoria) {
+    public String publicacionesCategoria(ModelMap modelo, @PathVariable("categoria") String categoria) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesxCategoria(categoria));
         return "inicio.html";
     }
