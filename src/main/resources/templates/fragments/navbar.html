@@ -29,61 +29,74 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li sec:authorize="hasRole('ADMIN')">
-                            <a class="dropdown-item" href="/seccion/editar">Editar</a>
+                            <a class="dropdown-item" href="/publicacion/editar">Editar</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/tendencias">Tendencias</a>
+                            <a class="dropdown-item" href="/publicacion/categorias/tendencias"
+                                name="tendencias">Tendencias</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/moda_sostenible">Moda sostenible</a>
+                            <a class="dropdown-item" href="/publicacion/categorias/MODA_SOSTENIBLE"
+                                name="MODA_SOSTENIBLE">Moda sostenible</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/estampados">Estampados</a>
+                            <a class="dropdown-item" href="/publicacion/categorias/estampados"
+                                name="estampados">Estampados</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/cabello">Cabello</a>
+                            <a class="dropdown-item" href="/publicacion/categorias/cabello" name="cabello">Cabello</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/maquillaje">Maquillaje</a>
+                            <a class="dropdown-item" href="/publicacion/categorias/maquillaje"
+                                name="maquillaje">Maquillaje</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/accesorios">Accesorios</a>
+                            <a class="dropdown-item" href="/publicacion/categorias/accesorios"
+                                name="accesorios">Accesorios</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/calzado">Calzado</a>
+                            <a class="dropdown-item" href="/publicacion/categorias/calzado" name="calzado">Calzado</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/indumentaria">Indumentaria</a>
+                            <a class="dropdown-item" href="/publicacion/categorias/indumentaria"
+                                name="indumentaria">Indumentaria</a>
                         </li>
                     </ul>
                 </li>
 
                 <ul sec:authorize="hasRole('USER')">
                     <li>
-                        <a class="item" href="/seccion/tendencias">Tendencias</a>
+                        <a class="dropdown-item" href="/publicacion/categorias/tendencias"
+                            name="tendencias">Tendencias</a>
                     </li>
                     <li>
-                        <a class="item" href="/seccion/moda_sostenible">Moda sostenible</a>
+                        <a class="dropdown-item" href="/publicacion/categorias/MODA_SOSTENIBLE"
+                            name="MODA_SOSTENIBLE">Moda sostenible</a>
                     </li>
                     <li>
-                        <a class="item" href="/seccion/estampados">Estampados</a>
+                        <a class="dropdown-item" href="/publicacion/categorias/estampados"
+                            name="estampados">Estampados</a>
                     </li>
                     <li>
-                        <a class="item" href="/seccion/cabello">Cabello</a>
+                        <a class="dropdown-item" href="/publicacion/categorias/cabello" name="cabello">Cabello</a>
                     </li>
                     <li>
-                        <a class="item" href="/seccion/maquillaje">Maquillaje</a>
+                        <a class="dropdown-item" href="/publicacion/categorias/maquillaje"
+                            name="maquillaje">Maquillaje</a>
                     </li>
                     <li>
-                        <a class="item" href="/seccion/accesorios">Accesorios</a>
+                        <a class="dropdown-item" href="/publicacion/categorias/accesorios"
+                            name="accesorios">Accesorios</a>
                     </li>
                     <li>
-                        <a class="item" href="/seccion/calzado">Calzado</a>
+                        <a class="dropdown-item" href="/publicacion/categorias/calzado" name="calzado">Calzado</a>
                     </li>
                     <li>
-                        <a class="item" href="/seccion/indumentaria">Indumentaria</a>
+                        <a class="dropdown-item" href="/publicacion/categorias/indumentaria"
+                            name="indumentaria">Indumentaria</a>
                     </li>
                 </ul>
+                </li>
 
                 <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
