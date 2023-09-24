@@ -3,6 +3,7 @@ package com.equipoC.Trendytouch.Servicios;
 import com.equipoC.Trendytouch.Entidades.Comentario;
 import com.equipoC.Trendytouch.Entidades.Imagen;
 import com.equipoC.Trendytouch.Entidades.Publicacion;
+import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Enums.Categoria;
 import com.equipoC.Trendytouch.Errores.MyException;
@@ -30,6 +31,9 @@ public class PublicacionServicio {
 
     @Autowired
     ImagenServicio imagenservicio;
+
+    @Autowired
+    ReporteServicio reporteServicio;
 
     @Transactional
     public void registrarPublicacion(String descripcion, Usuario usuario, String categoria,
@@ -134,5 +138,14 @@ public class PublicacionServicio {
         }
         System.out.println(categorias.toString());
         return categorias;
+    }
+
+    public void reportarPublicacion(String idReportado, Usuario emisor, String contenido, String categoria) throws MyException {
+        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
+        Publicacion reportado = getOne(idReportado);
+        List<Reporte> reportes = reportado.getReportes();
+        reportes.add(reporte);
+        reportado.setReportes(reportes);
+        publicacionRepo.save(reportado);
     }
 }

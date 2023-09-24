@@ -38,17 +38,13 @@ public class AdminControlador {
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo) {
-        List<Publicacion> publicaciones = publicacionServicio.listarPublicacionesMegustas();
-        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("publicaciones", publicacionServicio.listarPublicacionesMegustas());
         return "inicio.html";
     }
 
     @GetMapping("/usuarios")
     public String listar(ModelMap modelo) {
-
-        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
-        modelo.addAttribute("usuarios", usuarios);
-
+        modelo.addAttribute("usuarios", usuarioServicio.listarUsuarios());
         return "usuariosLista.html"; // crear una vista
     }
     
@@ -57,8 +53,7 @@ public class AdminControlador {
     public String listaReportes(ModelMap modelo) {
 
         try {
-            List<Reporte> reportes = reporteServicio.listarReportes();
-            modelo.put("reportes", reportes);
+            modelo.put("reportes", reporteServicio.listarReportes());
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
             return "redirect:/reporte/reportesLista";
@@ -85,9 +80,7 @@ public class AdminControlador {
     
      @PostMapping("/buscar")
     public String buscarusuario(String consulta,ModelMap modelo) throws MyException {
-        List<Usuario> usuarios = usuarioServicio.busquedadeUsuarios(consulta);
-            modelo.addAttribute("usuarios", usuarios);
-       
+            modelo.addAttribute("usuarios",  usuarioServicio.busquedadeUsuarios(consulta));
         return "usuariosLista.html";
     }
 
