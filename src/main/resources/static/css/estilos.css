@@ -4,6 +4,8 @@
 @import "errores.css";
 @import "hero.css";
 @import "formularios.css";
+@import "lista-usuarios.css";
+@import "error-page.css";
 
 * {
     font-family: 'Raleway', sans-serif;
@@ -24,8 +26,11 @@ header {
 }
 
 main {
-    width: 85%;
-    padding-top: 30px;
+    width: 65%;
+    min-height: 100%;
+    position: absolute;
+    left: 20%;
+    z-index: 0;
 }
 
 ul,
@@ -41,8 +46,67 @@ li {
     position: fixed;
 }
 
+.pad-top{
+    padding-top: 30px;
+}
+
 .flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.vistas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.max-height{
+    min-height: 100%;
+}
+
+/* --- MAIN-LINKS --- */
+.main-link {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
+.main-link {
+    --border-right: 6px;
+    --text-stroke-color: rgba(0, 0, 0, 0.6);
+    --animation-color: #820000;
+    --fs-size: 1em;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: var(--fs-size);
+    /* font-family: "Arial"; */
+    position: relative;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+
+.main-link .hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+    display: flex;
+    align-items: center;
+    text-wrap: nowrap;
+}
+
+.main-link:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color))
 }

@@ -7,126 +7,153 @@
             <img src="/img/logo.png" alt="Logo Touch" class="logo" />
         </a>
 
-        <div>
-            <div th:if="${session.usuariosession == null}" class="nav-ul">
-                <div class="item">
-                    <a class="links" href="/registrar">
-                        Registrate
-                    </a>
+        <div class="nav-ul-container">
+            <div class="max-height">
+                <div th:if="${session.usuariosession == null}" class="user-categorias">
+                    <div class="item">
+                        <a class="main-link" href="/registrar">
+                            <span class="actual-text">&nbsp;registrate&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;registrate&nbsp;</span>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="main-link" href="/loguear">
+                            <span class="actual-text">&nbsp;logueate&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;logueate&nbsp;</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="item">
-                    <a class="links" href="/loguear">
-                        Logueate
-                    </a>
-                </div>
-            </div>
 
-            <ul th:if="${session.usuariosession != null}" class="nav-ul">
-                <li class="item dropdown" sec:authorize="hasAnyRole('ADMIN', 'DISENADOR')">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Secciones
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li sec:authorize="hasRole('ADMIN')">
-                            <a class="dropdown-item" href="/publicacion/editar">Editar</a>
+                <ul th:if="${session.usuariosession != null}" class="nav-ul">
+                    <li class="item dropdown" sec:authorize="hasAnyRole('ADMIN', 'DISENADOR')">
+                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="actual-text">&nbsp;secciones&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;secciones&nbsp;</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- <li sec:authorize="hasRole('ADMIN')">
+                                <a class="dropdown-item" href="/publicacion/editar">Editar</a>
+                            </li> -->
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/tendencias"
+                                    name="tendencias">Tendencias</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/MODA_SOSTENIBLE"
+                                    name="MODA_SOSTENIBLE">Moda sostenible</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/estampados"
+                                    name="estampados">Estampados</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/cabello"
+                                    name="cabello">Cabello</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/maquillaje"
+                                    name="maquillaje">Maquillaje</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/accesorios"
+                                    name="accesorios">Accesorios</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/calzado"
+                                    name="calzado">Calzado</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/indumentaria"
+                                    name="indumentaria">Indumentaria</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <ul sec:authorize="hasRole('USER')" class="user-categorias">
+                        <li>
+                            <a class="main-link" href="/publicacion/categorias/tendencias">
+                                <span class="actual-text">&nbsp;tendencias&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;tendencias&nbsp;</span>
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/publicacion/categorias/tendencias"
-                                name="tendencias">Tendencias</a>
+                            <a class="main-link" href="/publicacion/categorias/indumentaria">
+                                <span class="actual-text">&nbsp;indumentaria&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;indumentaria&nbsp;</span>
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/publicacion/categorias/MODA_SOSTENIBLE"
-                                name="MODA_SOSTENIBLE">Moda sostenible</a>
+                            <a class="main-link" href="/publicacion/categorias/moda_sostenible">
+                                <span class="actual-text">&nbsp;moda sostenible&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;moda sostenible&nbsp;</span>
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/publicacion/categorias/estampados"
-                                name="estampados">Estampados</a>
+                            <a class="main-link" href="/publicacion/categorias/estampados">
+                                <span class="actual-text">&nbsp;estampados&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;estampados&nbsp;</span>
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/publicacion/categorias/cabello" name="cabello">Cabello</a>
+                            <a class="main-link" href="/publicacion/categorias/cabello">
+                                <span class="actual-text">&nbsp;cabello&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;cabello&nbsp;</span>
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/publicacion/categorias/maquillaje"
-                                name="maquillaje">Maquillaje</a>
+                            <a class="main-link" href="/publicacion/categorias/maquillaje">
+                                <span class="actual-text">&nbsp;maquillaje&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;maquillaje&nbsp;</span>
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/publicacion/categorias/accesorios"
-                                name="accesorios">Accesorios</a>
+                            <a class="main-link" href="/publicacion/categorias/accesorios">
+                                <span class="actual-text">&nbsp;accesorios&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;accesorios&nbsp;</span>
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/publicacion/categorias/calzado" name="calzado">Calzado</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/publicacion/categorias/indumentaria"
-                                name="indumentaria">Indumentaria</a>
+                            <a class="main-link" href="/publicacion/categorias/calzado">
+                                <span class="actual-text">&nbsp;calzado&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;calzado&nbsp;</span>
+                            </a>
                         </li>
                     </ul>
-                </li>
+                    </li>
 
-                <ul sec:authorize="hasRole('USER')">
-                    <li>
-                        <a class="dropdown-item" href="/publicacion/categorias/tendencias"
-                            name="tendencias">Tendencias</a>
+                    <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
+                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="actual-text">&nbsp;usuarios&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;usuarios&nbsp;</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/admin/usuarios">Gestionar</a>
+                            </li>
+
+                        </ul>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="/publicacion/categorias/MODA_SOSTENIBLE"
-                            name="MODA_SOSTENIBLE">Moda sostenible</a>
+
+                    <li class="item dropdown" sec:authorize="hasAnyRole('DISENADOR', 'ADMIN')">
+                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="actual-text">&nbsp;publicaciones&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;publicaciones&nbsp;</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/crear">Nueva</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/publicacion/usuario}">Gestionar</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="/publicacion/categorias/estampados"
-                            name="estampados">Estampados</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/publicacion/categorias/cabello" name="cabello">Cabello</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/publicacion/categorias/maquillaje"
-                            name="maquillaje">Maquillaje</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/publicacion/categorias/accesorios"
-                            name="accesorios">Accesorios</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/publicacion/categorias/calzado" name="calzado">Calzado</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/publicacion/categorias/indumentaria"
-                            name="indumentaria">Indumentaria</a>
-                    </li>
+
                 </ul>
-                </li>
-
-                <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Usuarios
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="/admin/usuarios">Gestionar</a>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <li class="item dropdown" sec:authorize="hasAnyRole('DISENADOR', 'ADMIN')">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Publicaciones
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="/publicacion/crear">Nueva</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" th:href="@{/publicacion/usuario}">Gestionar</a>
-                        </li>
-                    </ul>
-                </li>
-
-            </ul>
+            </div>
         </div>
     </div>
 </nav>
