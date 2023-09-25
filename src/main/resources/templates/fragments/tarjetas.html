@@ -3,8 +3,7 @@
     <div th:each="publicacion: ${publicaciones}" class="tarjeta">
 
         <div class="contenedor-imagen-usuario">
-            <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario" 
-                 onerror="this.src='/img/sinfoto.jpg';">
+            <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
             <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
         </div>
 
@@ -17,22 +16,63 @@
         </div>
 
         <div class="contenedor-texto">
-            <a th:if="${session.usuariosession != null}" id="texto-categoria" th:text="${publicacion.categoria}"
-                href="/"></a>
-            <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
-            <p th:text="${publicacion.descripcion}" class="descripcion"></p>
-            <a th:href="@{/publicacion/reportar/{id}(id=${publicacion.id})}">Reportar</a>
-            <form action="/publicacion/borrar/{__${publicacion.id}__}" method="post" sec:authorize="hasRole('ADMIN')">
-                <input type="hidden" name="id" th:value="${publicacion.id}" />
-                <button type="submit" style="background-color: #800000; color: #ffffff;
-                border: none; padding: 5px 10px; border-radius: 3px;">Eliminar</button>
-            </form>
-            <form action="/publicacion/comentar" th:if="${session.usuariosession != null}" method="post">
-                <input type="hidden" name="id" th:value="${publicacion.id}" />
-                <input name="contenido" />
-                <button type="submit" style="background-color: #800000; color: #ffffff;
-                border: none; padding: 5px 10px; border-radius: 3px;">Comentar</button>
-            </form>
+            <div class="contenedor-superior">
+                <div>
+                    <a th:if="${session.usuariosession != null}" id="texto-categoria" th:text="${publicacion.categoria}"
+                        href="/"></a>
+                    <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
+                    <p th:text="${publicacion.descripcion}" class="descripcion"></p>
+                </div>
+
+                <button th:if="${session.usuariosession != null}" class="boton-like">
+                    <svg viewBox="0 0 17.503 15.625" height="20.625" width="20.503" xmlns="http://www.w3.org/2000/svg"
+                        class="icon">
+                        <path transform="translate(0 0)"
+                            d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z"
+                            id="Fill"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="subcontenedor-acciones">
+                <form action="/publicacion/borrar/{__${publicacion.id}__}" method="post"
+                    sec:authorize="hasRole('ADMIN')">
+                    <input type="hidden" name="id" th:value="${publicacion.id}" />
+                    <button class="boton-acciones" type="submit">Eliminar</button>
+                </form>
+                <button class="boton-acciones"><a
+                        th:href="@{/publicacion/reportar/{id}(id=${publicacion.id})}">Reportar</a></button>
+                <button th:if="${session.usuariosession != null}" class="boton-acciones boton-comentar"
+                    onclick="mostrarVentana()">Comentar</button>
+            </div>
+
+            <div id="ventana-difuminada" style="display: none;">
+                <div class="contenedor-comentarios">
+                    <form action="/publicacion/comentar" th:if="${session.usuariosession != null}" method="post">
+                        <input type="hidden" name="id" th:value="${publicacion.id}" />
+                        <div class="textarea-container">
+                            <textarea rows="3" cols="50" placeholder="Escribe tu comentario aquí..."></textarea>
+                            <div class="textarea-border"></div>
+                        </div>
+                        <br>
+                        <div class="contenedor-botones-tarjeta">
+                            <button class="boton-volver comentar-tarjeta" type="submit" onclick="ocultarVentana()">
+                                <p>Comentar</p>
+                            </button>
+
+                            <button class="boton-volver" onclick="ocultarVentana()">
+                                <p>Volver</p>
+                                <svg stroke-width="4" stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                                    class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round" stroke-linecap="round">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
