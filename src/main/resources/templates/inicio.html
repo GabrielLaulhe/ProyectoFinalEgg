@@ -10,9 +10,9 @@
     </header>
 
     <section th:replace="/fragments/hero :: section"></section>
+    <section th:replace="/fragments/errores :: section"></section>
 
-    <main class="inicio-main">
-        <section th:replace="/fragments/errores :: section"></section>
+    <main>
         <section th:if="${session.usuariosession != null}" th:replace="/fragments/tarjetas :: section"></section>
     </main>
 

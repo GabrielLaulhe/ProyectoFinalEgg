@@ -1,63 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head th:replace="/fragments/head :: head"></head>
+<head th:replace="/fragments/head :: head"></head>
 
-    <body class="inicio-body flex-col-center">
-        <header>
-            <nav th:replace="/fragments/navbar :: nav"></nav>
-        </header>
+<body class="inicio-body flex-col-center">
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
 
-        <section th:replace="/fragments/errores :: section"></section>
+    <section th:replace="/fragments/errores :: section"></section>
 
-        <section th:replace="/fragments/hero :: section"></section>
+    <section th:replace="/fragments/hero :: section"></section>
 
-        <section>
-            <div>
-                <div class="contenedor-imagen-usuario">
-                    <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario" 
-                         onerror="this.src='/img/sinfoto.jpg';">
-                    <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
-                </div>
+    <section>
+        <div>
+            <div class="contenedor-imagen-usuario">
+                <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario"
+                    onerror="this.src='/img/sinfoto.jpg';">
+                <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
+            </div>
 
-                <div class="contenedor-imagen">
-                    <div th:each="foto, iterStat : ${publicacion.fotos}">
-                        <div>
-                            <img th:src="@{/imagen/__${foto.id}__}" class="imagen" alt="..." loading="lazy">
-                        </div>
+            <div class="contenedor-imagen">
+                <div th:each="foto, iterStat : ${publicacion.fotos}">
+                    <div>
+                        <img th:src="@{/imagen/__${foto.id}__}" class="imagen" alt="..." loading="lazy">
                     </div>
                 </div>
-
-                <div class="contenedor-texto">
-                    <a th:if="${session.usuariosession != null}" id="texto-categoria" th:text="${publicacion.categoria}"
-                       href="/"></a>
-                    <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
-                    <p th:text="${publicacion.descripcion}" class="descripcion"></p>
-                    
-                    
-                    <form class="form" th:action="@{/publicacion/reportarPublicacion}" method="POST">
-                        <input hidden type="text" name="idReportado" th:value="${id}">
-                        <div class="mb-3 form-control">
-                            <label for="floatingRespuesta">Descripción</label>
-
-                            <input type="text" class="form-control" id="floatingRespuesta" placeholder="descripcion"
-                                   name="contenido" />
-
-                        </div>
-                        <div class="mb-3 form-control">
-                            <label for="floatingRespuesta">Castegoria</label>
-                            <input type="text" class="form-control" id="floatingRespuesta" placeholder="Categoria"
-                                   name="categoria" required />
-                        </div>
-
-                        <button type="submit" class="">Enviar</button>
-                    </form>
-                </div>
             </div>
-                <script th:replace="/fragments/scripts :: script"></script>
-        </section>
+
+            <div class="contenedor-texto">
+                <a th:if="${session.usuariosession != null}" id="texto-categoria" th:text="${publicacion.categoria}"
+                    href="/"></a>
+                <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
+                <p th:text="${publicacion.descripcion}" class="descripcion"></p>
 
 
-    </body>
+                <form class="form" th:action="@{/publicacion/reportarPublicacion}" method="POST">
+                    <input hidden type="text" name="idReportado" th:value="${id}">
+                    <div class="mb-3 form-control">
+                        <label for="floatingRespuesta">Descripción</label>
+                        <input type="text" class="input" id="floatingRespuesta" placeholder="descripcion"
+                            name="contenido" />
+                    </div>
+                    <div class="mb-3 form-control">
+                        <label for="floatingRespuesta">Categoria</label>
+                        <input type="text" class="input" id="floatingRespuesta" placeholder="Categoria" name="categoria"
+                            required />
+                    </div>
+
+                    <button type="submit" class="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <script th:replace="/fragments/scripts :: script"></script>
+    </section>
+
+
+</body>
 
 </html>

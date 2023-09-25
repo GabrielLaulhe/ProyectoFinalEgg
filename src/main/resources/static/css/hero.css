@@ -4,21 +4,21 @@
     flex-direction: column;
     max-width: 15vw;
     background-color: white;
-    padding: 30px 5px;
+    padding: 35px 5px;
     position: fixed;
     align-items: center;
     right: 0;
-    border-left: solid 1px lightgrey;
+    box-shadow: -1px 0px 15px 0px #0000005e;
     gap: 20px;
 }
 
 .hero img {
-    width: 70%;
+    width: 50%;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 100%;
+    border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.222);
-    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
     transition: all ease .3s;
 }
 

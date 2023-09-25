@@ -1,16 +1,22 @@
 <section class="hero">
-  <div class="flex-center">
+  <a class="flex-center" th:href="@{/usuario/actualizar}">
     <img class="logo" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="Imagen usuario"
       onerror="this.src='/img/sinfoto.jpg';" />
-  </div>
+  </a>
 
-  <h3 th:if="${session.usuariosession != null}"
-    th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h3>
+  <h3 th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h3>
+
+  <h5 th:text="${session.usuariosession.rol}"></h5>
+
+  <h6 th:text="'#' + ${session.usuariosession.nombreUsuario}"></h6>
 
   <div class="dropdown-center flex-center">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Perfil
+    <a class="main-link dropdown-toggle flex-center" href="#" role="button" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      <span class="actual-text">&nbsp;mi perfil&nbsp;</span>
+      <span class="hover-text" aria-hidden="true">&nbsp;mi perfil&nbsp;</span>
     </a>
+
     <ul class="dropdown-menu">
       <li>
         <a class="dropdown-item" th:href="@{/usuario/actualizar}">Editar</a>
@@ -20,4 +26,5 @@
       </li>
     </ul>
   </div>
+
 </section>

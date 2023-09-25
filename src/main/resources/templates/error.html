@@ -7,11 +7,16 @@
     <header>
         <nav th:replace="/fragments/navbar :: nav"></nav>
     </header>
+
     <section th:if="${session.usuariosession != null}" th:replace="/fragments/hero :: section"></section>
-    <main class="index-main">
-        <section class="contenedorError">
-            <a class="error-codigo" th:text="'Error ' + ${codigo}"></a>
-            <p class="error-mensaje" th:text="${mensaje}"></p>
+
+    <main class="vistas">
+        <section class="contenedor-error">
+            <div class="error-head">
+                <img src="/img/error-icon.png" alt="">
+                <h1 th:text="'Error ' + ${codigo}"></h1>
+            </div>
+            <p th:text="${mensaje}"></p>
         </section>
     </main>
 
