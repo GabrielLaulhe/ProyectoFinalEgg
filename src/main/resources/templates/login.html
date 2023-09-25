@@ -35,7 +35,7 @@
                 </label>
                 <label>
                     <input type="file" name="archivo" class="input" />
-                    <span>Imagen de perfil</span>
+                    <!-- <span>Imagen de perfil</span> -->
                 </label>
 
                 <div class="flex">
@@ -62,8 +62,10 @@
                 </div>
 
                 <button type="submit" class="submit">Registrarse</button>
-                <p class="sign">Ya tienes una cuenta? <button type="button" id="btn-iniciar-sesion" class="a">Iniciar
-                        sesion</button></p>
+                <p class="sign">Ya tienes una cuenta?  
+                    <button type="button" id="btn-iniciar-sesion" class="submit">Iniciar
+                        sesion</button>
+                    </p>
             </form>
 
             <form th:action="@{/logincheck}" class="form" id="login-form" method="post">
@@ -79,8 +81,7 @@
 
                 <button type="submit" class="submit">Inicio</button>
                 <p class="sign">¿No tienes una cuenta?
-                    <button type="button" id="btn-registrarse" class="submit"
-                        style="width: 140px; height: 40px;">Regístrate</button>
+                    <button type="button" id="btn-registrarse" class="submit">Regístrate</button>
                 </p>
             </form>
         </div>
