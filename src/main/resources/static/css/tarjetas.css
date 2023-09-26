@@ -45,13 +45,13 @@
     padding: 0.4rem;
 }
 
-.contenedor-texto a {
+.contenedor-texto #texto-categoria {
     text-decoration: none;
     color: black;
     transition: all ease 0.25s;
 }
 
-.contenedor-texto a:hover {
+.contenedor-texto #texto-categoria:hover {
     color: red;
 }
 
@@ -105,6 +105,14 @@
     transform: translateY(-7px);
 }
 
+.boton-reportar:hover {
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(255, 0, 157);
+    box-shadow: 0px 8px 13px rgba(255, 0, 166, 0.4);
+    transform: translateY(-7px);
+}
+
 .boton-acciones:active {
     transform: translateY(-1px);
 }
@@ -117,7 +125,8 @@
     align-items: center;
 }
 
-#ventana-difuminada {
+#ventana-difuminada,
+#ventana-difuminada2 {
     position: fixed;
     top: 0;
     left: 0;
@@ -255,7 +264,7 @@ textarea:focus+.textarea-border {
     align-items: center;
     justify-content: center;
     width: 40px;
-    height: 40px;
+    height: 45px;
     border-radius: 10px;
     border: none;
     background-color: transparent;
@@ -264,8 +273,8 @@ textarea:focus+.textarea-border {
 
 
 .icon {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     transition: .2s linear;
 }
 
@@ -292,4 +301,106 @@ textarea:focus+.textarea-border {
     display: flex;
     justify-content: space-between;
     align-items: start;
+}
+
+
+.custom-prev-button,
+.custom-next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+
+
+.custom-prev-button {
+    left: 0;
+}
+
+.custom-next-button {
+    right: 0;
+}
+
+/*boton de mostar comentarios*/
+
+.bmc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+.bmc:hover>.icon {
+    transform: scale(1.2);
+}
+
+.bmc:hover>.icon path {
+    fill: orange;
+}
+
+.bmc:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+}
+
+.subcontenedor-botones {
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+    align-content: center;
+}
+
+/*otros estilos*/
+
+.ccp {
+    background-color: white;
+    max-height: 60%;
+    overflow-y: auto;
+    padding: 20px 30px;
+    border-radius: 5px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+/* Estilo para los div con clase "cs" */
+.cs {
+    margin-bottom: 10px;
+}
+
+.cs::after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid #e5e5e5;
+    box-shadow: 0 2.3px 2.3px rgba(229, 229, 229, 0.5);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.cs:first-child {
+    margin-top: 10px;
+}
+
+.cs:last-child {
+    margin-bottom: 10px;
+}
+
+.imagen-usuario {
+    width: 32px;
+    height: 32px;
+}
+
+.cs div:nth-child(2) {
+    font-weight: bold;
+}
+
+.comentario-c {
+    color: black;
+    word-wrap: break-word;
 }
