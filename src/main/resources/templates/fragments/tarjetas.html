@@ -8,9 +8,11 @@
         </div>
 
         <div class="contenedor-imagen">
-            <div th:each="foto, iterStat : ${publicacion.fotos}">
-                <div>
-                    <img th:src="@{/imagen/__${foto.id}__}" class="imagen" alt="..." loading="lazy">
+            <div class="slick-carousel">
+                <div th:each="foto, iterStat : ${publicacion.fotos}">
+                    <div>
+                        <img th:src="@{/imagen/__${foto.id}__}" class="imagen" alt="..." loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,14 +26,23 @@
                     <p th:text="${publicacion.descripcion}" class="descripcion"></p>
                 </div>
 
-                <button th:if="${session.usuariosession != null}" class="boton-like">
-                    <svg viewBox="0 0 17.503 15.625" height="20.625" width="20.503" xmlns="http://www.w3.org/2000/svg"
-                        class="icon">
-                        <path transform="translate(0 0)"
-                            d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z"
-                            id="Fill"></path>
-                    </svg>
-                </button>
+                <div class="subcontenedor-botones">
+                    <button th:if="${session.usuariosession != null}" onclick="mostrarVentana2()" class="bmc">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon2" viewBox="0 0 25 25">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M21.3846 19.1947L22.1656 22.1278L19.2865 21.3203L18.5523 21.7524C17.2095 22.5427 15.6596 23 14.0001 23C9.0294 23 5 18.9706 5 13.9997C5 9.02939 9.02933 5 14.0001 5C18.9709 5 23.0001 9.02934 23.0001 13.9997C23.0001 15.6303 22.5602 17.1549 21.7969 18.4794L21.3846 19.1947ZM19.5667 23.4761C17.9321 24.4381 16.0341 25 14.0001 25C7.92481 25 3 20.0752 3 13.9997C3 7.92476 7.92481 3 14.0001 3C20.0755 3 25.0001 7.92476 25.0001 13.9997C25.0001 15.9965 24.4601 17.8637 23.5297 19.478L24.5491 23.3066C24.7483 24.0548 24.0582 24.7359 23.3127 24.5268L19.5667 23.4761Z" />
+                        </svg>
+                    </button>
+
+                    <button th:if="${session.usuariosession != null}" class="boton-like">
+                        <svg viewBox="0 0 18 16" height="20.625" width="20.503" xmlns="http://www.w3.org/2000/svg"
+                            class="icon">
+                            <path transform="translate(0 0)"
+                                d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z"
+                                id="Fill"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <div class="subcontenedor-acciones">
@@ -40,8 +51,10 @@
                     <input type="hidden" name="id" th:value="${publicacion.id}" />
                     <button class="boton-acciones" type="submit">Eliminar</button>
                 </form>
-                <button class="boton-acciones"><a
-                        th:href="@{/publicacion/reportar/{id}(id=${publicacion.id})}">Reportar</a></button>
+                <a th:href="@{/publicacion/reportar/{id}(id=${publicacion.id})}">
+                    <button class="boton-acciones boton-reportar">Reportar</button>
+                </a>
+
                 <button th:if="${session.usuariosession != null}" class="boton-acciones boton-comentar"
                     onclick="mostrarVentana()">Comentar</button>
             </div>
@@ -51,12 +64,13 @@
                     <form action="/publicacion/comentar" th:if="${session.usuariosession != null}" method="post">
                         <input type="hidden" name="id" th:value="${publicacion.id}" />
                         <div class="textarea-container">
-                            <textarea rows="3" cols="50" placeholder="Escribe tu comentario aquí..."></textarea>
+                            <textarea name="contenido" id="contenido" rows="3" cols="50"
+                                placeholder="Escribe tu comentario aquí..."></textarea>
                             <div class="textarea-border"></div>
                         </div>
                         <br>
                         <div class="contenedor-botones-tarjeta">
-                            <button class="boton-volver comentar-tarjeta" type="submit" onclick="ocultarVentana()">
+                            <button class="boton-volver comentar-tarjeta" type="submit">
                                 <p>Comentar</p>
                             </button>
 
@@ -70,6 +84,27 @@
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div id="ventana-difuminada2" style="display: none;">
+                <div class="ccp">
+                    <button class="boton-volver" style="margin-bottom: 10px;" onclick="ocultarVentana2()">
+                        <p>Volver</p>
+                        <svg stroke-width="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" class="h-6 w-6"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round" stroke-linecap="round">
+                            </path>
+                        </svg>
+                    </button>
+                    <div th:each="comentario: ${publicacion.comentarios}" class="cs">
+                        <div class="sub-cs">
+                            <img th:src="@{/imagen/perfil/__${comentario.usuario.id}__}" class="imagen-usuario"
+                                alt="..." loading="lazy">
+                            <div th:text="${comentario.usuario.nombreUsuario}" style="color: orange;"></div>
+                            <div class="comentario-c" th:text="${comentario.contenido}"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
