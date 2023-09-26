@@ -1,5 +1,5 @@
 .section {
-    width: 70%;
+    width: 100%;
     min-height: 100vh;
     background-color: white;
     display: flex;
@@ -9,7 +9,7 @@
 
 .tarjeta {
     margin-bottom: 2rem;
-    width: 35%;
+    width: 468px;
     border-top: solid 1px lightgray;
     border-bottom: solid 1px lightgray;
     background-color: white;
@@ -70,4 +70,226 @@
 
 .nombreUsuario {
     color: black;
+}
+
+/*boton eliminar*/
+
+.boton-acciones {
+    font-family: 'Raleway', sans-serif;
+    padding: 0.5em 0.8em;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.boton-acciones:hover {
+    border-radius: 5px;
+    background-color: #d70d0d;
+    box-shadow: 0px 8px 13px rgba(231, 16, 16, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.boton-comentar:hover {
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(255, 179, 0);
+    box-shadow: 0px 8px 13px rgba(251, 126, 0, 0.4);
+    transform: translateY(-7px);
+}
+
+.boton-acciones:active {
+    transform: translateY(-1px);
+}
+
+.subcontenedor-acciones {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 0;
+    align-items: center;
+}
+
+#ventana-difuminada {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-comentarios {
+    background-color: white;
+    width: 40%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textarea-container {
+    position: relative;
+    width: 100%;
+}
+
+textarea {
+    border: none;
+    resize: none;
+    width: 100%;
+    outline: none;
+}
+
+.textarea-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(236, 27, 0, 0.978) 2%, rgba(255, 114, 0, 1) 18%, rgba(232, 255, 0, 1) 100%);
+    transition: width 0.4s cubic-bezier(0.42, 0, 0.58, 1.00);
+}
+
+.textarea-container:focus .textarea-border,
+textarea:focus+.textarea-border {
+    width: 100%;
+}
+
+.boton-volver {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+.boton-volver {
+    --primary-color: #111;
+    --hovered-color: linear-gradient(90deg, rgba(251, 126, 0, 1) 38%, rgba(242, 199, 0, 1) 70%);
+    position: relative;
+    display: flex;
+    font-weight: 450;
+    font-size: 16px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.boton-volver p {
+    margin: 0;
+    position: relative;
+    font-size: 16px;
+    color: var(--primary-color)
+}
+
+.boton-volver::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+}
+
+.boton-volver p::before {
+    position: absolute;
+    content: "Volver";
+    width: 0%;
+    inset: 0;
+    color: orange;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.comentar-tarjeta p::before {
+    position: absolute;
+    content: "Comentar";
+    width: 0%;
+    inset: 0;
+    color: orange;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.boton-volver:hover::after {
+    width: 100%;
+}
+
+.boton-volver:hover p::before {
+    width: 100%;
+}
+
+.boton-volver:hover svg {
+    color: orange;
+}
+
+.boton-volver svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+}
+
+.contenedor-botones-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*boton like*/
+
+.boton-like {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+
+.icon {
+    width: 30px;
+    height: 30px;
+    transition: .2s linear;
+}
+
+.icon path {
+    fill: rgb(120, 120, 120);
+    transition: .2s linear;
+}
+
+.boton-like:hover>.icon {
+    transform: scale(1.2);
+}
+
+.boton-like:hover>.icon path {
+    fill: red;
+}
+
+.boton-like:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+}
+
+.contenedor-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
 }
