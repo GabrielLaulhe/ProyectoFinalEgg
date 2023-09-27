@@ -1,23 +1,18 @@
 package com.equipoC.Trendytouch.Controladores;
 
-import com.equipoC.Trendytouch.Entidades.Publicacion;
 import com.equipoC.Trendytouch.Entidades.Usuario;
-import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 
 @Controller
 @RequestMapping("/")
@@ -34,6 +29,7 @@ public class PortalControlador {
         return "index.html";
     }
 
+    //registro
     @GetMapping("/registrar") //localhost:8080
     public String registrar() {
 
@@ -65,6 +61,7 @@ public class PortalControlador {
         }
     }
 
+    //login
     @GetMapping("/loguear") //localhost:8080
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
         if (error != null) {
@@ -73,6 +70,7 @@ public class PortalControlador {
         return "login.html";
     }
 
+    //redireccion según tipo de usuario que se logueo
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/inicio")
     public String inicio(HttpSession session, ModelMap modelo) {
@@ -87,5 +85,5 @@ public class PortalControlador {
 
         return "inicio.html";
     }
-   
+
 }

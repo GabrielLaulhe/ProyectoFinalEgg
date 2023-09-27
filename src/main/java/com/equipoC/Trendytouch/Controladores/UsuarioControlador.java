@@ -37,6 +37,7 @@ public class UsuarioControlador {
         return "perfil.html";
     }
 
+    //editar perfil
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/actualizar")
     public String actualizar(ModelMap modelo, HttpSession session) {
@@ -69,14 +70,15 @@ public class UsuarioControlador {
 
     }
 
+    //reportar usuario
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/reportar")
     public String reportar() {
         return "reporte_registro.html";
     }
-    
+
     @PostMapping("/reportar")
-    public String reportar(@PathVariable String idReportado, HttpSession session, 
+    public String reportar(@PathVariable String idReportado, HttpSession session,
             @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
         try {
             Usuario emisor = (Usuario) session.getAttribute("usuariosession");
@@ -91,10 +93,11 @@ public class UsuarioControlador {
         }
         return "redirect:/inicio";
     }
-    
+
+    //editar foto
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @PostMapping("/cambiarFoto")
-    public String actualizarFoto(HttpSession session,MultipartFile archivo) throws MyException{
+    public String actualizarFoto(HttpSession session, MultipartFile archivo) throws MyException {
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         usuarioServicio.cambiarFoto(archivo, logueado.getId());
         return "inicio.html";
