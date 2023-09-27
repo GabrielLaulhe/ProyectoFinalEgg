@@ -14,6 +14,8 @@
                 <th>Email</th>
                 <th>Rol</th>
                 <th>Acciones</th>
+                <th>Reportes</th>
+                <th>N Reportes</th>
             </tr>
         </thead>
         <tbody>
@@ -52,6 +54,10 @@
                         border: none; padding: 5px 10px; border-radius: 3px;">Eliminar</button>
                     </form>
                 </td>
+                <div th:each="reporte: ${usuario.reportes}">
+                    <td th:text="${reporte.contenido}"></td>
+                </div>
+                <td th:text="${#lists.size(usuario.reportes)}"></td>
             </tr>
         </tbody>
     </table>
