@@ -1,6 +1,7 @@
 package com.equipoC.Trendytouch.Servicios;
 
 import com.equipoC.Trendytouch.Entidades.Imagen;
+import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Enums.Rol;
 import com.equipoC.Trendytouch.Errores.MyException;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +34,9 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     ImagenServicio imagenservicio;
+    
+    @Autowired
+    ReporteServicio reporteServicio;
 
     @Transactional
     public void registrar(MultipartFile archivo, String nombre, String apellido, String email,
@@ -223,6 +228,15 @@ public class UsuarioServicio implements UserDetailsService {
             }
         }
         return resultados;
+    }
+
+    public void reportarUsuario(String idReportado, Usuario emisor, String categoria, String contenido) throws MyException {
+        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
+        Usuario reportado = getOne(idReportado);
+        List<Reporte> reportes = reportado.getReportes();
+        reportes.add(reporte);
+        reportado.setReportes(reportes);
+        usuariorepo.save(reportado);
     }
 
 }

@@ -21,80 +21,77 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
-
+    
     @Autowired
     UsuarioServicio usuarioServicio;
     @Autowired
     ReporteServicio reporteServicio;
-
+    
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
-
+        
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         modelo.put("usuario", usuario);
-
+        
         return "perfil.html";
     }
-
+    
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/actualizar")
     public String actualizar(ModelMap modelo, HttpSession session) {
-
+        
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         modelo.put("usuario", usuario);
-
+        
         return "usuario_modificar.html";
     }
-
+    
     @PostMapping("/actualizar/{id}")
     public String actualizar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String nombreUsuario, @RequestParam String password,
             String password2,
             ModelMap modelo, HttpSession session) {
-
+        
         try {
             usuarioServicio.actualizar(id, nombre, apellido, email, nombreUsuario, password, password2);
             modelo.put("exito", "Usuario actualizado correctamente");
             return "redirect:/inicio";
-
+            
         } catch (MyException ex) {
             Usuario usuario = (Usuario) session.getAttribute("usuariosession");
             modelo.put("usuario", usuario);
             modelo.put("error", ex.getMessage());
-
+            
             return "usuario_modificar.html";
-
+            
         }
-
+        
     }
-
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR')")
-    @GetMapping("/reportar")
-    public String reportar() {
-        return "reporte_registro.html";
+    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR', 'ROLE_USER')")
+    @GetMapping("/reportar/{id}")
+    public String reportar(@PathVariable("id") String id, ModelMap modelo) {
+        modelo.addAttribute("id", id);
+        modelo.addAttribute("usuario", usuarioServicio.getOne(id));
+        return "reporte_usuario.html";
     }
     
     @PostMapping("/reportar")
-    public String reportar(@PathVariable String idReportado, HttpSession session, 
+    public String reportar(String idReportado, HttpSession session,
             @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
         try {
-            Usuario emisor = (Usuario) session.getAttribute("usuariosession");
-            Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
-            Usuario reportado = usuarioServicio.getOne(idReportado);
-            List<Reporte> reportes = reportado.getReportes();
-            reportes.add(reporte);
-            reportado.setReportes(reportes);
+            usuarioServicio.reportarUsuario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido);
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
-            return "reporte_registro.html";
+            return "reporte_usuario.html";
         }
         return "redirect:/inicio";
     }
     
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @PostMapping("/cambiarFoto")
-    public String actualizarFoto(HttpSession session,MultipartFile archivo) throws MyException{
+    public String actualizarFoto(HttpSession session, MultipartFile archivo) throws MyException {
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         usuarioServicio.cambiarFoto(archivo, logueado.getId());
         return "inicio.html";
