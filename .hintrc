@@ -19,6 +19,13 @@
     ],
     "no-inline-styles": "off",
     "axe/forms": "off",
-    "axe/parsing": "off"
+    "axe/parsing": "off",
+    "axe/name-role-value": [
+      "default",
+      {
+        "button-name": "off",
+        "link-name": "off"
+      }
+    ]
   }
 }
