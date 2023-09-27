@@ -1,0 +1,22 @@
+<section class="max-height">
+    <table>
+        <thead>
+            <tr>
+                <th>ID de reporte</th>
+                <th>Categoria</th>
+                <th>Contenido</th>
+                <th>Estado</th>
+                <th>Emisor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="reporte: ${reportes}">
+                <td th:text="${reporte.id}"></td>
+                <td th:text="${reporte.categoria}" class="descripcion"></td>
+                <td th:text="${reporte.contenido}" class="descripcion"></td>
+                <td th:text="${reporte.estado}" class="descripcion"></td>
+                <td th:text="${reporte.emisor.nombreUsuario}" class="descripcion"></td>
+            </tr>
+        </tbody>
+    </table>
+</section>

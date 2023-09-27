@@ -132,7 +132,6 @@
                             <li>
                                 <a class="dropdown-item" href="/admin/usuarios">Gestionar</a>
                             </li>
-
                         </ul>
                     </li>
 
@@ -148,6 +147,19 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" th:href="@{/publicacion/usuario}">Gestionar</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
+                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="actual-text">&nbsp;Reportes&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;Reportes&nbsp;</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/admin/reportes">Ver Reportes</a>
                             </li>
                         </ul>
                     </li>
