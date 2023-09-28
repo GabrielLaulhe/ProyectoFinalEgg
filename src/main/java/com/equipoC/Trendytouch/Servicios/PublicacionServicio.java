@@ -140,8 +140,8 @@ public class PublicacionServicio {
         return categorias;
     }
 
-    public void reportarPublicacion(String idReportado, Usuario emisor, String contenido, String categoria) throws MyException {
-        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
+    public void reportarPublicacion(String idReportado, Usuario emisor, String contenido, String categoria, String tipo) throws MyException {
+        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria,tipo);
         Publicacion reportado = getOne(idReportado);
         List<Reporte> reportes = reportado.getReportes();
         reportes.add(reporte);

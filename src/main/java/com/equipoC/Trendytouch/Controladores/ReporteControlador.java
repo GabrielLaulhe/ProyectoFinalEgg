@@ -31,10 +31,10 @@ public class ReporteControlador {
 
     @PostMapping("/crear")
     public String crear(@RequestParam String categoria, @RequestParam(required = false) String contenido,
-            HttpSession session, ModelMap modelo) {
+           String tipo, HttpSession session, ModelMap modelo) {
         try {
             Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-            reporteServicio.crear(contenido, usuario, categoria);
+            reporteServicio.crear(contenido, usuario, categoria,tipo);
             modelo.put("exito", "El reporte ha sido enviado con exito.");
             return "redirect:/inicio";
         } catch (MyException ex) {

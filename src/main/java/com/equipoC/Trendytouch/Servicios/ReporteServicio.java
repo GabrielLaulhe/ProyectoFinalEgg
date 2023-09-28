@@ -18,7 +18,7 @@ public class ReporteServicio {
     private ReporteRepositorio reporteRepositorio;
 
     @Transactional
-    public Reporte crear(String contenido, Usuario emisor, String categoria) throws MyException {
+    public Reporte crear(String contenido, Usuario emisor, String categoria, String tipo) throws MyException {
         validar(emisor, categoria);
 
         Reporte reporte = new Reporte();
@@ -26,6 +26,7 @@ public class ReporteServicio {
         reporte.setContenido(contenido);
         reporte.setEmisor(emisor);
         reporte.setCategoria(categoria);
+        reporte.setTipo(tipo);
         reporte.setEstado(EstadoReporte.PENDIENTE);
 
         reporteRepositorio.save(reporte);

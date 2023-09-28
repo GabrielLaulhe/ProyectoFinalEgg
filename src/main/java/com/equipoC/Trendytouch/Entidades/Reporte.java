@@ -26,4 +26,5 @@ public class Reporte {
     private Usuario emisor;
     private String categoria;
     private EstadoReporte estado;
+    private String tipo;
 }

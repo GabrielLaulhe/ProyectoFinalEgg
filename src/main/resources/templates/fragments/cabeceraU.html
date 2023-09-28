@@ -1,13 +1,14 @@
 <section class="cabecera">
+    <a th:href="@{/usuario/reportar/{id}(id=${publicador.id})}">reportar</a>
     <div class="contenedor-cabecera">
-        <div class="contenedor-imagen">       
+        <div class="contenedor-imagen">
             <img th:src="@{/imagen/perfil/__${publicador.id}__}" alt="perfil" class="imagen-usuario">
-        </div>  
+        </div>
         <div class="contenedor-texto">
-            <h1 th:text="${publicador.nombreUsuario}"> </h1>               
-            <h2 th:text="${publicador.rol}"></h2>          
-            <h5 th:text="${publicador.nombre}"></h5>           
-            <h5 th:text="${publicador.apellido}"></h5>           
+            <h1 th:text="${publicador.nombreUsuario}"> </h1>
+            <h2 th:text="${publicador.rol}"></h2>
+            <h5 th:text="${publicador.nombre}"></h5>
+            <h5 th:text="${publicador.apellido}"></h5>
         </div>
     </div>
 </section>
