@@ -18,52 +18,51 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
  * @author Asus
  */
-
-
-
 // --------   A REVISAR   -----
 @Service
 public class ComentarioServicio {
-    
-    
+
     @Autowired
     private ComentarioRepositorio comentarioRepo;
-    
+
     @Autowired
     private UsuarioServicio usuarioServicio;
-    
+    @Autowired
+    private ReporteServicio reporteServicio;
+
     @Transactional
     public Comentario registrarComentario(String contenido, String idUsuario) throws MyException {
-        
+
         validar(contenido, idUsuario);
-        
+
         Comentario comentario = new Comentario();
-        
+
         Date fechaComentario = new Date();
-        
+
         comentario.setFechaComentario(fechaComentario);
         comentario.setContenido(contenido);
         comentario.setAlta(Boolean.TRUE);
-        
+
         Usuario usuario = new Usuario();
         usuario = usuarioServicio.getOne(idUsuario);
         comentario.setUsuario(usuario);
-        
+
         comentarioRepo.save(comentario);
-        
+
         return comentario;
     }
-    
+
     @Transactional
     public void editarComentario(String id, String contenido) throws MyException {
-        
+
         validarContenido(contenido);
-        
+
         Optional<Comentario> respuesta = comentarioRepo.findById(id);
 
         if (respuesta.isPresent()) {
@@ -74,69 +73,68 @@ public class ComentarioServicio {
             comentarioRepo.save(comentario);
         }
     }
-    
+
     @Transactional
     public void eliminarComentarioPorId(String id) throws MyException {
-        
+
         validarId(id);
-        
+
         Optional<Comentario> respuesta = comentarioRepo.findById(id);
         if (respuesta.isPresent()) {
             comentarioRepo.deleteById(id);
         }
-        
+
     }
-    
+
     public Comentario comentarioPorId(String id) {
         return comentarioRepo.getOne(id);
     }
-    
-    
+
     public void validar(String contenido, String idUsuario) throws MyException {
-        
+
         validarId(idUsuario);
-        
+
         validarContenido(contenido);
     }
-    
+
     public void validarId(String id) throws MyException {
-        
+
         if (id.isEmpty() || id == null) {
             throw new MyException("El id esta vacio");
         }
     }
-    
-    public void validarContenido(String contenido) throws MyException{
+
+    public void validarContenido(String contenido) throws MyException {
         if (contenido.isEmpty() || contenido == null) {
             throw new MyException("Debe ingresar un comentario para guardar");
         }
     }
-    
+
     public List<Comentario> listarComentariosPorUsuario(String idUsuario) {
         List<Comentario> comentarios = new ArrayList();
-        
+
         comentarios = (List<Comentario>) comentarioRepo.buscarPorUsuario(idUsuario);
         return comentarios;
     }
-    
+
     public List<Comentario> listarComentariosReportados() {
         List<Comentario> comentarios = comentarioRepo.buscarReportados();
         return comentarios;
     }
-    
-    @Transactional
-    public void reportarComentario(String id) throws MyException {
-        
-        validarId(id);
-        
-        Optional<Comentario> respuesta = comentarioRepo.findById(id);
-        if (respuesta.isPresent()) {
-            Comentario comentario = respuesta.get();
-            comentario.setAlta(!(comentario.getAlta()));
-            comentarioRepo.save(comentario);
-        }
+
+    public Comentario getone(String id) {
+        Comentario comentario = comentarioRepo.getOne(id);
+        return comentario;
     }
-    
-    
-    
+
+    @Transactional
+    public void reportarComentario(String id,Usuario emisor, String categoria, String contenido) throws MyException {
+        Comentario comentario = getone(id);
+        List<Reporte> reportes = comentario.getReportes();
+        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
+        reportes.add(reporte);
+        comentario.setReportes(reportes);
+        comentarioRepo.save(comentario);
+    }
+
 }

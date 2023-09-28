@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body class="inicio-body flex-col-center">
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
+
+    <section th:replace="/fragments/errores :: section"></section>
+
+    <section th:replace="/fragments/hero :: section"></section>
+
+    <main class="vistas">
+        <div class="sub-cs">
+            <img th:src="@{/imagen/perfil/__${comentario.usuario.id}__}" class="imagen-usuario"
+                alt="..." loading="lazy">
+            <div th:text="${comentario.usuario.nombreUsuario}" style="color: orange;"></div>
+            <div class="comentario-c" th:text="${comentario.contenido}"></div>
+            <div class="comentario-c" th:text="${comentario.fechaComentario}"></div>
+        </div>
+        
+        <div class="formulario-container">
+            <form class="form" th:action="@{/publicacion/guardarReporte}" method="POST">
+                <input  type="text" hidden name="idReportado" th:value="${id}">
+                <label>
+                    <input type="text" class="input" name="contenido" required />
+                    <span>Descripcion</span>
+                </label>
+                <label>
+                    <input type="text" class="input" name="categoria" required />
+                    <span>Categoria</span>
+                </label>
+                <button type="submit" class="submit">Enviar</button>
+            </form>
+        </div>
+
+    </main>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
+
+</html>

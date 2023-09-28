@@ -1,11 +1,9 @@
 package com.equipoC.Trendytouch.Controladores;
 
-import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -69,27 +67,25 @@ public class UsuarioControlador {
         }
 
     }
-
     //reportar usuario
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR')")
-    @GetMapping("/reportar")
-    public String reportar() {
-        return "reporte_registro.html";
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR', 'ROLE_USER')")
+    @GetMapping("/reportar/{id}")
+    public String reportar(@PathVariable("id") String id, ModelMap modelo) {
+        modelo.addAttribute("id", id);
+        modelo.addAttribute("usuario", usuarioServicio.getOne(id));
+        return "reporte_usuario.html";
+
     }
 
     @PostMapping("/reportar")
-    public String reportar(@PathVariable String idReportado, HttpSession session,
+    public String reportar(String idReportado, HttpSession session,
             @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
         try {
-            Usuario emisor = (Usuario) session.getAttribute("usuariosession");
-            Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
-            Usuario reportado = usuarioServicio.getOne(idReportado);
-            List<Reporte> reportes = reportado.getReportes();
-            reportes.add(reporte);
-            reportado.setReportes(reportes);
+            usuarioServicio.reportarUsuario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido);
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
-            return "reporte_registro.html";
+            return "reporte_usuario.html";
         }
         return "redirect:/inicio";
     }

@@ -114,32 +114,23 @@ public class PublicacionControlador {
 
     //reportar comentario
     @GetMapping("/reportarComentario/{id}")
-    public String reportarComentario(@PathVariable("id") String id, ModelMap modelo) {
-
+    public String guardarReporteComentario(@PathVariable("id") String id, ModelMap modelo) {
         modelo.addAttribute("idComentario", id);
-
-        return "reporte_form.html";
+        modelo.addAttribute("comentario", comentarioServicio.getone(id));
+        return "reporte_comentario.html";
 
     }
 
     @PostMapping("/guardarReporte")
-    public String reportarComentario(@RequestParam String categoria, @RequestParam(required = false) String contenido,
-            @RequestParam("idComentario") String id, HttpSession session, ModelMap modelo) throws MyException {
+    public String guardarReporteComentario(@RequestParam String categoria, @RequestParam(required = false) String contenido,
+            String idReportado, HttpSession session, ModelMap modelo) throws MyException {
         try {
-
-            Comentario comentario = comentarioServicio.comentarioPorId(id);
-            Usuario emisor = (Usuario) session.getAttribute("usuariosession");
-            Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
-
-            List<Reporte> reportes = comentario.getReportes();
-            reportes.add(reporte);
-            comentario.setReportes(reportes);
-
-            return "redirect:/publicacion";
+            comentarioServicio.reportarComentario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido);
+            return "redirect:/inicio";
 
         } catch (MyException ex) {
             modelo.put("error", ex.getMessage());
-            return "reporte_form.html";
+            return "reporte_comentario.html";
         }
     }
 
