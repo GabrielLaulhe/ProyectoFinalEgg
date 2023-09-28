@@ -4,8 +4,12 @@
         <div class="tarjeta-contenedor" th:id="${publicacion.id}">
 
             <div class="contenedor-imagen-usuario">
-                <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
-                <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
+                <a th:if="${session.usuariosession != null}" th:href="@{/usuario/{id}(id=${publicacion.usuario.id})}">
+                    <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
+                    <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
+                </a>
+                <img th:if="${session.usuariosession == null}" th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
+                    <span th:if="${session.usuariosession == null}" th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
             </div>
 
             <div class="contenedor-imagen">
