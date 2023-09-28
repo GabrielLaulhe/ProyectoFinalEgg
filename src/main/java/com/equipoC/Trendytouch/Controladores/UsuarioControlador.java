@@ -2,6 +2,7 @@ package com.equipoC.Trendytouch.Controladores;
 
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
+import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,8 @@ public class UsuarioControlador {
     UsuarioServicio usuarioServicio;
     @Autowired
     ReporteServicio reporteServicio;
+    @Autowired
+    PublicacionServicio publicacionServicio;
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/perfil")
@@ -97,5 +100,20 @@ public class UsuarioControlador {
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         usuarioServicio.cambiarFoto(archivo, logueado.getId());
         return "inicio.html";
+    }
+
+    @GetMapping("/{id}")
+    public String perfil(@PathVariable("id") String id, HttpSession session, ModelMap modelo) {
+        try {
+            Usuario publicador = usuarioServicio.getOne(id);
+            modelo.addAttribute("publicador", publicador);
+            modelo.addAttribute("publicaciones", publicacionServicio.buscarPorUsuario(publicador));
+
+            return "perfil.html";
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+            return "redirect:/inicio";
+        }
+
     }
 }

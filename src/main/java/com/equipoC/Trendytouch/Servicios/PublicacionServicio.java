@@ -99,7 +99,7 @@ public class PublicacionServicio {
     }
 
     @Transactional(readOnly = true)
-    public List<Publicacion> buscarUsuario(Usuario usuario) {
+    public List<Publicacion> buscarPorUsuario(Usuario usuario) {
         return publicacionRepo.buscarUsuario(usuario);
     }
 

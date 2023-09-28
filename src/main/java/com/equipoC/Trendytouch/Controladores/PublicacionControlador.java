@@ -74,7 +74,7 @@ public class PublicacionControlador {
     //publicaciones por usuario
     @GetMapping("/usuario")
     public String PublicacionesdeUsuario(HttpSession session, ModelMap modelo) {
-        modelo.addAttribute("publicaciones", publicacionServicio.buscarUsuario((Usuario) session.getAttribute("usuariosession")));
+        modelo.addAttribute("publicaciones", publicacionServicio.buscarPorUsuario((Usuario) session.getAttribute("usuariosession")));
         return "inicio.html";
     }
 
