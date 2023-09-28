@@ -41,8 +41,8 @@ public class ImagenControlador {
 
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
-    
-     @GetMapping("/{id}")
+
+    @GetMapping("/{id}")
     public ResponseEntity<byte[]> imagen(@PathVariable String id) {
 
         byte[] imagen = is.getOne(id).getContenido();
@@ -53,7 +53,5 @@ public class ImagenControlador {
 
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
-
-    
 
 } //end ImagenControlador

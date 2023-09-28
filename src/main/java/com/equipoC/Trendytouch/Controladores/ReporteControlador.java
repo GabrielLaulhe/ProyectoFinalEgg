@@ -56,6 +56,7 @@ public class ReporteControlador {
         return "reporte.html";
     }
 
+    //editar estado de reporte(aceptar o rechazar)
     @GetMapping("/editar/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String editarEstado(@PathVariable String id, ModelMap modelo) {
@@ -81,6 +82,7 @@ public class ReporteControlador {
         return "redirect:/admin/dashboard";
     }
 
+    //muestra los reportes del propio usuario    
     @GetMapping("/usuario")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     public String reportesPorUsuario(HttpSession session, ModelMap modelo) {

@@ -53,6 +53,7 @@ public class PublicacionControlador {
         return "publicacion_registro.html";
     }
 
+    //crear publicacion
     @PostMapping("/crear")
     public String crear(@RequestParam(required = false) String descripcion, HttpSession session,
             @RequestParam List<MultipartFile> archivos, @RequestParam String categoria, ModelMap modelo) {
@@ -70,12 +71,14 @@ public class PublicacionControlador {
 
     }
 
+    //publicaciones por usuario
     @GetMapping("/usuario")
     public String PublicacionesdeUsuario(HttpSession session, ModelMap modelo) {
         modelo.addAttribute("publicaciones", publicacionServicio.buscarUsuario((Usuario) session.getAttribute("usuariosession")));
         return "inicio.html";
     }
 
+    //eliminar publicaciones(funcion admin)
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN')")
     @PostMapping("/borrar/{id}")
     public String eliminar(@RequestParam("id") String id, ModelMap modelo) throws MyException {
@@ -97,7 +100,7 @@ public class PublicacionControlador {
     }
 
     @PostMapping("/reportarPublicacion")
-    public String reportarPublicacion(String idReportado, HttpSession session,
+    public String reportar(String idReportado, HttpSession session,
             @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
         try {
             publicacionServicio.reportarPublicacion(idReportado, (Usuario) session.getAttribute("usuariosession"), contenido, categoria);
@@ -109,6 +112,7 @@ public class PublicacionControlador {
 
     }
 
+    //reportar comentario
     @GetMapping("/reportarComentario/{id}")
     public String guardarReporteComentario(@PathVariable("id") String id, ModelMap modelo) {
         modelo.addAttribute("idComentario", id);
@@ -119,7 +123,7 @@ public class PublicacionControlador {
 
     @PostMapping("/guardarReporte")
     public String guardarReporteComentario(@RequestParam String categoria, @RequestParam(required = false) String contenido,
-             String idReportado, HttpSession session, ModelMap modelo) throws MyException {
+            String idReportado, HttpSession session, ModelMap modelo) throws MyException {
         try {
             comentarioServicio.reportarComentario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido);
             return "redirect:/inicio";
@@ -142,11 +146,13 @@ public class PublicacionControlador {
         }
         return "redirect:/inicio";
     }
+    //mostrar categoria de la publicacion
 
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/categorias/{categoria}")
-    public String publicacionesCategoria(ModelMap modelo, @PathVariable("categoria") String categoria) {
+    public String categoriaPublicacion(ModelMap modelo, @PathVariable("categoria") String categoria) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesxCategoria(categoria));
         return "inicio.html";
     }
+
 }
