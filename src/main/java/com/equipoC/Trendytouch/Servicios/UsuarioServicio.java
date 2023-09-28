@@ -230,8 +230,8 @@ public class UsuarioServicio implements UserDetailsService {
         return resultados;
     }
 
-    public void reportarUsuario(String idReportado, Usuario emisor, String categoria, String contenido) throws MyException {
-        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
+    public void reportarUsuario(String idReportado, Usuario emisor, String categoria, String contenido, String tipo) throws MyException {
+        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria,tipo);
         Usuario reportado = getOne(idReportado);
         List<Reporte> reportes = reportado.getReportes();
         reportes.add(reporte);

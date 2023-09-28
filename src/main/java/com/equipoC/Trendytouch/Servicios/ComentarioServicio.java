@@ -128,10 +128,10 @@ public class ComentarioServicio {
     }
 
     @Transactional
-    public void reportarComentario(String id,Usuario emisor, String categoria, String contenido) throws MyException {
+    public void reportarComentario(String id,Usuario emisor, String categoria, String contenido, String tipo) throws MyException {
         Comentario comentario = getone(id);
         List<Reporte> reportes = comentario.getReportes();
-        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria);
+        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria, tipo);
         reportes.add(reporte);
         comentario.setReportes(reportes);
         comentarioRepo.save(comentario);

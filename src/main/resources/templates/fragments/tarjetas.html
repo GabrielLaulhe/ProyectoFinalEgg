@@ -8,8 +8,10 @@
                     <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
                     <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
                 </a>
-                <img th:if="${session.usuariosession == null}" th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
-                    <span th:if="${session.usuariosession == null}" th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
+                <img th:if="${session.usuariosession == null}" th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}"
+                    alt="perfil" class="imagen-usuario">
+                <span th:if="${session.usuariosession == null}" th:text="${publicacion.usuario.nombreUsuario}"
+                    class="nombreUsuario"></span>
             </div>
 
             <div class="contenedor-imagen">
@@ -112,6 +114,7 @@
                                     alt="..." loading="lazy">
                                 <div th:text="${comentario.usuario.nombreUsuario}" style="color: orange;"></div>
                                 <div class="comentario-c" th:text="${comentario.contenido}"></div>
+                                <a th:href="@{/publicacion/reportarComentario/{id}(id=${comentario.id})}">reportar</a>
                             </div>
                         </div>
                     </div>

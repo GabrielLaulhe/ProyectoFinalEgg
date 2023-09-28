@@ -101,9 +101,9 @@ public class PublicacionControlador {
 
     @PostMapping("/reportarPublicacion")
     public String reportar(String idReportado, HttpSession session,
-            @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
+            @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo,String tipo) {
         try {
-            publicacionServicio.reportarPublicacion(idReportado, (Usuario) session.getAttribute("usuariosession"), contenido, categoria);
+            publicacionServicio.reportarPublicacion(idReportado, (Usuario) session.getAttribute("usuariosession"), contenido, categoria,tipo);
             return "redirect:/inicio";
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
@@ -123,9 +123,9 @@ public class PublicacionControlador {
 
     @PostMapping("/guardarReporte")
     public String guardarReporteComentario(@RequestParam String categoria, @RequestParam(required = false) String contenido,
-            String idReportado, HttpSession session, ModelMap modelo) throws MyException {
+            String idReportado,String tipo, HttpSession session, ModelMap modelo) throws MyException {
         try {
-            comentarioServicio.reportarComentario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido);
+            comentarioServicio.reportarComentario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido,tipo);
             return "redirect:/inicio";
 
         } catch (MyException ex) {

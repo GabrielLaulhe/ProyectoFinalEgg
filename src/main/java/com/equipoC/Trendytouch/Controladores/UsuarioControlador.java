@@ -83,9 +83,9 @@ public class UsuarioControlador {
 
     @PostMapping("/reportar")
     public String reportar(String idReportado, HttpSession session,
-            @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo) {
+            @RequestParam String categoria, @RequestParam(required = false) String contenido,String tipo, ModelMap modelo) {
         try {
-            usuarioServicio.reportarUsuario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido);
+            usuarioServicio.reportarUsuario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido,tipo);
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
             return "reporte_usuario.html";
