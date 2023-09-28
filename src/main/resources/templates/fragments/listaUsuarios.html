@@ -1,20 +1,21 @@
 <section class="max-height">
     <form action="/admin/buscar" method="post" sec:authorize="hasRole('ADMIN')">
         <input name="consulta" />
+        
 
-        <button type="submit" style="background-color: #800000; color: #ffffff;
-        border: none; padding: 5px 10px; border-radius: 3px;">Buscar</button>
+        <button type="submit" style="background-color: #820000; color: #ffffff;
+        border: none; padding: 5px 5px; border-radius: 3px;">Buscar</button>
+        
+        
     </form>
     <table>
         <thead>
-            <tr>
-                <th>Nombre de Usuario</th>
+            <tr>               
+                <th>Usuario</th>                              
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
+                <th>Mail</th>
                 <th>Rol</th>
                 <th>Acciones</th>
-                <th>Reportes</th>
                 <th>N Reportes</th>
             </tr>
         </thead>
@@ -43,15 +44,15 @@
                             <option th:value="DISENADOR">DISEÑADOR</option>
                             <option th:value="USER">USER</option>
                         </select>
-                        <button type="submit" style="background-color: #800000; color: #ffffff;
-                        border: none; padding: 5px 10px; border-radius: 3px;">Cambiar ROL</button>
+                        <button type="submit" style="background-color: #820000; color: #ffffff;
+                        border: none; padding: 2.5px 5px; border-radius: 3px;">Cambiar ROL</button>
                     </form>
                 </td>
                 <td>
                     <form action="/admin/borrar/{__${usuario.id}__}" method="post" sec:authorize="hasRole('ADMIN')">
                         <input type="hidden" name="id" th:value="${usuario.id}" />
-                        <button type="submit" style="background-color: #800000; color: #ffffff;
-                        border: none; padding: 5px 10px; border-radius: 3px;">Eliminar</button>
+                        <button type="submit" style="background-color: #820000; color: #ffffff;
+                        border: none; padding: 2.5px 5px; border-radius: 3px;">Eliminar</button>
                     </form>
                 </td>
                 <div th:each="reporte: ${usuario.reportes}">
