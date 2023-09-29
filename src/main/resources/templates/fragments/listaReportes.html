@@ -1,21 +1,36 @@
 <section class="max-height">
+    <form action="/reporte/buscar" method="post" sec:authorize="hasRole('ADMIN')">
+        <input name="consulta" />
+            <button type="submit" style="background-color: #820000; color: #ffffff;
+        border: none; padding: 5px 5px; border-radius: 3px;">Buscar</button>
+    </form>
     <table>
         <thead>
             <tr>
-                <th>ID de reporte</th>
                 <th>Categoria</th>
                 <th>Contenido</th>
                 <th>Estado</th>
                 <th>Emisor</th>
+                <th>Tipo</th>
+                <th>Accion</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="reporte: ${reportes}">
-                <td th:text="${reporte.id}"></td>
                 <td th:text="${reporte.categoria}" class="descripcion"></td>
                 <td th:text="${reporte.contenido}" class="descripcion"></td>
                 <td th:text="${reporte.estado}" class="descripcion"></td>
                 <td th:text="${reporte.emisor.nombreUsuario}" class="descripcion"></td>
+                <td th:text="${reporte.tipo}" class="Tipo"></td>
+                <td th:if="${reporte.tipo == 'Comentario'}">
+                    <a th:href="@{/reporte/comentario/{id}(id=${reporte.id})}">Comentario</a>
+                </td>
+                <td th:if="${reporte.tipo == 'Publicacion'}">
+                    <a th:href="@{/reporte/publicacion/{id}(id=${reporte.id})}">Publicacion</a>
+                </td>
+                <td th:if="${reporte.tipo == 'Usuario'}">
+                    <a th:href="@{/reporte/usuario/{id}(id=${reporte.id})}">Usuario</a>
+                </td>
             </tr>
         </tbody>
     </table>

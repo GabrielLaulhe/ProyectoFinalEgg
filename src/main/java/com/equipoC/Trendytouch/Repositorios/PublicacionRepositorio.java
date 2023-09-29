@@ -10,11 +10,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PublicacionRepositorio extends JpaRepository<Publicacion, String> {
-    
+
     @Query("SELECT p FROM Publicacion p WHERE p.categoria = :categoria")
     public Publicacion buscarPorCategoria(@Param("categoria") String categoria);
-    
+
     @Query("SELECT p FROM Publicacion p WHERE p.usuario = :usuario")
     public List<Publicacion> buscarUsuario(@Param("usuario") Usuario usuario);
-    
+
+    @Query("SELECT DISTINCT p FROM Publicacion p JOIN p.reportes r WHERE r.id = :id")
+    public Publicacion buscarPublicacionPorReporteId(@Param("id") String id);
+
 }

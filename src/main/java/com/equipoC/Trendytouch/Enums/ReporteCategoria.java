@@ -1,8 +1,8 @@
 package com.equipoC.Trendytouch.Enums;
 
 public enum ReporteCategoria {
-    LENGOFENSIVO,
-    CONTINAPROP,
+    Lenguaje_Ofensivo,
+    Contenido_Inapropiado,
     COPYRIGHT,
     OTRO;
     
