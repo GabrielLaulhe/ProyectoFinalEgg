@@ -13,41 +13,24 @@
     <section th:replace="/fragments/hero :: section"></section>
 
     <main class="vistas">
-        <section class="section pad-top">
-            <div class="tarjeta">
-                <div class="contenedor-imagen-usuario">
-                    <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario"
-                        onerror="this.src='/img/sinfoto.jpg';">
-                    <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
-                </div>
-
-                <div class="contenedor-imagen">
-                    <div th:each="foto, iterStat : ${publicacion.fotos}">
-                        <div>
-                            <img th:src="@{/imagen/__${foto.id}__}" class="imagen" alt="..." loading="lazy">
-                        </div>
-                    </div>
-                </div>
-
-                <a th:if="${session.usuariosession != null}" id="texto-categoria" th:text="${publicacion.categoria}"
-                    href="/"></a>
-                <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
-                <p th:text="${publicacion.descripcion}" class="descripcion"></p>
-            </div>
-        </section>
-
+        <section th:replace="/fragments/publicacion :: section"></section>
         <div class="formulario-container">
             <form class="form" th:action="@{/publicacion/reportarPublicacion}" method="POST">
                 <input hidden type="text" name="idReportado" th:value="${id}">
-                <input  type="text" hidden name="tipo" th:value="Publicacion">
+                <input type="text" hidden name="tipo" th:value="Publicacion">
                 <label>
                     <input type="text" class="input" name="contenido" required />
                     <span>Descripcion</span>
                 </label>
                 <label>
-                    <input type="text" class="input" name="categoria" required />
-                    <span>Categoria</span>
+                    <select type="text" name="categoria" class="input" required>
+                        <option th:value="Lenguaje_Ofensivo">Lenguaje Ofensivo</option>
+                        <option th:value="Contenido_Inapropiado">Contenido Inapropiado</option>
+                        <option th:value="COPYRIGHT">COPYRIGHT</option>
+                        <option th:value="OTRO">OTRO</option>
+                    </select>
                 </label>
+
 
                 <button type="submit" class="submit">Enviar</button>
             </form>

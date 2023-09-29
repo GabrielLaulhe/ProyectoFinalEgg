@@ -136,5 +136,10 @@ public class ComentarioServicio {
         comentario.setReportes(reportes);
         comentarioRepo.save(comentario);
     }
+    
+    public Comentario comentarioporReporte(String id){
+        Comentario comentario = comentarioRepo.buscarComentarioPorReporteId(id);
+        return comentario;
+    }
 
 }

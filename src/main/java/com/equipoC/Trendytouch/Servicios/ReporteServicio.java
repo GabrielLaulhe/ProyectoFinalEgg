@@ -5,6 +5,7 @@ import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Enums.EstadoReporte;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.ReporteRepositorio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -85,5 +86,17 @@ public class ReporteServicio {
         if (categoria == null || categoria.isEmpty()) {
             throw new MyException("Debe seleccionar una categoría.");
         }
+    }
+    //Busca reportes por nombre de usuario.
+    public List<Reporte> busquedadeReportesporNombreUsuario(String consulta) {
+        List<Reporte> reportes = listarReportes();
+        List<Reporte> resultados = new ArrayList<>();
+        for (Reporte reporte : reportes) {
+            String nombre = reporte.getEmisor().getNombreUsuario();
+            if (nombre.toUpperCase().contains(consulta.toUpperCase())) {
+                resultados.add(reporte);
+            }
+        }
+        return resultados;
     }
 }

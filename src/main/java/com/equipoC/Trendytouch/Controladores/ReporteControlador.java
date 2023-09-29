@@ -3,8 +3,10 @@ package com.equipoC.Trendytouch.Controladores;
 import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
+import com.equipoC.Trendytouch.Servicios.ComentarioServicio;
+import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
-import java.util.List;
+import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +24,12 @@ public class ReporteControlador {
 
     @Autowired
     private ReporteServicio reporteServicio;
+    @Autowired
+    private PublicacionServicio publicacionServicio;
+    @Autowired
+    private ComentarioServicio comentarioServicio;
+    @Autowired
+    private UsuarioServicio usuarioServicio;
 
     @GetMapping("/crear")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
@@ -31,10 +39,10 @@ public class ReporteControlador {
 
     @PostMapping("/crear")
     public String crear(@RequestParam String categoria, @RequestParam(required = false) String contenido,
-           String tipo, HttpSession session, ModelMap modelo) {
+            String tipo, HttpSession session, ModelMap modelo) {
         try {
             Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-            reporteServicio.crear(contenido, usuario, categoria,tipo);
+            reporteServicio.crear(contenido, usuario, categoria, tipo);
             modelo.put("exito", "El reporte ha sido enviado con exito.");
             return "redirect:/inicio";
         } catch (MyException ex) {
@@ -90,5 +98,35 @@ public class ReporteControlador {
         return "reportesListaUser.html";
     }
 
+    //Busca una publicacion por id de reporte.
+    @GetMapping("/publicacion/{id}")
+    public String publicaciondeReporte(@PathVariable("id") String id, ModelMap modelo) {
+        modelo.addAttribute("publicacion", publicacionServicio.publicacionporReporte(id));
+        return "tarjeta_Publicacion.html";
+    }
+
+    //Busca un comentario por id de reporte.
+    @GetMapping("/comentario/{id}")
+    public String comentariodeReporte(@PathVariable("id") String id, ModelMap modelo) {
+        modelo.addAttribute("comentario", comentarioServicio.comentarioporReporte(id));
+        return "Comentario.html";
+    }
+
+    //Busca un Usuario por id de reporte.
+    @GetMapping("/usuario/{id}")
+    public String usuariodeReporte(@PathVariable("id") String id, ModelMap modelo) {
+        Usuario publicador = usuarioServicio.usuarioporReporte(id);
+        modelo.addAttribute("publicador", publicador);
+        modelo.addAttribute("publicaciones", publicacionServicio.buscarPorUsuario(publicador));
+
+        return "perfil.html";
+    }
+
+    @PostMapping("/buscar")
+    public String buscarReportesEmisor(String consulta, ModelMap modelo) throws MyException {
+        modelo.addAttribute("reportes", reporteServicio.busquedadeReportesporNombreUsuario(consulta));
+        return "reportesLista.html";
+    }
+    
     //lista de reportes para el admin completa en admin controlador /admin/reportes
 }

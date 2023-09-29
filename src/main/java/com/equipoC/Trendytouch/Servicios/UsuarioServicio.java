@@ -238,5 +238,10 @@ public class UsuarioServicio implements UserDetailsService {
         reportado.setReportes(reportes);
         usuariorepo.save(reportado);
     }
+    //Busca un usuario por un id de reporte con una Query
+    public Usuario usuarioporReporte(String id){
+        Usuario usuario = usuariorepo.buscarUsuarioPorReporteId(id);
+        return usuario;
+    }
 
 }

@@ -12,7 +12,6 @@
         <thead>
             <tr>               
                 <th>Usuario</th>                              
-                <th>Nombre</th>
                 <th>Mail</th>
                 <th>Rol</th>
                 <th>Acciones</th>
@@ -31,8 +30,6 @@
                         <p th:text="${usuario.nombreUsuario}" class="nombreUsuario"></p>
                     </div>
                 </td>
-                <td th:text="${usuario.nombre}" class="descripcion"></td>
-                <td th:text="${usuario.apellido}" class="descripcion"></td>
                 <td th:text="${usuario.email}" class="descripcion"></td>
                 <td>
                     <form action="/admin/modificarRol/{__${usuario.id}__}" method="post"
@@ -55,9 +52,6 @@
                         border: none; padding: 2.5px 5px; border-radius: 3px;">Eliminar</button>
                     </form>
                 </td>
-                <div th:each="reporte: ${usuario.reportes}">
-                    <td th:text="${reporte.contenido}"></td>
-                </div>
                 <td th:text="${#lists.size(usuario.reportes)}"></td>
             </tr>
         </tbody>

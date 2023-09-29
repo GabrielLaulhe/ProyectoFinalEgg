@@ -88,5 +88,5 @@ public class AdminControlador {
         modelo.addAttribute("usuarios", usuarioServicio.busquedadeUsuarios(consulta));
         return "usuariosLista.html";
     }
-
+    
 }

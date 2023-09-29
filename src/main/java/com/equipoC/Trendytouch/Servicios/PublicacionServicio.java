@@ -148,4 +148,9 @@ public class PublicacionServicio {
         reportado.setReportes(reportes);
         publicacionRepo.save(reportado);
     }
+    //busca una publicacion por un id de reporte con una Query
+    public Publicacion publicacionporReporte(String id){
+        Publicacion publicacion = publicacionRepo.buscarPublicacionPorReporteId(id);
+        return publicacion;
+    }
 }

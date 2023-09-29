@@ -30,8 +30,12 @@
                     <span>Descripcion</span>
                 </label>
                 <label>
-                    <input type="text" class="input" name="categoria" required />
-                    <span>Categoria</span>
+                    <select type="text" name="categoria" class="input" required>
+                        <option th:value="Lenguaje_Ofensivo">Lenguaje Ofensivo</option>
+                        <option th:value="Contenido_Inapropiado">Contenido Inapropiado</option>
+                        <option th:value="COPYRIGHT">COPYRIGHT</option>
+                        <option th:value="OTRO">OTRO</option>
+                    </select>
                 </label>
                 <button type="submit" class="submit">Enviar</button>
             </form>
