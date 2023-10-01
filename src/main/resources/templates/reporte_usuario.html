@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head th:replace="/fragments/head :: head"></head>
+    <head th:replace="/fragments/head :: head"></head>
 
-<body class="inicio-body flex-col-center">
-    <header>
-        <nav th:replace="/fragments/navbar :: nav"></nav>
-    </header>
+    <body class="inicio-body flex-col-center">
+        <header>
+            <nav th:replace="/fragments/navbar :: nav"></nav>
+        </header>
 
-    <section th:replace="/fragments/errores :: section"></section>
+        <section th:replace="/fragments/errores :: section"></section>
 
-    <section th:replace="/fragments/hero :: section"></section>
+        <section th:replace="/fragments/hero :: section"></section>
 
-    <main class="vistas">
-        <div class="contenedor-imagen-usuario">
-            <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="perfil" class="imagen-usuario">
-            <span th:text="${usuario.nombreUsuario}" class="nombreUsuario"></span>
-        </div>
-        <div class="formulario-container">
-            <form class="form" th:action="@{/usuario/reportar}" method="POST">
-                <input  type="text" hidden name="idReportado" th:value="${id}">
-                <input  type="text" hidden name="tipo" th:value="Usuario">
-                <label>
-                    <input type="text" class="input" name="contenido" required />
-                    <span>Descripcion</span>
-                </label>
-                <label>
-                    <select type="text" name="categoria" class="input" required>
-                        <option th:value="Lenguaje_Ofensivo">Lenguaje Ofensivo</option>
-                        <option th:value="Contenido_Inapropiado">Contenido Inapropiado</option>
-                        <option th:value="COPYRIGHT">COPYRIGHT</option>
-                        <option th:value="OTRO">OTRO</option>
-                    </select>
-                </label>
-                <button type="submit" class="submit">Enviar</button>
-            </form>
-        </div>
+        <main class="vistas">
+            <div class="reporte-contenedor">
+                <h1>Reporta un usuario</h1>
+                <div class="cabecera">
+                    <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="perfil">
+                    <h3 th:text="${usuario.nombreUsuario}"></h3> 
+                </div>
+            </div>
+            <div class="formulario-container">
+                <form class="form" th:action="@{/usuario/reportar}" method="POST">
+                    <input  type="text" hidden name="idReportado" th:value="${id}">
+                    <input  type="text" hidden name="tipo" th:value="Usuario">
+                    <label>
+                        <input type="text" class="input" name="contenido" required />
+                        <span>Descripcion</span>
+                    </label>
+                    <label>
+                        <select type="text" name="categoria" class="input" required>
+                            <option th:value="Lenguaje_Ofensivo">Lenguaje Ofensivo</option>
+                            <option th:value="Contenido_Inapropiado">Contenido Inapropiado</option>
+                            <option th:value="COPYRIGHT">COPYRIGHT</option>
+                            <option th:value="OTRO">OTRO</option>
+                        </select>
+                    </label>
+                    <button type="submit" class="submit">Enviar</button>
+                </form>
+            </div>
 
-    </main>
+        </main>
 
-    <script th:replace="/fragments/scripts :: script"></script>
-</body>
+        <script th:replace="/fragments/scripts :: script"></script>
+    </body>
 
 </html>

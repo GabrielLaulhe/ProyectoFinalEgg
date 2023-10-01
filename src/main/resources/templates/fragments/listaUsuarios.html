@@ -1,14 +1,11 @@
+
 <section class="max-height">
     <form action="/admin/buscar" method="post" sec:authorize="hasRole('ADMIN')">
         <input name="consulta" />
-        
-
         <button type="submit" style="background-color: #820000; color: #ffffff;
-        border: none; padding: 5px 5px; border-radius: 3px;">Buscar</button>
-        
-        
+                border: none; padding: 5px 5px; border-radius: 3px;">Buscar</button>
     </form>
-    <table>
+    <table class="tabla">
         <thead>
             <tr>               
                 <th>Usuario</th>                              
@@ -26,14 +23,14 @@
                 <td>
                     <div class="contenedor-imagen-usuario">
                         <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="perfil" class="imagen-usuario"
-                            onerror="this.src='/img/sinfoto.jpg';">
+                             onerror="this.src='/img/sinfoto.jpg';">
                         <p th:text="${usuario.nombreUsuario}" class="nombreUsuario"></p>
                     </div>
                 </td>
                 <td th:text="${usuario.email}" class="descripcion"></td>
                 <td>
                     <form action="/admin/modificarRol/{__${usuario.id}__}" method="post"
-                        sec:authorize="hasRole('ADMIN')">
+                          sec:authorize="hasRole('ADMIN')">
                         <input type="hidden" name="id" th:value="${usuario.id}" />
                         <select name="rol">
                             <option th:value="${usuario.rol}" th:text="${usuario.rol}"></option>
@@ -42,14 +39,14 @@
                             <option th:value="USER">USER</option>
                         </select>
                         <button type="submit" style="background-color: #820000; color: #ffffff;
-                        border: none; padding: 2.5px 5px; border-radius: 3px;">Cambiar ROL</button>
+                                border: none; padding: 2.5px 5px; border-radius: 3px;">Cambiar ROL</button>
                     </form>
                 </td>
                 <td>
                     <form action="/admin/borrar/{__${usuario.id}__}" method="post" sec:authorize="hasRole('ADMIN')">
                         <input type="hidden" name="id" th:value="${usuario.id}" />
                         <button type="submit" style="background-color: #820000; color: #ffffff;
-                        border: none; padding: 2.5px 5px; border-radius: 3px;">Eliminar</button>
+                                border: none; padding: 2.5px 5px; border-radius: 3px;">Eliminar</button>
                     </form>
                 </td>
                 <td th:text="${#lists.size(usuario.reportes)}"></td>
