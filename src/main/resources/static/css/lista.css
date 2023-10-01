@@ -1,0 +1,27 @@
+.tabla-conteiner {
+    margin-top: 20px;
+}
+
+.tabla {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tabla th, .tabla td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.tabla th {
+    background-color: #f2f2f2;
+}
+
+.tabla select {
+    width: 100%;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}

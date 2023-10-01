@@ -404,3 +404,9 @@ textarea:focus+.textarea-border {
     color: black;
     word-wrap: break-word;
 }
+
+.contenedor-likes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

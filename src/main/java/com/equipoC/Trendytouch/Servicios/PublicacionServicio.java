@@ -141,7 +141,7 @@ public class PublicacionServicio {
     }
 
     public void reportarPublicacion(String idReportado, Usuario emisor, String contenido, String categoria, String tipo) throws MyException {
-        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria,tipo);
+        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria, tipo);
         Publicacion reportado = getOne(idReportado);
         List<Reporte> reportes = reportado.getReportes();
         reportes.add(reporte);
@@ -149,8 +149,20 @@ public class PublicacionServicio {
         publicacionRepo.save(reportado);
     }
     //busca una publicacion por un id de reporte con una Query
-    public Publicacion publicacionporReporte(String id){
+    public Publicacion publicacionporReporte(String id) {
         Publicacion publicacion = publicacionRepo.buscarPublicacionPorReporteId(id);
         return publicacion;
     }
+    
+    public Publicacion registrarLikesDePublicacion(Usuario usuarioLike, Publicacion publicacionLike) {
+        List<Usuario> usuariosLike = publicacionLike.getMegusta();
+        if (!usuariosLike.contains(usuarioLike)) {
+            usuariosLike.add(usuarioLike);
+        } else {
+            usuariosLike.remove(usuarioLike);
+        }
+        publicacionLike.setMegusta(usuariosLike);
+        publicacionRepo.save(publicacionLike);
+        return publicacionLike;
+    }   
 }
