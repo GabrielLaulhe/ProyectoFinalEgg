@@ -14,6 +14,7 @@ import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
 import com.equipoC.Trendytouch.Servicios.ComentarioServicio;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
+import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,9 @@ public class PublicacionControlador {
 
     @Autowired
     private ReporteServicio reporteServicio;
+
+    @Autowired
+    private UsuarioServicio usuarioServicio;
 
     @Autowired
     private ComentarioServicio comentarioServicio;
@@ -101,9 +105,9 @@ public class PublicacionControlador {
 
     @PostMapping("/reportarPublicacion")
     public String reportar(String idReportado, HttpSession session,
-            @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo,String tipo) {
+            @RequestParam String categoria, @RequestParam(required = false) String contenido, ModelMap modelo, String tipo) {
         try {
-            publicacionServicio.reportarPublicacion(idReportado, (Usuario) session.getAttribute("usuariosession"), contenido, categoria,tipo);
+            publicacionServicio.reportarPublicacion(idReportado, (Usuario) session.getAttribute("usuariosession"), contenido, categoria, tipo);
             return "redirect:/inicio";
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
@@ -123,9 +127,9 @@ public class PublicacionControlador {
 
     @PostMapping("/guardarReporte")
     public String guardarReporteComentario(@RequestParam String categoria, @RequestParam(required = false) String contenido,
-            String idReportado,String tipo, HttpSession session, ModelMap modelo) throws MyException {
+            String idReportado, String tipo, HttpSession session, ModelMap modelo) throws MyException {
         try {
-            comentarioServicio.reportarComentario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido,tipo);
+            comentarioServicio.reportarComentario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido, tipo);
             return "redirect:/inicio";
 
         } catch (MyException ex) {
@@ -155,4 +159,18 @@ public class PublicacionControlador {
         return "inicio.html";
     }
 
+    @GetMapping("/like/{id}/{idP}")
+    public String likePublicacion(@PathVariable("id") String id, @PathVariable("idP") String idP) {
+        try {
+            Usuario usuarioLike = usuarioServicio.getOne(id);
+            Publicacion publicacion = publicacionServicio.getOne(idP);
+            if(usuarioLike != null & publicacion != null){
+                publicacionServicio.registrarLikesDePublicacion(usuarioLike, publicacion);
+            }
+            return "redirect:/inicio";
+        } catch (Exception e) {
+            System.out.println(e);
+            return "redirect:/inicio";
+        }
+    }
 }

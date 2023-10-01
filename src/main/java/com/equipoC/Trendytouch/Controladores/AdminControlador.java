@@ -11,7 +11,7 @@ import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
-import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -37,7 +37,7 @@ public class AdminControlador {
     private ReporteServicio reporteServicio;
 
     @GetMapping("/dashboard")
-    public String panelAdministrativo(ModelMap modelo) {
+    public String panelAdministrativo(ModelMap modelo, HttpSession session) {
         modelo.addAttribute("publicaciones", publicacionServicio.listarPublicacionesMegustas());
         return "inicio.html";
     }
