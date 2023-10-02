@@ -160,7 +160,7 @@ public class PublicacionControlador {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
-    @PostMapping("/like/{idP}")
+    @GetMapping("/like/{idP}")
     public String likePublicacion(HttpSession session, @PathVariable("idP") String idP) {
         try {
             Usuario usuarioLike = (Usuario) session.getAttribute("usuariosession");
