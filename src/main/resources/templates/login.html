@@ -51,21 +51,21 @@
 
                 <div class="flex">
                     <label>
-                        <input type="text" name="pregunta" required class="input" />
+                        <input type="text" name="pregunta" class="input" />
                         <span>Pregunta de seguridad</span>
                     </label>
 
                     <label>
-                        <input type="text" name="respuesta" required class="input" />
+                        <input type="text" name="respuesta" class="input" />
                         <span>Respuesta</span>
                     </label>
                 </div>
 
                 <button type="submit" class="submit">Registrarse</button>
-                <p class="sign">Ya tienes una cuenta?  
+                <p class="sign">Ya tienes una cuenta?
                     <button type="button" id="btn-iniciar-sesion" class="submit">Iniciar
                         sesion</button>
-                    </p>
+                </p>
             </form>
 
             <form th:action="@{/logincheck}" class="form" id="login-form" method="post">
