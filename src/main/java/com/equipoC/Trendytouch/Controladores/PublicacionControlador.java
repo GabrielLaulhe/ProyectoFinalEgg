@@ -159,14 +159,12 @@ public class PublicacionControlador {
         return "inicio.html";
     }
 
-    @GetMapping("/like/{id}/{idP}")
-    public String likePublicacion(@PathVariable("id") String id, @PathVariable("idP") String idP) {
+    @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
+    @PostMapping("/like/{idP}")
+    public String likePublicacion(HttpSession session, @PathVariable("idP") String idP) {
         try {
-            Usuario usuarioLike = usuarioServicio.getOne(id);
-            Publicacion publicacion = publicacionServicio.getOne(idP);
-            if(usuarioLike != null & publicacion != null){
-                publicacionServicio.registrarLikesDePublicacion(usuarioLike, publicacion);
-            }
+            Usuario usuarioLike = (Usuario) session.getAttribute("usuariosession");
+            publicacionServicio.registrarLikesDePublicacion(usuarioLike.getId(), idP);
             return "redirect:/inicio";
         } catch (Exception e) {
             System.out.println(e);

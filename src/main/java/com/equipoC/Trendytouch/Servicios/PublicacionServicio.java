@@ -154,7 +154,9 @@ public class PublicacionServicio {
         return publicacion;
     }
     
-    public Publicacion registrarLikesDePublicacion(Usuario usuarioLike, Publicacion publicacionLike) {
+    public Publicacion registrarLikesDePublicacion(String id, String idp) {
+       Publicacion publicacionLike = getOne(idp);
+       Usuario usuarioLike = usuarioServicio.getOne(id);
         List<Usuario> usuariosLike = publicacionLike.getMegusta();
         if (!usuariosLike.contains(usuarioLike)) {
             usuariosLike.add(usuarioLike);

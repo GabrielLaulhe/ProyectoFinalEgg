@@ -9,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -37,7 +38,7 @@ public class Publicacion {
     @ManyToOne
     private Usuario usuario;
     
-    @OneToMany
+    @ManyToMany
     private List<Usuario> megusta;
     
     @OneToMany
