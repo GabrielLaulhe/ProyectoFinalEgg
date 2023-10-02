@@ -163,7 +163,6 @@ public class PublicacionControlador {
     @GetMapping("/like/{id}/{idP}")
     public String likePublicacion(@PathVariable("id") String id, @PathVariable("idP") String idP) {
         try {
-            System.out.println("Ingresa a controlador");
             Usuario usuarioLike = usuarioServicio.getOne(id);
             Publicacion publicacion = publicacionServicio.getOne(idP);
             if (usuarioLike != null & publicacion != null) {
