@@ -12,7 +12,7 @@
     <section th:replace="/fragments/errores :: section"></section>
 
     <main class="vistas">
-        <div class="formulario-container">
+        <seccion class="formulario-container">
 
             <form th:action="@{/registro}" class="form" id="registro-form" method="POST" enctype="multipart/form-data">
                 <h2 class="titulo">Regístrate!</h2>
@@ -84,7 +84,7 @@
                 <p class="sign">¿No tienes una cuenta? <button type="button" id="btn-registrarse" class="submit"
                         style="width: 140px; height: 40px;">Regístrate</button></p>
             </form>
-        </div>
+        </seccion>
     </main>
 
     <script th:replace="/fragments/scripts :: script"></script>
