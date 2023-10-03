@@ -8,7 +8,6 @@ import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Enums.Categoria;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
-import com.equipoC.Trendytouch.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -155,10 +154,9 @@ public class PublicacionServicio {
         return publicacion;
     }
     
-    @Autowired
-    UsuarioRepositorio usuarioRepo;
-    
-     public Publicacion registrarLikesDePublicacion(Usuario usuarioLike, Publicacion publicacionLike) {
+    public Publicacion registrarLikesDePublicacion(String id, String idp) {
+       Publicacion publicacionLike = getOne(idp);
+       Usuario usuarioLike = usuarioServicio.getOne(id);
         List<Usuario> usuariosLike = publicacionLike.getMegusta();
         if (!usuariosLike.contains(usuarioLike)) {
             usuariosLike.add(usuarioLike);
@@ -167,8 +165,6 @@ public class PublicacionServicio {
         }
         publicacionLike.setMegusta(usuariosLike);
         publicacionRepo.save(publicacionLike);
-        usuarioRepo.save(usuarioLike);
-        
         return publicacionLike;
-    }    
+    }   
 }

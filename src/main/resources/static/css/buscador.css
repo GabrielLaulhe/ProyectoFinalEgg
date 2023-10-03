@@ -5,7 +5,7 @@
   
   .buscador input {
     width: 200px;
-    padding: 3%;
+    padding: 10px;
     border: none;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -16,7 +16,7 @@
     border: none;
     color: #fff;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 10px 20px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: absolute;

@@ -5,8 +5,7 @@
 
             <div class="contenedor-imagen-usuario">
                 <a th:if="${session.usuariosession != null}" th:href="@{/usuario/{id}(id=${publicacion.usuario.id})}">
-                    <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario"
-                        onerror="this.src='/img/sinfoto.jpg';">
+                    <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario" onerror="this.src='/img/sinfoto.jpg';">
                     <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
                 </a>
                 <img th:if="${session.usuariosession == null}" th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}"
@@ -44,7 +43,7 @@
                         </button>
                         <div class="contenedor-likes" th:if="${session.usuariosession != null}">
                             <a
-                                th:href="@{/publicacion/like/{id}/{idP}(id=${session.usuariosession.id},idP=${publicacion.id})}">
+                                th:href="@{/publicacion/like/__${publicacion.id}__}">
                                 <button class="boton-like">
                                     <svg viewBox="0 0 18 16" height="20.625" width="20.503"
                                         xmlns="http://www.w3.org/2000/svg" class="icon">

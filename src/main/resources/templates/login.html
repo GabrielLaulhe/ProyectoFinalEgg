@@ -10,7 +10,7 @@
 
     <section th:replace="/fragments/errores :: section"></section>
     <main class="vistas">
-        <div class="formulario-container">
+        <section class="formulario-container">
 
             <form th:action="@{/registro}" class="formulario-oculto" id="registro-form" method="POST"
                 enctype="multipart/form-data">
@@ -51,12 +51,12 @@
 
                 <div class="flex">
                     <label>
-                        <input type="text" name="pregunta" required class="input" />
+                        <input type="text" name="pregunta" class="input" />
                         <span>Pregunta de seguridad</span>
                     </label>
 
                     <label>
-                        <input type="text" name="respuesta" required class="input" />
+                        <input type="text" name="respuesta" class="input" />
                         <span>Respuesta</span>
                     </label>
                 </div>
@@ -84,7 +84,7 @@
                     <button type="button" id="btn-registrarse" class="submit">Regístrate</button>
                 </p>
             </form>
-        </div>
+        </section>
     </main>
 
     <script th:replace="/fragments/scripts :: script"></script>

@@ -160,17 +160,15 @@ public class PublicacionControlador {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping("/like/{id}/{idP}")
-    public String likePublicacion(@PathVariable("id") String id, @PathVariable("idP") String idP) {
+    @GetMapping("/like/{idP}")
+    public String likePublicacion(HttpSession session, @PathVariable("idP") String idP) {
         try {
-            Usuario usuarioLike = usuarioServicio.getOne(id);
-            Publicacion publicacion = publicacionServicio.getOne(idP);
-            if (usuarioLike != null & publicacion != null) {
-                publicacionServicio.registrarLikesDePublicacion(usuarioLike, publicacion);
-            }
+            Usuario usuarioLike = (Usuario) session.getAttribute("usuariosession");
+            publicacionServicio.registrarLikesDePublicacion(usuarioLike.getId(), idP);
             return "redirect:/inicio";
         } catch (Exception e) {
-            throw e;
+            System.out.println(e);
+            return "redirect:/inicio";
         }
     }
 }
