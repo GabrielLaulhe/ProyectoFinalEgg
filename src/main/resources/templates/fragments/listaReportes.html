@@ -1,8 +1,9 @@
 <section class="max-height vistas">
     <div class="contenedor">
+        <div></div>
         <form action="/reporte/buscar" class="buscador" method="post" sec:authorize="hasRole('ADMIN')">
             <input name="consulta" />
-            <button type="submit">Buscar</button>
+            <button type="submit" >Buscar</button>
         </form>
         <table class="tabla">
             <thead>
