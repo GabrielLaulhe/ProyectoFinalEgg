@@ -243,5 +243,11 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = usuariorepo.buscarUsuarioPorReporteId(id);
         return usuario;
     }
+    
+    public void actualizarPreguntaDeSeguridad(Usuario logueado,String pregunta,String respuesta){
+        logueado.setPregunta(pregunta);
+        logueado.setRespuesta(respuesta);
+        usuariorepo.save(logueado);
+    }
 
 }

@@ -116,4 +116,27 @@ public class UsuarioControlador {
         }
 
     }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @GetMapping("/seguridad/preguntaSeguridad")
+    public String preguntaDeSeguridad(){
+        return "PreguntaDeSeguridad";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @PostMapping("/seguridad/preguntaSeguridad")
+    public String guardarPreguntaDeSeguridad(@RequestParam String pregunta, @RequestParam String respuesta, HttpSession session){
+        try{
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        if(respuesta != null && pregunta != null){
+        usuarioServicio.actualizarPreguntaDeSeguridad(logueado, pregunta, respuesta);
+        }else{
+            throw new Exception("Error al añadir o modificar pregunta de seguridad");
+        }
+        return "redirect:/inicio";
+        }catch(Exception e){
+            System.out.println(e);
+            return "redirect: /inicio";
+        }
+    }
 }
