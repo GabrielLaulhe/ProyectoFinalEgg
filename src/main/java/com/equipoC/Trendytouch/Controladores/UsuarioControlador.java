@@ -70,7 +70,7 @@ public class UsuarioControlador {
         }
 
     }
-    
+
     //reportar usuario
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR', 'ROLE_USER')")
     @GetMapping("/reportar/{id}")
@@ -83,9 +83,9 @@ public class UsuarioControlador {
 
     @PostMapping("/reportar")
     public String reportar(String idReportado, HttpSession session,
-            @RequestParam String categoria, @RequestParam(required = false) String contenido,String tipo, ModelMap modelo) {
+            @RequestParam String categoria, @RequestParam(required = false) String contenido, String tipo, ModelMap modelo) {
         try {
-            usuarioServicio.reportarUsuario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido,tipo);
+            usuarioServicio.reportarUsuario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido, tipo);
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
             return "reporte_usuario.html";
@@ -114,9 +114,9 @@ public class UsuarioControlador {
             modelo.put("error", e.getMessage());
             return "redirect:/inicio";
         }
-
     }
-    
+
+    //Actualizar la seguridad del usuario
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/preguntas")
     public String preguntasDeSeguridad() {

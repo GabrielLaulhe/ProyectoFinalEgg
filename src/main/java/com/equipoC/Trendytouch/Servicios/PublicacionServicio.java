@@ -57,7 +57,6 @@ public class PublicacionServicio {
         List<Imagen> fotos = imagenservicio.guardarLista(primeras5Fotos);
         publi.setFotos(fotos);
         publicacionRepo.save(publi);
-
     }
 
     @Transactional

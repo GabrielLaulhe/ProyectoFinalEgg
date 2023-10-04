@@ -1,12 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.equipoC.Trendytouch.Controladores;
 
-import com.equipoC.Trendytouch.Entidades.Publicacion;
-import com.equipoC.Trendytouch.Entidades.Reporte;
-import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
@@ -70,7 +63,7 @@ public class AdminControlador {
         usuarioServicio.cambiarRol(id, rol);
         return "redirect:/admin/usuarios";
     }
-    
+
     //boton para modificar el estado de un usuario
     @GetMapping("/modificarEstado/{id}")
     public String cambiarEstado(@PathVariable("id") String id) {
@@ -96,5 +89,4 @@ public class AdminControlador {
         modelo.addAttribute("usuarios", usuarioServicio.busquedadeUsuarios(consulta));
         return "usuariosLista.html";
     }
-    
 }

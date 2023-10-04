@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.equipoC.Trendytouch;
 
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
@@ -31,23 +27,22 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests()
+                .authorizeHttpRequests()
                 .antMatchers("/admin/*").hasRole("ADMIN")
                 .antMatchers("/css/*", "/js/*", "/img/*", "/**")
                 .permitAll()
-            .and().formLogin()
+                .and().formLogin()
                 .loginPage("/loguear")
                 .loginProcessingUrl("/logincheck")//debe coincidir con el action del html
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/inicio") //pagina luego del login
                 .permitAll()
-            .and().logout()
+                .and().logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/loguear")//debe retornar al index
                 .permitAll()
-            .and().csrf()
+                .and().csrf()
                 .disable();
     }
-
 }

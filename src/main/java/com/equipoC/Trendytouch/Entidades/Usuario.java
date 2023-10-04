@@ -1,6 +1,5 @@
 package com.equipoC.Trendytouch.Entidades;
 
-
 import com.equipoC.Trendytouch.Enums.Rol;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +27,7 @@ public class Usuario {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+
     private String nombre;
     private String apellido;
     private String email;
@@ -37,7 +37,7 @@ public class Usuario {
     private String respuesta;
     private boolean alta;
     private Rol rol;
-    
+
     @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
     @Temporal(TemporalType.DATE)
@@ -47,9 +47,7 @@ public class Usuario {
 
     @OneToOne
     private Imagen imagen;
-    
+
     @OneToMany
     private List<Reporte> reportes;
-    
-
 }

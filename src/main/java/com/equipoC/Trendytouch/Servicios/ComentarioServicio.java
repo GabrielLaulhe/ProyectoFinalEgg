@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.equipoC.Trendytouch.Servicios;
 
 import com.equipoC.Trendytouch.Entidades.Comentario;
@@ -9,8 +5,6 @@ import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.ComentarioRepositorio;
-import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
-import com.equipoC.Trendytouch.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,12 +12,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- *
- * @author Asus
- */
 // --------   A REVISAR   -----
 @Service
 public class ComentarioServicio {
@@ -128,7 +117,7 @@ public class ComentarioServicio {
     }
 
     @Transactional
-    public void reportarComentario(String id,Usuario emisor, String categoria, String contenido, String tipo) throws MyException {
+    public void reportarComentario(String id, Usuario emisor, String categoria, String contenido, String tipo) throws MyException {
         Comentario comentario = getone(id);
         List<Reporte> reportes = comentario.getReportes();
         Reporte reporte = reporteServicio.crear(contenido, emisor, categoria, tipo);
@@ -136,10 +125,9 @@ public class ComentarioServicio {
         comentario.setReportes(reportes);
         comentarioRepo.save(comentario);
     }
-    
-    public Comentario comentarioporReporte(String id){
+
+    public Comentario comentarioporReporte(String id) {
         Comentario comentario = comentarioRepo.buscarComentarioPorReporteId(id);
         return comentario;
     }
-
 }
