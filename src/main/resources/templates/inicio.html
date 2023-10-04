@@ -14,9 +14,9 @@
 
     <main>
         <div class="flex-center gap-3 pad-top">
-            <a th:href="@{/populares}">Populares</a>
-            <a th:href="@{/populares}">Populares de la semana</a> 
-         </div>
+            <a class="recomendacion" th:href="@{/populares}"><span class="typed"></span></a>
+            <a class="recomendacion" th:href="@{/populares}"><span class="typed2"></span></a>
+        </div>
         <section th:if="${session.usuariosession != null}" th:replace="/fragments/tarjetas :: section"></section>
     </main>
 

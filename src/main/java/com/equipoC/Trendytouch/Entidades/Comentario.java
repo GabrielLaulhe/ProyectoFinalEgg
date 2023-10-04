@@ -17,8 +17,11 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@AllArgsConstructor @NoArgsConstructor
-@Getter @Setter @ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Comentario {
 
     @Id
@@ -30,13 +33,12 @@ public class Comentario {
     private Date fechaComentario;
 
     private String contenido;
-    
+
     @OneToMany
     private List<Reporte> reportes;
-    
+
     private Boolean alta;
-    
+
     @ManyToOne
     private Usuario usuario;
- 
 }

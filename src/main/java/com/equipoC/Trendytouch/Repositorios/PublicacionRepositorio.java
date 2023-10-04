@@ -19,7 +19,7 @@ public interface PublicacionRepositorio extends JpaRepository<Publicacion, Strin
 
     @Query("SELECT DISTINCT p FROM Publicacion p JOIN p.reportes r WHERE r.id = :id")
     public Publicacion buscarPublicacionPorReporteId(@Param("id") String id);
-    
+
     @Query("SELECT p FROM Publicacion p ORDER BY (SIZE(p.comentarios) + SIZE(p.megusta)) DESC")
     public List<Publicacion> publicacionesConMasInteracciones();
 

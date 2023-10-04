@@ -132,18 +132,40 @@
 }
 
 .form .submit {
-  border: none;
-  outline: none;
-  background-color: #820000;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
+  color: rgb(233, 0, 0);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgb(230, 0, 0);
+  padding: 7px 7px;
   font-size: 16px;
-  transform: .3s ease;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 0.1s;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .form .submit:hover {
-  background-color: #820000;
+  color: white;
+  border: none;
+}
+
+.form .submit::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background: linear-gradient(90deg, rgba(255, 51, 0, 1) 52%, rgba(255, 119, 0, 1) 81%);
+  z-index: -1;
+  transition: all 0.6s;
+}
+
+form .submit:hover::before {
+  width: 160%;
 }
 
 @keyframes pulse {
@@ -186,4 +208,55 @@
     transform: scale(2);
     opacity: 0;
   }
+}
+
+.btn-general {
+  color: rgb(223, 0, 0);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgb(230, 3, 3);
+  padding: 10px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 0.4s;
+  overflow: hidden;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.btn-general:hover {
+  color: white;
+  border: none;
+}
+
+.btn-general::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background: linear-gradient(90deg, rgba(214, 0, 0, 1) 14%, rgba(255, 51, 0, 1) 54%, rgba(255, 119, 0, 1) 81%);
+  z-index: -1;
+  transition: all 1s;
+}
+
+.btn-general:hover::before {
+  width: 160%;
+}
+
+.div-contenedor {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.info {
+  justify-content: space-evenly;
 }

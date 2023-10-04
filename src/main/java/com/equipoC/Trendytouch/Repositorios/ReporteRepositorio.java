@@ -9,8 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReporteRepositorio extends JpaRepository<Reporte, String>{
-    
+public interface ReporteRepositorio extends JpaRepository<Reporte, String> {
+
     @Query("SELECT r FROM Reporte r WHERE r.emisor = :emisor")
     public List<Reporte> buscarReportePorEmisor(@Param("emisor") Usuario emisor);
 }

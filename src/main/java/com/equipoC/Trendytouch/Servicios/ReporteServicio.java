@@ -45,15 +45,15 @@ public class ReporteServicio {
             reporteRepositorio.delete(reporte);
         }
     }
-    
+
     @Transactional
-    public void cambiarEstado(String id, String estado) throws MyException{
-        if (id == null || estado == null || estado.isEmpty()){
+    public void cambiarEstado(String id, String estado) throws MyException {
+        if (id == null || estado == null || estado.isEmpty()) {
             throw new MyException(("El id o el estado es inválido."));
         }
-        
+
         estado = estado.toUpperCase();
-        
+
         Optional<Reporte> respuesta = reporteRepositorio.findById(id);
         if (respuesta.isPresent()) {
             Reporte reporte = respuesta.get();
@@ -67,7 +67,7 @@ public class ReporteServicio {
         List<Reporte> reportes = reporteRepositorio.findAll();
         return reportes;
     }
-    
+
     @Transactional
     public List<Reporte> listarReportesPorEmisor(Usuario emisor) {
         List<Reporte> reportes = reporteRepositorio.buscarReportePorEmisor(emisor);
@@ -87,6 +87,7 @@ public class ReporteServicio {
             throw new MyException("Debe seleccionar una categoría.");
         }
     }
+
     //Busca reportes por nombre de usuario.
     public List<Reporte> busquedadeReportesporNombreUsuario(String consulta) {
         List<Reporte> reportes = listarReportes();
