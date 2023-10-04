@@ -22,13 +22,13 @@
                 <a class="dropdown-item" th:href="@{/usuario/actualizar}">Editar</a>
             </li>
             <li>
-                <a class="dropdown-item" th:if="${session.usuariosession.pregunta.isEmpty()}"
-                    th:href="@{/usuario/preguntas}">Pregunta seguridad</a>
-            </li>
-            <li>
                 <a class="dropdown-item" href="/logout">Cerrar sesion</a>
             </li>
         </ul>
     </div>
+
+    <a class="recomendacion rs" th:if="${session.usuariosession.pregunta.isEmpty()}" th:href="@{/usuario/preguntas}">
+        <span class="typed3"></span>
+    </a>
 
 </section>

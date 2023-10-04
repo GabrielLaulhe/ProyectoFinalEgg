@@ -36,14 +36,14 @@ public class AdminControlador {
         return "inicio.html";
     }
 
-    //lista de todos los usuarios
+    // lista de todos los usuarios
     @GetMapping("/usuarios")
     public String listar(ModelMap modelo) {
         modelo.addAttribute("usuarios", usuarioServicio.listarUsuarios());
         return "usuariosLista.html"; // crear una vista
     }
 
-    //lista de todos los reportes
+    // lista de todos los reportes
     @GetMapping("/reportes")
     @PreAuthorize("hasRole('ADMIN')")
     public String listaReportes(ModelMap modelo) {
@@ -57,21 +57,21 @@ public class AdminControlador {
         return "reportesLista.html";
     }
 
-    //boton para modificar el rol de un usuario
+    // boton para modificar el rol de un usuario
     @PostMapping("/modificarRol/{id}")
     public String cambiarRol(@RequestParam("id") String id, @RequestParam String rol) {
         usuarioServicio.cambiarRol(id, rol);
         return "redirect:/admin/usuarios";
     }
 
-    //boton para modificar el estado de un usuario
+    // boton para modificar el estado de un usuario
     @GetMapping("/modificarEstado/{id}")
     public String cambiarEstado(@PathVariable("id") String id) {
         usuarioServicio.cambiarEstado(id);
         return "redirect:/admin/usuarios";
     }
 
-    //botón para eliminar un usuario
+    // botón para eliminar un usuario
     @PostMapping("/borrar/{id}")
     public String eliminar(@RequestParam("id") String id, ModelMap modelo) throws MyException {
         try {
@@ -83,7 +83,7 @@ public class AdminControlador {
         return "redirect:/admin/usuarios";
     }
 
-    //busqueda en la lista de usuario por nombre
+    // busqueda en la lista de usuario por nombre
     @PostMapping("/buscar")
     public String buscarusuario(String consulta, ModelMap modelo) throws MyException {
         modelo.addAttribute("usuarios", usuarioServicio.busquedadeUsuarios(consulta));

@@ -25,4 +25,5 @@ public interface PublicacionRepositorio extends JpaRepository<Publicacion, Strin
 
     @Query("SELECT p FROM Publicacion p WHERE DATEDIFF(CURRENT_DATE, p.fechaPublicacion) <= 7 ORDER BY (SIZE(p.comentarios) + SIZE(p.megusta)) DESC")
     public List<Publicacion> publicacionesXInteraccionesSemanales();
+
 }

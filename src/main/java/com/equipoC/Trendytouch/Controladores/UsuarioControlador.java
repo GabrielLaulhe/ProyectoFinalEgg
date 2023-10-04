@@ -38,7 +38,7 @@ public class UsuarioControlador {
         return "perfil.html";
     }
 
-    //editar perfil
+    // editar perfil
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/actualizar")
     public String actualizar(ModelMap modelo, HttpSession session) {
@@ -71,7 +71,7 @@ public class UsuarioControlador {
 
     }
 
-    //reportar usuario
+    // reportar usuario
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR', 'ROLE_USER')")
     @GetMapping("/reportar/{id}")
     public String reportar(@PathVariable("id") String id, ModelMap modelo) {
@@ -83,9 +83,11 @@ public class UsuarioControlador {
 
     @PostMapping("/reportar")
     public String reportar(String idReportado, HttpSession session,
-            @RequestParam String categoria, @RequestParam(required = false) String contenido, String tipo, ModelMap modelo) {
+            @RequestParam String categoria, @RequestParam(required = false) String contenido, String tipo,
+            ModelMap modelo) {
         try {
-            usuarioServicio.reportarUsuario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria, contenido, tipo);
+            usuarioServicio.reportarUsuario(idReportado, (Usuario) session.getAttribute("usuariosession"), categoria,
+                    contenido, tipo);
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
             return "reporte_usuario.html";
@@ -93,7 +95,7 @@ public class UsuarioControlador {
         return "redirect:/inicio";
     }
 
-    //editar foto
+    // editar foto
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @PostMapping("/cambiarFoto")
     public String actualizarFoto(HttpSession session, MultipartFile archivo) throws MyException {
@@ -116,7 +118,6 @@ public class UsuarioControlador {
         }
     }
 
-    //Actualizar la seguridad del usuario
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/preguntas")
     public String preguntasDeSeguridad() {
