@@ -9,6 +9,7 @@ import com.equipoC.Trendytouch.Enums.Categoria;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -46,7 +47,8 @@ public class PublicacionServicio {
         categoria = categoria.toUpperCase();
 
         Publicacion publi = new Publicacion();
-        Date fecha = new Date();
+        Calendar calendar = Calendar.getInstance();
+        Date fecha = calendar.getTime();
         publi.setFechaPublicacion(fecha);
         publi.setDescripcion(descripcion);
         publi.setUsuario(usuario);
@@ -74,8 +76,8 @@ public class PublicacionServicio {
         List<Publicacion> publicaciones = publicacionRepo.findAll();
         Comparator<Publicacion> comparadorSubida = new Comparator<Publicacion>() {
             @Override
-            public int compare(Publicacion p1, Publicacion p2) {
-                return (p1.getFechaPublicacion().compareTo(p2.getFechaPublicacion()));
+            public int compare(Publicacion p2, Publicacion p1) {
+                return p1.getFechaPublicacion().compareTo(p2.getFechaPublicacion());
             }
         };
         Collections.sort(publicaciones, comparadorSubida);
