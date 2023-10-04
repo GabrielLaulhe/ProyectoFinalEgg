@@ -132,6 +132,6 @@ public class UsuarioControlador {
         } catch (MyException e) {
             modelo.put("error", e.getMessage());
         }
-        return "";
+        return "redirect:/inicio";
     }
 }
