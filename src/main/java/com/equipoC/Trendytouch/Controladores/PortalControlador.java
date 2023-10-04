@@ -31,8 +31,8 @@ public class PortalControlador {
         return "index.html";
     }
 
-    //registro
-    @GetMapping("/registrar") //localhost:8080
+    // registro
+    @GetMapping("/registrar") // localhost:8080
     public String registrar() {
         return "usuario_registro.html";
     }
@@ -62,8 +62,8 @@ public class PortalControlador {
         }
     }
 
-    //login
-    @GetMapping("/loguear") //localhost:8080
+    // login
+    @GetMapping("/loguear") // localhost:8080
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
         if (error != null) {
             modelo.put("error", "Usuario o contraseña inválido.");
@@ -71,7 +71,7 @@ public class PortalControlador {
         return "login.html";
     }
 
-    //redireccion según tipo de usuario que se logueo
+    // redireccion según tipo de usuario que se logueo
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/inicio")
     public String inicio(HttpSession session, ModelMap modelo) {
@@ -86,32 +86,34 @@ public class PortalControlador {
 
         return "inicio.html";
     }
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/populares")
     public String indexPopular(ModelMap modelo) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesMasInteracciones());
         return "inicio.html";
     }
+
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/semanales")
     public String indexSemanal(ModelMap modelo) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesMasInteraccionesSemanales());
         return "inicio.html";
     }
-    
+
     @GetMapping("/semana")
     public String index2(ModelMap modelo) {
         List<Publicacion> publifiltrada = publicacionServicio.publicacionesMasInteraccionesSemanales();
-        int numPublicacionesDeseadas = Math.min(10, publifiltrada.size()); 
+        int numPublicacionesDeseadas = Math.min(10, publifiltrada.size());
         List<Publicacion> primeras10Publicaciones = publifiltrada.subList(0, numPublicacionesDeseadas);
         modelo.addAttribute("publicaciones", primeras10Publicaciones);
         return "index.html";
     }
+
     @GetMapping("/popular")
     public String index3(ModelMap modelo) {
         List<Publicacion> publifiltrada = publicacionServicio.publicacionesMasInteracciones();
-        int numPublicacionesDeseadas = Math.min(10, publifiltrada.size()); 
+        int numPublicacionesDeseadas = Math.min(10, publifiltrada.size());
         List<Publicacion> primeras10Publicaciones = publifiltrada.subList(0, numPublicacionesDeseadas);
         modelo.addAttribute("publicaciones", primeras10Publicaciones);
         return "index.html";

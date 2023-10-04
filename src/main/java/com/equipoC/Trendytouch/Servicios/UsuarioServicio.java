@@ -21,7 +21,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,13 +33,14 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     ImagenServicio imagenservicio;
-    
+
     @Autowired
     ReporteServicio reporteServicio;
 
     @Transactional
     public void registrar(MultipartFile archivo, String nombre, String apellido, String email,
-            String nombreUsuario, String password, String password2, String pregunta, String respuesta) throws MyException {
+            String nombreUsuario, String password, String password2, String pregunta, String respuesta)
+            throws MyException {
 
         validar(nombre, apellido, email, nombreUsuario, password, password2);
         validar2(email, nombreUsuario);
@@ -141,7 +141,7 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
-    
+
     @Transactional
     public void preguntaSeguridad(String idUsuario, String pregunta, String respuesta) throws MyException {
         if (pregunta.isEmpty() || pregunta == null) {
@@ -194,9 +194,9 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setRol(Rol.valueOf(rol));
         }
     }
-    
+
     @Transactional
-    public void cambiarEstado(String id){
+    public void cambiarEstado(String id) {
         Optional<Usuario> respuesta = usuariorepo.findById(id);
         if (respuesta.isPresent()) {
             Usuario usuario = respuesta.get();
@@ -258,18 +258,19 @@ public class UsuarioServicio implements UserDetailsService {
         return resultados;
     }
 
-    public void reportarUsuario(String idReportado, Usuario emisor, String categoria, String contenido, String tipo) throws MyException {
-        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria,tipo);
+    public void reportarUsuario(String idReportado, Usuario emisor, String categoria, String contenido, String tipo)
+            throws MyException {
+        Reporte reporte = reporteServicio.crear(contenido, emisor, categoria, tipo);
         Usuario reportado = getOne(idReportado);
         List<Reporte> reportes = reportado.getReportes();
         reportes.add(reporte);
         reportado.setReportes(reportes);
         usuariorepo.save(reportado);
     }
-    //Busca un usuario por un id de reporte con una Query
-    public Usuario usuarioporReporte(String id){
+
+    // Busca un usuario por un id de reporte con una Query
+    public Usuario usuarioporReporte(String id) {
         Usuario usuario = usuariorepo.buscarUsuarioPorReporteId(id);
         return usuario;
     }
-
 }

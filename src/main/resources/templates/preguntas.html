@@ -12,14 +12,17 @@
     <main class="vistas">
         <section class="formulario-container">
 
-            <form th:action="@{'/usuario/preguntas/' + ${session.usuariosession.id}}" class="form" id="login-form" method="post">
-                <h2 class="titulo">Actualiza la seguridad seguridad</h2>
+            <form th:action="@{'/usuario/preguntas/' + ${session.usuariosession.id}}" class="form" id="login-form"
+                method="post">
+                <h2 class="titulo">Actualiza la seguridad</h2>
                 <label>
-                    <input type="text" name="pregunta" th:value="${session.usuariosession.pregunta}" required class="input" />
+                    <input type="text" name="pregunta" th:value="${session.usuariosession.pregunta}" required
+                        class="input" />
                     <span>Pregunta de seguridad</span>
                 </label>
                 <label>
-                    <input type="password" name="respuesta" th:value="${session.usuariosession.respuesta}" required class="input" />
+                    <input type="password" name="respuesta" th:value="${session.usuariosession.respuesta}" required
+                        class="input" />
                     <span>Respuesta</span>
                 </label>
 

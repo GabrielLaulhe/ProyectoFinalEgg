@@ -4,6 +4,5 @@ public enum ReporteCategoria {
     Lenguaje_Ofensivo,
     Contenido_Inapropiado,
     COPYRIGHT,
-    OTRO;
-    
+    OTRO;    
 }

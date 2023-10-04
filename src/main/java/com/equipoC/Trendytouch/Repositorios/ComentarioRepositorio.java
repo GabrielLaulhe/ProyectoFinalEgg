@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.equipoC.Trendytouch.Repositorios;
 
 import com.equipoC.Trendytouch.Entidades.Comentario;
@@ -11,10 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Asus
- */
 @Repository
 public interface ComentarioRepositorio extends JpaRepository<Comentario, String> {
 
@@ -26,5 +18,4 @@ public interface ComentarioRepositorio extends JpaRepository<Comentario, String>
 
     @Query("SELECT DISTINCT c FROM Comentario c JOIN c.reportes r WHERE r.id = :id")
     public Comentario buscarComentarioPorReporteId(@Param("id") String id);
-
 }

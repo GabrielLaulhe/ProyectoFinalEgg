@@ -51,6 +51,7 @@ public class ReporteControlador {
         }
     }
 
+    //ver reporte
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     public String reporte(@PathVariable String id, ModelMap modelo) {
@@ -127,6 +128,4 @@ public class ReporteControlador {
         modelo.addAttribute("reportes", reporteServicio.busquedadeReportesporNombreUsuario(consulta));
         return "reportesLista.html";
     }
-    
-    //lista de reportes para el admin completa en admin controlador /admin/reportes
 }
