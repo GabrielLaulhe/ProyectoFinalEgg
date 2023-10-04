@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.equipoC.Trendytouch.Controladores;
 
 import com.equipoC.Trendytouch.Entidades.Usuario;
@@ -25,10 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * @author Facu
- */
 @Controller
 @RequestMapping("/publicacion")
 public class PublicacionControlador {
@@ -135,6 +126,7 @@ public class PublicacionControlador {
         }
     }
 
+    //comentar publicacion
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/comentar")
     public String comentar(@RequestParam String id, ModelMap modelo, String contenido, HttpSession session) throws MyException {
@@ -147,8 +139,8 @@ public class PublicacionControlador {
         }
         return "redirect:/inicio";
     }
-    //mostrar categoria de la publicacion
 
+    //mostrar categoria de la publicacion
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/categorias/{categoria}")
     public String categoriaPublicacion(ModelMap modelo, @PathVariable("categoria") String categoria) {
@@ -156,6 +148,7 @@ public class PublicacionControlador {
         return "inicio.html";
     }
 
+    //recuento likes
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/like/{idP}")
     public String likePublicacion(HttpSession session, @PathVariable("idP") String idP) {

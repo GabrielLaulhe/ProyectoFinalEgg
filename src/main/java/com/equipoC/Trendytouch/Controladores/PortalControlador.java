@@ -84,13 +84,14 @@ public class PortalControlador {
 
         return "inicio.html";
     }
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/populares")
     public String indexPopular(ModelMap modelo) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesMasInteracciones());
         return "inicio.html";
     }
+
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/semanales")
     public String indexSemanal(ModelMap modelo) {

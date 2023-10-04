@@ -13,7 +13,7 @@
         <section class="formulario-container">
 
             <form th:action="@{'/usuario/preguntas/' + ${session.usuariosession.id}}" class="form" id="login-form" method="post">
-                <h2 class="titulo">Actualiza la seguridad seguridad</h2>
+                <h2 class="titulo">Actualiza la seguridad</h2>
                 <label>
                     <input type="text" name="pregunta" th:value="${session.usuariosession.pregunta}" required class="input" />
                     <span>Pregunta de seguridad</span>
