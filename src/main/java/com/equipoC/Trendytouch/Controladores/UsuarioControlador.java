@@ -70,8 +70,8 @@ public class UsuarioControlador {
         }
 
     }
+    
     //reportar usuario
-
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DISENADOR', 'ROLE_USER')")
     @GetMapping("/reportar/{id}")
     public String reportar(@PathVariable("id") String id, ModelMap modelo) {
@@ -115,5 +115,23 @@ public class UsuarioControlador {
             return "redirect:/inicio";
         }
 
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @GetMapping("/preguntas")
+    public String preguntasDeSeguridad() {
+        return "preguntas.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @PostMapping("/preguntas/{id}")
+    public String preguntasDeSeguridad(@PathVariable("id") String id, @RequestParam String pregunta,
+            String respuesta, ModelMap modelo) throws MyException {
+        try {
+            usuarioServicio.preguntaSeguridad(id, pregunta, respuesta);
+        } catch (MyException e) {
+            modelo.put("error", e.getMessage());
+        }
+        return "";
     }
 }

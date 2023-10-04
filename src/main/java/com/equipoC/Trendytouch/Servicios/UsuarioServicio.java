@@ -141,6 +141,23 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
+    
+    @Transactional
+    public void preguntaSeguridad(String idUsuario, String pregunta, String respuesta) throws MyException {
+        if (pregunta.isEmpty() || pregunta == null) {
+            throw new MyException("La pregunta no puede estar vacia.");
+        }
+        if (respuesta.isEmpty() || respuesta == null) {
+            throw new MyException("La respuesta no puede estar vacia.");
+        }
+        Optional<Usuario> usu = usuariorepo.findById(idUsuario);
+        if (usu.isPresent()) {
+            Usuario usuario = usu.get();
+            usuario.setPregunta(pregunta);
+            usuario.setRespuesta(respuesta);
+            usuariorepo.save(usuario);
+        }
+    }
 
     @Transactional
     public void eliminar(String id) throws MyException {
@@ -177,13 +194,24 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setRol(Rol.valueOf(rol));
         }
     }
+    
+    @Transactional
+    public void cambiarEstado(String id){
+        Optional<Usuario> respuesta = usuariorepo.findById(id);
+        if (respuesta.isPresent()) {
+            Usuario usuario = respuesta.get();
+            Date fechaBaja = new Date();
+            usuario.setFechaBaja(fechaBaja);
+            usuario.setAlta(!(usuario.isAlta()));
+        }
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         Usuario usuario = usuariorepo.buscarPorEmail(email);
 
-        if (usuario != null) {
+        if (usuario != null && usuario.isAlta() == true) {
             List<GrantedAuthority> permisos = new ArrayList();
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
             permisos.add(p);
@@ -203,7 +231,7 @@ public class UsuarioServicio implements UserDetailsService {
 
         Usuario usuario = usuariorepo.buscarPorNombreUsuario(nombreUsuario);
 
-        if (usuario != null) {
+        if (usuario != null && usuario.isAlta() == true) {
             List<GrantedAuthority> permisos = new ArrayList();
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
             permisos.add(p);

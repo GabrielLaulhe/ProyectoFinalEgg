@@ -13,6 +13,10 @@
     <section th:replace="/fragments/errores :: section"></section>
 
     <main>
+        <div class="flex-center gap-3 pad-top">
+            <a th:href="@{/populares}">Populares</a>
+            <a th:href="@{/populares}">Populares de la semana</a> 
+         </div>
         <section th:if="${session.usuariosession != null}" th:replace="/fragments/tarjetas :: section"></section>
     </main>
 
