@@ -338,11 +338,16 @@ textarea:focus+.textarea-border {
     align-items: center;
     justify-content: center;
     width: 40px;
-    height: 40px;
+    height: 45px;
     border-radius: 10px;
     border: none;
     background-color: transparent;
     position: relative;
+}
+
+.bmc .icon path {
+    height: 27.23px;
+    width: 24.31px;
 }
 
 .bmc:hover>.icon {
@@ -414,8 +419,9 @@ textarea:focus+.textarea-border {
     word-wrap: break-word;
 }
 
-.contenedor-likes {
+.contenedor-likes,
+.container-comments {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
 }

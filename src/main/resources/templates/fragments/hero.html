@@ -1,7 +1,7 @@
 <section class="hero">
     <a class="flex-center" th:href="@{/usuario/actualizar}">
         <img class="logo" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="Imagen usuario"
-             onerror="this.src='/img/sinfoto.jpg';" />
+            onerror="this.src='/img/sinfoto.jpg';" />
     </a>
 
     <h3 th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h3>
@@ -12,7 +12,7 @@
 
     <div class="dropdown-center flex-center">
         <a class="main-link dropdown-toggle flex-center" href="#" role="button" data-bs-toggle="dropdown"
-           aria-expanded="false">
+            aria-expanded="false">
             <span class="actual-text">&nbsp;mi perfil&nbsp;</span>
             <span class="hover-text" aria-hidden="true">&nbsp;mi perfil&nbsp;</span>
         </a>
@@ -24,11 +24,11 @@
             <li>
                 <a class="dropdown-item" href="/logout">Cerrar sesion</a>
             </li>
-        </ul> 
+        </ul>
     </div>
 
-    <a th:if="${session.usuariosession.pregunta.isEmpty()}" th:href="@{/usuario/preguntas}">
-        Actualiza la seguridad
+    <a class="recomendacion rs" th:if="${session.usuariosession.pregunta.isEmpty()}" th:href="@{/usuario/preguntas}">
+        <span class="typed3"></span>
     </a>
 
 </section>

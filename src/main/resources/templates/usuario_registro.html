@@ -61,12 +61,16 @@
                     </label>
                 </div>
 
-                <button type="submit" class="submit">Registrarse</button>
-                <p class="sign">Ya tienes una cuenta?
+                <div class="div-contenedor">
+                    <button type="submit" class="btn-general">
+                        Registrarse
+                    </button>
+                </div>
+                <div class="div-contenedor info">
+                    <span class="sign">Ya tienes una cuenta?</span>
                     <button type="button" id="btn-iniciar-sesion" class="submit"
-                        style="width: 140px; height: 40px;">Iniciar
-                        sesion</button>
-                </p>
+                        style="width: 140px; height: 40px;">Iniciar sesion</button>
+                </div>
             </form>
 
             <form th:action="@{/logincheck}" class="formulario-oculto" id="login-form" method="post">
@@ -79,10 +83,14 @@
                     <input type="password" name="password" required class="input" />
                     <span>Contraseña</span>
                 </label>
-
-                <button type="submit" class="submit">Inicio</button>
-                <p class="sign">¿No tienes una cuenta? <button type="button" id="btn-registrarse" class="submit"
-                        style="width: 140px; height: 40px;">Regístrate</button></p>
+                <div class="div-contenedor">
+                    <button type="submit" class="btn-general">Iniciar sesion</button>
+                </div>
+                <div class="div-contenedor info">
+                    <span class="sign">¿No tienes una cuenta? </span>
+                    <button type="button" id="btn-registrarse" class="submit"
+                        style="width: 140px; height: 40px;">Regístrate</button>
+                </div>
             </form>
         </seccion>
     </main>

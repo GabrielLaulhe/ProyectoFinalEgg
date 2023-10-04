@@ -1,8 +1,10 @@
 package com.equipoC.Trendytouch.Controladores;
 
+import com.equipoC.Trendytouch.Entidades.Publicacion;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -96,5 +98,22 @@ public class PortalControlador {
     public String indexSemanal(ModelMap modelo) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesMasInteraccionesSemanales());
         return "inicio.html";
+    }
+    
+    @GetMapping("/semana")
+    public String index2(ModelMap modelo) {
+        List<Publicacion> publifiltrada = publicacionServicio.publicacionesMasInteraccionesSemanales();
+        int numPublicacionesDeseadas = Math.min(10, publifiltrada.size()); 
+        List<Publicacion> primeras10Publicaciones = publifiltrada.subList(0, numPublicacionesDeseadas);
+        modelo.addAttribute("publicaciones", primeras10Publicaciones);
+        return "index.html";
+    }
+    @GetMapping("/popular")
+    public String index3(ModelMap modelo) {
+        List<Publicacion> publifiltrada = publicacionServicio.publicacionesMasInteracciones();
+        int numPublicacionesDeseadas = Math.min(10, publifiltrada.size()); 
+        List<Publicacion> primeras10Publicaciones = publifiltrada.subList(0, numPublicacionesDeseadas);
+        modelo.addAttribute("publicaciones", primeras10Publicaciones);
+        return "index.html";
     }
 }
