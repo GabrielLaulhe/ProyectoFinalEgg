@@ -135,7 +135,8 @@ span {
 }
 
 #ventana-difuminada,
-#ventana-difuminada2 {
+#ventana-difuminada2,
+#ventana-difuminada3 {
     position: fixed;
     top: 0;
     left: 0;
@@ -267,6 +268,15 @@ textarea:focus+.textarea-border {
 }
 
 /*boton like*/
+.contador-likes {
+    color: black;
+    transition: 0.15s ease;
+}
+
+.contador-likes:hover {
+    cursor: pointer;
+    color: red;
+}
 
 .boton-like {
     display: flex;

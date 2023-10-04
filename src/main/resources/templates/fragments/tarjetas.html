@@ -5,7 +5,8 @@
 
             <div class="contenedor-imagen-usuario">
                 <a th:if="${session.usuariosession != null}" th:href="@{/usuario/{id}(id=${publicacion.usuario.id})}">
-                    <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario" onerror="this.src='/img/sinfoto.jpg';">
+                    <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario"
+                        onerror="this.src='/img/sinfoto.jpg';">
                     <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
                 </a>
                 <img th:if="${session.usuariosession == null}" th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}"
@@ -42,8 +43,7 @@
                             </svg>
                         </button>
                         <div class="contenedor-likes" th:if="${session.usuariosession != null}">
-                            <a
-                                th:href="@{/publicacion/like/__${publicacion.id}__}">
+                            <a th:href="@{/publicacion/like/__${publicacion.id}__}">
                                 <button class="boton-like">
                                     <svg viewBox="0 0 18 16" height="20.625" width="20.503"
                                         xmlns="http://www.w3.org/2000/svg" class="icon">
@@ -53,7 +53,33 @@
                                     </svg>
                                 </button>
                             </a>
-                            <div class="contador-likes" th:text="${#lists.size(publicacion.megusta)}"></div>
+                            <div th:onclick="mostrarVentana3([[${publicacion.id}]])" class="contador-likes"
+                                th:text="${#lists.size(publicacion.megusta)}"></div>
+
+                            <div id="ventana-difuminada3" style="display: none;">
+                                <div class="ccp">
+                                    <button class="boton-volver" type="button" style="margin-bottom: 10px;"
+                                        th:onclick="ocultarVentana3([[${publicacion.id}]])">
+                                        <p>Volver</p>
+                                        <svg stroke-width="4" stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                                            class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round"
+                                                stroke-linecap="round">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <div th:each="likes: ${publicacion.megusta}" class="cs">
+                                        <div class="sub-cs">
+                                            <img th:src="@{/imagen/perfil/__${likes.id}__}" class="imagen-usuario"
+                                                alt="..." loading="lazy">
+                                            <div th:text="${likes.nombreUsuario}" style="color: orange;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
