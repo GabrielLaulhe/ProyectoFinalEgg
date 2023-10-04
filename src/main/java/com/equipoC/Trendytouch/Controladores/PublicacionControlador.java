@@ -5,9 +5,6 @@
  */
 package com.equipoC.Trendytouch.Controladores;
 
-import com.equipoC.Trendytouch.Entidades.Comentario;
-import com.equipoC.Trendytouch.Entidades.Publicacion;
-import com.equipoC.Trendytouch.Entidades.Reporte;
 import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Repositorios.PublicacionRepositorio;
