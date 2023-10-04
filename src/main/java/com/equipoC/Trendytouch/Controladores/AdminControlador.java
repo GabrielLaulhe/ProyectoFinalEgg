@@ -17,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,6 +68,13 @@ public class AdminControlador {
     @PostMapping("/modificarRol/{id}")
     public String cambiarRol(@RequestParam("id") String id, @RequestParam String rol) {
         usuarioServicio.cambiarRol(id, rol);
+        return "redirect:/admin/usuarios";
+    }
+    
+    //boton para modificar el estado de un usuario
+    @GetMapping("/modificarEstado/{id}")
+    public String cambiarEstado(@PathVariable("id") String id) {
+        usuarioServicio.cambiarEstado(id);
         return "redirect:/admin/usuarios";
     }
 

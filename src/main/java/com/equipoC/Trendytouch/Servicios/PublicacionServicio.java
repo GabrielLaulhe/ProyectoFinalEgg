@@ -67,11 +67,18 @@ public class PublicacionServicio {
         }
     }
 
+    //  No anda lo de ordenar, pero si devuelve la lista
     @Transactional(readOnly = true)
     public List<Publicacion> listarPublicaciones() {
 
         List<Publicacion> publicaciones = publicacionRepo.findAll();
-
+        Comparator<Publicacion> comparadorSubida = new Comparator<Publicacion>() {
+            @Override
+            public int compare(Publicacion p1, Publicacion p2) {
+                return (p1.getFechaPublicacion().compareTo(p2.getFechaPublicacion()));
+            }
+        };
+        Collections.sort(publicaciones, comparadorSubida);
         return publicaciones;
     }
 
@@ -148,15 +155,16 @@ public class PublicacionServicio {
         reportado.setReportes(reportes);
         publicacionRepo.save(reportado);
     }
+
     //busca una publicacion por un id de reporte con una Query
     public Publicacion publicacionporReporte(String id) {
         Publicacion publicacion = publicacionRepo.buscarPublicacionPorReporteId(id);
         return publicacion;
     }
-    
+
     public Publicacion registrarLikesDePublicacion(String id, String idp) {
-       Publicacion publicacionLike = getOne(idp);
-       Usuario usuarioLike = usuarioServicio.getOne(id);
+        Publicacion publicacionLike = getOne(idp);
+        Usuario usuarioLike = usuarioServicio.getOne(id);
         List<Usuario> usuariosLike = publicacionLike.getMegusta();
         if (!usuariosLike.contains(usuarioLike)) {
             usuariosLike.add(usuarioLike);
@@ -166,5 +174,21 @@ public class PublicacionServicio {
         publicacionLike.setMegusta(usuariosLike);
         publicacionRepo.save(publicacionLike);
         return publicacionLike;
-    }   
+    }
+
+    public List<Publicacion> publicacionesMasInteracciones() {
+
+        List<Publicacion> publicaciones = publicacionRepo.publicacionesConMasInteracciones();
+
+        return publicaciones;
+    }
+
+    public List<Publicacion> publicacionesMasInteraccionesSemanales() {
+
+        List<Publicacion> publicaciones = publicacionRepo.publicacionesXInteraccionesSemanales();
+
+        System.out.println(publicaciones.get(0));
+        System.out.println(publicaciones.get(0).getFechaPublicacion());
+        return publicaciones;
+    }
 }
