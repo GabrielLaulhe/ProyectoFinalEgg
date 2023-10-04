@@ -1,33 +1,34 @@
 <section class="hero">
-  <a class="flex-center" th:href="@{/usuario/actualizar}">
-    <img class="logo" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="Imagen usuario"
-      onerror="this.src='/img/sinfoto.jpg';" />
-  </a>
-
-  <h3 th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h3>
-
-  <h5 th:text="${session.usuariosession.rol}"></h5>
-
-  <h6 th:text="'#' + ${session.usuariosession.nombreUsuario}"></h6>
-
-  <div class="dropdown-center flex-center">
-    <a class="main-link dropdown-toggle flex-center" href="#" role="button" data-bs-toggle="dropdown"
-      aria-expanded="false">
-      <span class="actual-text">&nbsp;mi perfil&nbsp;</span>
-      <span class="hover-text" aria-hidden="true">&nbsp;mi perfil&nbsp;</span>
+    <a class="flex-center" th:href="@{/usuario/actualizar}">
+        <img class="logo" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="Imagen usuario"
+             onerror="this.src='/img/sinfoto.jpg';" />
     </a>
 
-    <ul class="dropdown-menu">
-      <li>
-        <a class="dropdown-item" th:href="@{/usuario/actualizar}">Editar</a>
-      </li>
-      <li>
-        <a class="dropdown-item" th:href="@{/usuario/seguridad/preguntaSeguridad}">Pregunta de seguridad</a>
-      </li>
-      <li>
-        <a class="dropdown-item" href="/logout">Cerrar sesion</a>
-      </li>
-    </ul>
-  </div>
+    <h3 th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h3>
+
+    <h5 th:text="${session.usuariosession.rol}"></h5>
+
+    <h6 th:text="'#' + ${session.usuariosession.nombreUsuario}"></h6>
+
+    <div class="dropdown-center flex-center">
+        <a class="main-link dropdown-toggle flex-center" href="#" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+            <span class="actual-text">&nbsp;mi perfil&nbsp;</span>
+            <span class="hover-text" aria-hidden="true">&nbsp;mi perfil&nbsp;</span>
+        </a>
+
+        <ul class="dropdown-menu">
+            <li>
+                <a class="dropdown-item" th:href="@{/usuario/actualizar}">Editar</a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="/logout">Cerrar sesion</a>
+            </li>
+        </ul> 
+    </div>
+
+    <a th:if="${session.usuariosession.pregunta.isEmpty()}" th:href="@{/usuario/preguntas}">
+        Actualiza la seguridad
+    </a>
 
 </section>

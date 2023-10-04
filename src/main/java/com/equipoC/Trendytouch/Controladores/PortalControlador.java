@@ -32,7 +32,6 @@ public class PortalControlador {
     //registro
     @GetMapping("/registrar") //localhost:8080
     public String registrar() {
-
         return "usuario_registro.html";
     }
 
@@ -85,5 +84,17 @@ public class PortalControlador {
 
         return "inicio.html";
     }
-
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @GetMapping("/populares")
+    public String indexPopular(ModelMap modelo) {
+        modelo.addAttribute("publicaciones", publicacionServicio.publicacionesMasInteracciones());
+        return "inicio.html";
+    }
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @GetMapping("/semanales")
+    public String indexSemanal(ModelMap modelo) {
+        modelo.addAttribute("publicaciones", publicacionServicio.publicacionesMasInteraccionesSemanales());
+        return "inicio.html";
+    }
 }

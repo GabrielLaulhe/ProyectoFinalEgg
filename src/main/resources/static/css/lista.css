@@ -1,6 +1,6 @@
 .tabla-conteiner {
     margin-top: 20px;
-    
+
 }
 
 .tabla {
@@ -25,4 +25,12 @@
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #f9f9f9;
+}
+
+.tabla button{
+    background-color: #820000;
+    color: #ffffff;
+    border: none;
+    padding: 2.5px 5px;
+    border-radius: 3px;
 }

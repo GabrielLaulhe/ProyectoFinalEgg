@@ -8,10 +8,9 @@
 @import "error-page.css";
 @import "reporte.css";
 @import "buscador.css";
-@import "seguridad.css";
 
 * {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif;   
 }
 
 body {
@@ -22,15 +21,9 @@ body {
     color: #800000;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+h1,h2,h3,h4,h5,h6,p{
     margin: 0;
-    padding: 0;
+    padding: 0;    
 }
 
 header {
@@ -60,7 +53,7 @@ li {
     position: fixed;
 }
 
-.pad-top {
+.pad-top{
     padding-top: 30px;
 }
 
@@ -70,7 +63,7 @@ li {
     justify-content: center;
 }
 
-.contenedor {
+.contenedor{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,14 +71,14 @@ li {
     gap: 30px;
 }
 
-.vistas {
+.vistas{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.max-height {
+.max-height{
     min-height: 100%;
 }
 
@@ -133,3 +126,5 @@ li {
     width: 100%;
     filter: drop-shadow(0 0 23px var(--animation-color))
 }
+
+

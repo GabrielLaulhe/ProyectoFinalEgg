@@ -22,14 +22,3 @@ function ocultarVentana2(id) {
     ventanaDifuminada2.style.display = 'none';
 }
 
-function mostrarVentana3(id) {
-    const publicacion = document.getElementById(id);
-    const ventanaDifuminada2 = publicacion.querySelector('#ventana-difuminada3');
-    ventanaDifuminada2.style.display = 'flex';
-}
-
-function ocultarVentana3(id) {
-    const publicacion = document.getElementById(id);
-    const ventanaDifuminada2 = publicacion.querySelector('#ventana-difuminada3');
-    ventanaDifuminada2.style.display = 'none';
-}
