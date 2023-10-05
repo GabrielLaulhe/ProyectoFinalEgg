@@ -109,6 +109,8 @@ public class UsuarioControlador {
     @GetMapping("/{id}")
     public String perfil(@PathVariable("id") String id, HttpSession session, ModelMap modelo) {
         try {
+            Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+            modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
             Usuario publicador = usuarioServicio.getOne(id);
             modelo.addAttribute("publicador", publicador);
             modelo.addAttribute("publicaciones", publicacionServicio.buscarPorUsuario(publicador));
