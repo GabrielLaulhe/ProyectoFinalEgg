@@ -47,4 +47,24 @@
     text-wrap: wrap;
 }
 
+/* ---- RS ---- */
+.recomendacion {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: 0.1s ease;
+    font-size: 12px;
+}
+
+.rs {
+    color: #939393;
+}
+
+.recomendacion:hover {
+    color: orangered;
+}
+
+.rs:hover {
+    color: #820000
+}
 

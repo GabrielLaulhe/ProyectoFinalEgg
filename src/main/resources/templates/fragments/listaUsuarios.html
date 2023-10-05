@@ -14,13 +14,9 @@
                 </select>
             </th>
             <th col-index = 4>Permisos</th>
-            <th col-index = 5>Estado
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all"></option>
-                </select>
-            </th>
+            <th col-index = 5>Estado</th>
             <th col-index = 6>Acciones</th>
-            <th col-index = 7>N Reportes</th>
+            <th col-index = 7>Reportes</th>
             </thead>
             <tbody>
                 <tr th:each="usuario: ${usuarios}">
@@ -38,10 +34,10 @@
                               sec:authorize="hasRole('ADMIN')">
                             <input type="hidden" name="id" th:value="${usuario.id}" />
                             <select name="rol">
-                                <option th:value="${usuario.rol}" th:text="${usuario.rol}"></option>
-                                <option th:value="ADMIN">ADMIN</option>
-                                <option th:value="DISENADOR">DISEÑADOR</option>
-                                <option th:value="USER">USER</option>
+                                <option  class="option" th:value="${usuario.rol}" th:text="${usuario.rol}"></option>
+                                <option  class="option" th:value="ADMIN">ADMIN</option>
+                                <option  class="option" th:value="DISENADOR">DISEÑADOR</option>
+                                <option  class="option" th:value="USER">USER</option>
                             </select>
                             <button type="submit">Cambiar ROL</button>
                         </form>

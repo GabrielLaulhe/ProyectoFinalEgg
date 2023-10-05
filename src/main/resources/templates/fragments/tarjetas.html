@@ -79,6 +79,11 @@
                         <input type="hidden" name="id" th:value="${publicacion.id}" />
                         <button class="boton-acciones" type="submit">Eliminar</button>
                     </form>
+                    <form action="/publicacion/borrar/{__${publicacion.id}__}" method="post"
+                        sec:authorize="hasRole('DISENADOR')" th:if="${publicacion.usuario.id == session.usuariosession.id}">
+                        <input type="hidden" name="id" th:value="${publicacion.id}" />
+                        <button class="boton-acciones" type="submit">Eliminar</button>
+                    </form>
                     <a th:if="${#request.getRequestURI() != '/publicacion/usuario'}"
                         th:href="@{/publicacion/reportar/{id}(id=${publicacion.id})}">
                         <button class="boton-acciones boton-reportar">Reportar</button>

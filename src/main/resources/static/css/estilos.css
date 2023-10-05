@@ -159,25 +159,3 @@ li {
     background: linear-gradient(90deg, rgba(255, 51, 0, 1) 52%, rgba(255, 119, 0, 1) 81%);
     z-index: -1;
 }
-
-
-/* ---- RS ---- */
-.recomendacion {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    transition: 0.1s ease;
-    font-size: 16px;
-}
-
-.rs {
-    color: #939393;
-}
-
-.recomendacion:hover {
-    color: orangered;
-}
-
-.rs:hover {
-    color: #820000
-}

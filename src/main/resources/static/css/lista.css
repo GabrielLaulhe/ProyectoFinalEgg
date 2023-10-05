@@ -1,15 +1,19 @@
 .tabla-conteiner {
     margin-top: 20px;
-
 }
 
 .tabla {
     border-collapse: collapse;
     width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.222);
+    box-shadow: 0px 0px 20px 1px #0000003f;
 }
 
-.tabla th, .tabla td {
-    text-align: left;
+.tabla th,
+.tabla td {
+    text-align: center;
     padding: 8px;
     border: 1px solid #ddd;
 }
@@ -18,8 +22,17 @@
     background-color: #f2f2f2;
 }
 
+.tabla td {
+    color: rgb(49, 49, 49);
+}
+
+.tabla form {
+    display: flex;
+    justify-content: space-around;
+}
+
 .tabla select {
-    width: 100%;
+    width: 1%;
     padding: 6px 10px;
     border: none;
     border-radius: 4px;
@@ -27,10 +40,22 @@
     background-color: #f9f9f9;
 }
 
-.tabla button{
+.tabla button {
     background-color: #820000;
     color: #ffffff;
     border: none;
+    width: 100%;
     padding: 2.5px 5px;
     border-radius: 3px;
+    transition: .9s ease;
+}
+
+.tabla button:hover {
+    color: rgb(255, 255, 255);
+    background-color: #b34a4a;
+}
+
+.tabla .contenedor-imagen-usuario {
+    justify-content: flex-start;
+    gap: 10px;
 }

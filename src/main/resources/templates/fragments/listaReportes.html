@@ -2,34 +2,33 @@
     <div class="contenedor">
         <form action="/reporte/buscar" method="post" sec:authorize="hasRole('ADMIN')" class="buscador">
             <input name="consulta" />
-            <button type="submit" style="background-color: #820000; color: #ffffff;
-                    border: none; padding: 5px 5px; border-radius: 3px;">Buscar</button>
+            <button type="submit">Buscar</button>
         </form>
         <table id="emp-table" class="tabla">
             <thead>
 
-            <th col-index = 1>Categoria
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all"></option>
-                </select>
-            </th>
-            <th col-index = 2>Contenido</th>
-            <th col-index = 3>Estado
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all"></option>
-                </select>
-            </th>
-            <th col-index = 4>Emisor
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all"></option>
-                </select>
-            </th>
-            <th col-index = 5>Tipo
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all"></option>
-                </select>
-            </th>
-            <th col_index = 6>Accion</th>
+                <th col-index=1>Categoria
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index=2>Contenido</th>
+                <th col-index=3>Estado
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index=4>Emisor
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index=5>Tipo
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col_index=6>Accion</th>
             </thead>
             <tbody>
                 <tr th:if="${reportes.isEmpty()}">
@@ -42,13 +41,16 @@
                     <td th:text="${reporte.emisor.nombreUsuario}"></td>
                     <td th:text="${reporte.tipo}"></td>
                     <td th:if="${reporte.tipo == 'Comentario'}">
-                        <a th:href="@{/reporte/comentario/{id}(id=${reporte.id})}">Comentario</a>
+                        <a th:href="@{/reporte/comentario/{id}(id=${reporte.id})}">
+                            <button type="button">Comentario</button></a>
                     </td>
                     <td th:if="${reporte.tipo == 'Publicacion'}">
-                        <a th:href="@{/reporte/publicacion/{id}(id=${reporte.id})}">Publicacion</a>
+                        <a th:href="@{/reporte/publicacion/{id}(id=${reporte.id})}">
+                            <button type="button">Publicacion</button></a>
                     </td>
                     <td th:if="${reporte.tipo == 'Usuario'}">
-                        <a th:href="@{/reporte/usuario/{id}(id=${reporte.id})}">Usuario</a>
+                        <a th:href="@{/reporte/usuario/{id}(id=${reporte.id})}">
+                            <button type="button">Usuario</button></a>
                     </td>
                 </tr>
             </tbody>
