@@ -51,7 +51,7 @@ public class ReporteControlador {
         }
     }
 
-    //ver reporte
+    // ver reporte
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     public String reporte(@PathVariable String id, ModelMap modelo) {
@@ -65,7 +65,7 @@ public class ReporteControlador {
         return "reporte.html";
     }
 
-    //editar estado de reporte(aceptar o rechazar)
+    // editar estado de reporte(aceptar o rechazar)
     @GetMapping("/editar/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String editarEstado(@PathVariable String id, ModelMap modelo) {
@@ -91,31 +91,32 @@ public class ReporteControlador {
         return "redirect:/admin/dashboard";
     }
 
-    //muestra los reportes del propio usuario    
+    // muestra los reportes del propio usuario
     @GetMapping("/usuario")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     public String reportesPorUsuario(HttpSession session, ModelMap modelo) {
-        modelo.put("reportes", reporteServicio.listarReportesPorEmisor((Usuario) session.getAttribute("usuariosession")));
+        modelo.put("reportes",
+                reporteServicio.listarReportesPorEmisor((Usuario) session.getAttribute("usuariosession")));
         return "reportesListaUser.html";
     }
 
-    //Busca una publicacion por id de reporte.
+    // Busca una publicacion por id de reporte.
     @GetMapping("/publicacion/{id}")
     public String publicaciondeReporte(@PathVariable("id") String id, ModelMap modelo) {
         modelo.addAttribute("publicacion", publicacionServicio.publicacionporReporte(id));
         return "tarjeta_Publicacion.html";
     }
 
-    //Busca un comentario por id de reporte.
+    // Busca un comentario por id de reporte.
     @GetMapping("/comentario/{id}")
     public String comentariodeReporte(@PathVariable("id") String id, ModelMap modelo) {
         modelo.addAttribute("comentario", comentarioServicio.comentarioporReporte(id));
         return "Comentario.html";
     }
 
-    //Busca un Usuario por id de reporte.
+    // Busca un Usuario por id de reporte.
     @GetMapping("/usuario/{id}")
-    public String usuariodeReporte(@PathVariable("id") String id, ModelMap modelo,HttpSession session) {
+    public String usuariodeReporte(@PathVariable("id") String id, ModelMap modelo, HttpSession session) {
         Usuario publicador = usuarioServicio.usuarioporReporte(id);
         modelo.addAttribute("publicador", publicador);
         modelo.addAttribute("publicaciones", publicacionServicio.buscarPorUsuario(publicador));
