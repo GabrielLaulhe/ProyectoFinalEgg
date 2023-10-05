@@ -46,9 +46,20 @@
                             <div class="contador-comentarios" th:text="${#lists.size(publicacion.comentarios)}"></div>
                         </div>
 
+                        <div th:text="${#lists.contains(publicacion.megusta, session.usuariosession)}"></div>
+
+                        <div th:text="${session.usuariosession}"></div>
+
+                        <div th:text="${publicacion.megusta[0]}"></div>
+
                         <div class="contenedor-likes" th:if="${session.usuariosession != null}">
                             <a th:href="@{/publicacion/like/__${publicacion.id}__}">
-                                <button class="boton-like">
+                                <div th:if="${#lists.contains(publicacion.megusta, session.usuariosession)}"
+                                    class="container-like">
+                                    <img th:src="@{/img/corazon.png}" alt="">
+                                </div>
+                                <button th:unless="${#lists.contains(publicacion.megusta, session.usuariosession)}"
+                                    class="boton-like">
                                     <svg viewBox="0 0 18 16" height="20.625" width="20.503"
                                         xmlns="http://www.w3.org/2000/svg" class="icon">
                                         <path transform="translate(0 0)"
@@ -65,6 +76,12 @@
                 <div class="subcontenedor-acciones">
                     <form action="/publicacion/borrar/{__${publicacion.id}__}" method="post"
                         sec:authorize="hasRole('ADMIN')">
+                        <input type="hidden" name="id" th:value="${publicacion.id}" />
+                        <button class="boton-acciones" type="submit">Eliminar</button>
+                    </form>
+                    <form th:if="${publicacion.usuario.id == session.usuariosession.id}"
+                        action="/publicacion/borrar/{__${publicacion.id}__}" method="post"
+                        sec:authorize="hasRole('DISENADOR')">
                         <input type="hidden" name="id" th:value="${publicacion.id}" />
                         <button class="boton-acciones" type="submit">Eliminar</button>
                     </form>
