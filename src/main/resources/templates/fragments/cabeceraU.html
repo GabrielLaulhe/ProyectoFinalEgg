@@ -1,0 +1,10 @@
+<section class="cabecera">
+    <a th:href="@{/usuario/reportar/{id}(id=${publicador.id})}">reportar</a>
+    <div class="contenedor-cabecera">
+        <img th:src="@{/imagen/perfil/__${publicador.id}__}" alt="perfil" class="imagen-usuario">
+        <div class="contenedor-texto">
+            <h1 th:text="${'#' + publicador.nombreUsuario}"> </h1>
+            <h5 th:text="${publicador.nombre + ' ' +publicador.apellido}"></h5>
+        </div>
+    </div>
+</section>

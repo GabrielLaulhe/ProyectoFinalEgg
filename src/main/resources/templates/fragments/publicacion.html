@@ -1,0 +1,35 @@
+<section class="section pad-top">
+    <div class="tarjeta-contenedor" th:id="${publicacion.id}">
+        <div class="contenedor-imagen-usuario">
+            <a th:if="${session.usuariosession != null}" th:href="@{/usuario/{id}(id=${publicacion.usuario.id})}">
+                <img th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
+                <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
+            </a>
+            <img th:if="${session.usuariosession == null}" th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}"
+                alt="perfil" class="imagen-usuario">
+            <span th:if="${session.usuariosession == null}" th:text="${publicacion.usuario.nombreUsuario}"
+                class="nombreUsuario"></span>
+        </div>
+
+        <div class="contenedor-imagen">
+            <div class="slick-carousel">
+                <div th:each="foto, iterStat : ${publicacion.fotos}">
+                    <div>
+                        <img th:src="@{/imagen/__${foto.id}__}" class="imagen" alt="..." loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contenedor-texto">
+            <div class="contenedor-superior">
+                <div>
+                    <a th:if="${session.usuariosession != null}" id="texto-categoria" th:text="${publicacion.categoria}"
+                        href="/"></a>
+                    <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
+                    <p th:text="${publicacion.descripcion}" class="descripcion"></p>
+                </div>
+
+            </div>
+        </div>
+</section>

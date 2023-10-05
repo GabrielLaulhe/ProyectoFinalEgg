@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body class="inicio-body flex-col-center">
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
+
+    <section th:replace="/fragments/errores :: section"></section>
+
+    <section th:replace="/fragments/hero :: section"></section>
+
+    <main class="vistas">
+        <a href="/admin/reportes" class="boton-volver">
+            <button class="boton-volver" type="button">Volver</button>
+        </a>
+        <div class="sub-cs">
+            <img th:src="@{/imagen/perfil/__${comentario.usuario.id}__}" class="imagen-usuario" alt="..."
+                loading="lazy">
+            <div th:text="${comentario.usuario.nombreUsuario}" style="color: orange;"></div>
+            <div class="comentario-c" th:text="${comentario.contenido}"></div>
+        </div>
+    </main>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
+
+</html>

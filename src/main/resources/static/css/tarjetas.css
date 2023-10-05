@@ -1,0 +1,489 @@
+.section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.tarjeta {
+    margin-bottom: 2rem;
+    width: 468px;
+    border-top: solid 1px var(--color-terciario);
+    border-bottom: solid 1px var(--color-terciario);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: -1px 0px 15px 0px #0000005e;
+}
+
+.contenedor-imagen-usuario {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem;
+    justify-content: space-between;
+}
+
+.contenedor-imagen-usuario a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contenedor-imagen-usuario a,
+span {
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    font-size: larger;
+    font-weight: 400;
+}
+
+.contenedor-imagen-usuario a:hover span {
+    color: var(--color-secundario);
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.contenedor-imagen-usuario a:hover .imagen-usuario {
+    box-shadow: 0px 0px 20px 1px #0000003f;
+    border: 1px solid rgba(0, 0, 0, 0.454);
+}
+
+.contenedor-imagen-usuario .imagen-usuario {
+    height: 40px;
+    width: 40px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.222);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+    margin: 7px;
+    transition: all 0.3s ease-in-out;
+}
+
+.contenedor-imagen {
+    max-height: 585px;
+    width: 468px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.contenedor-imagen img {
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor-texto {
+    height: 25%;
+    width: 100%;
+    padding: 13px;
+}
+
+.contenedor-superior {
+    display: flex;
+    align-items: start;
+}
+
+.contenedor-superior div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.contenedor-superior .descripcion {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.contenedor-texto #texto-categoria {
+    text-decoration: none;
+    color: black;
+    transition: all ease 0.25s;
+    padding: 5px 10px;
+    background-color: rgb(204, 204, 204);
+    border-radius: 10px;
+}
+
+.contenedor-texto #texto-categoria:hover {
+    color: white;
+    background-color: rgb(139, 139, 139);
+}
+
+.imagen {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
+
+.nombreUsuario {
+    color: black;
+}
+
+/*boton eliminar*/
+.boton-acciones {
+    padding: 0.5em 0.8em;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.boton-acciones:hover {
+    border-radius: 5px;
+    background-color: var(--color-secundario);
+    box-shadow: 0px 8px 13px rgba(231, 16, 16, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.boton-comentar:hover {
+    border-radius: 5px;
+    color: white;
+    background-color: var(--color-terciario);
+    box-shadow: 0px 8px 13px rgba(251, 126, 0, 0.4);
+    transform: translateY(-7px);
+}
+
+.boton-reportar:hover {
+    border-radius: 5px;
+    color: white;
+    background-color: var(--color-primario);
+    box-shadow: 0px 8px 13px rgba(255, 0, 166, 0.4);
+    transform: translateY(-7px);
+}
+
+.boton-acciones:active {
+    transform: translateY(-1px);
+}
+
+.subcontenedor-acciones {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1em;
+    align-items: center;
+}
+
+#ventana-difuminada,
+#ventana-difuminada2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-comentarios {
+    background-color: white;
+    width: 40%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textarea-container {
+    position: relative;
+    width: 100%;
+}
+
+textarea {
+    border: none;
+    resize: none;
+    width: 100%;
+    outline: none;
+}
+
+.textarea-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(236, 27, 0, 0.978) 2%, rgba(255, 114, 0, 1) 18%, rgba(232, 255, 0, 1) 100%);
+    transition: width 0.4s cubic-bezier(0.42, 0, 0.58, 1.00);
+}
+
+.textarea-container:focus .textarea-border,
+textarea:focus+.textarea-border {
+    width: 100%;
+}
+
+.boton-volver {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+.boton-volver {
+    --primary-color: #111;
+    --hovered-color: linear-gradient(90deg, rgba(251, 126, 0, 1) 38%, rgba(242, 199, 0, 1) 70%);
+    position: relative;
+    display: flex;
+    font-weight: 450;
+    font-size: 16px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.boton-volver p {
+    margin: 0;
+    position: relative;
+    font-size: 16px;
+    color: var(--primary-color)
+}
+
+.boton-volver::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+}
+
+.boton-volver p::before {
+    position: absolute;
+    content: "Volver";
+    width: 0%;
+    inset: 0;
+    color: orange;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.comentar-tarjeta p::before {
+    position: absolute;
+    content: "Comentar";
+    width: 0%;
+    inset: 0;
+    color: orange;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.boton-volver:hover::after {
+    width: 100%;
+}
+
+.boton-volver:hover p::before {
+    width: 100%;
+}
+
+.boton-volver:hover svg {
+    color: orange;
+}
+
+.boton-volver svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+}
+
+.contenedor-botones-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*boton like*/
+
+.boton-like {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+
+.icon {
+    width: 40px;
+    height: 40px;
+    transition: .2s linear;
+}
+
+.icon path {
+    fill: rgb(120, 120, 120);
+    transition: .2s linear;
+}
+
+.boton-like:hover>.icon {
+    transform: scale(1.2);
+}
+
+.boton-like:hover>.icon path {
+    fill: red;
+}
+
+.boton-like:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+}
+
+
+.custom-prev-button,
+.custom-next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+
+
+.custom-prev-button {
+    left: 0;
+}
+
+.custom-next-button {
+    right: 0;
+}
+
+/*boton de mostar comentarios*/
+
+.contador-comentarios {
+    position: absolute;
+    top: 60%;
+    left: 70%;
+    color: var(--color-terciario);
+    border-radius: 100%;
+    padding: 2px;
+    font-weight: bolder;
+}
+
+.contador-megusta {
+    position: absolute;
+    top: 59%;
+    left: 70%;
+    color: var(--color-terciario);
+    border-radius: 100%;
+    padding: 2px;
+    font-weight: bolder;
+}
+
+.subcontenedor-botones {
+    display: flex;
+    width: 20%;
+    align-content: center;
+}
+
+.bmc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+.bmc .icon path {
+    width: 40px;
+    height: 45px;
+}
+
+.bmc:hover>.icon {
+    transform: scale(1.2);
+}
+
+.bmc:hover>.icon path {
+    fill: orange;
+}
+
+.bmc:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+}
+
+/*otros estilos*/
+
+.ccp {
+    background-color: white;
+    max-height: 60%;
+    overflow-y: auto;
+    padding: 20px 30px;
+    border-radius: 5px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+/* Estilo para los div con clase "cs" */
+.cs {
+    margin-bottom: 10px;
+}
+
+.cs::after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid #e5e5e5;
+    box-shadow: 0 2.3px 2.3px rgba(229, 229, 229, 0.5);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.cs:first-child {
+    margin-top: 10px;
+}
+
+.cs:last-child {
+    margin-bottom: 10px;
+}
+
+.imagen-usuario {
+    width: 32px;
+    height: 32px;
+}
+
+.cs div:nth-child(2) {
+    font-weight: bold;
+}
+
+.comentario-c {
+    color: black;
+    word-wrap: break-word;
+}
+
+.contenedor-likes,
+.container-comments {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    position: relative;
+}

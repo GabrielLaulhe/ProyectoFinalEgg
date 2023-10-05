@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
+
+    <section th:replace="/fragments/errores :: section"></section>
+    <section th:replace="/fragments/hero :: section"></section>
+    <main class="vistas">
+        <section>
+            <div class="formulario-container">
+
+                <h1>Modificar Usuario</h1>
+
+                <form class="form" th:action="@{/usuario/cambiarFoto}" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <label for="formFile" class="flex-center">
+                            <img class="mb-3" th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Imagen usuario"
+                                onerror="this.src='/img/sinfoto.jpg';" />
+                        </label>
+                        <input class="form-control" type="file" name="archivo" id="formFile" hidden
+                            onchange="submitForm()" />
+                    </div>
+                </form>
+
+
+                <form class="form" th:action="@{/usuario/actualizar/__${usuario.id}__}" method="POST">
+                    <input hidden th:value="${usuario.id}" name="id" />
+
+                    <div class="flex">
+                        <label>
+                            <input type="text" class="input" name="nombre" th:value="${usuario.nombre}" required />
+                            <span>Nombre</span>
+                        </label>
+                        <label>
+                            <input type="text" class="input" name="apellido" th:value="${usuario.apellido}" required />
+                            <span>Apellido</span>
+                        </label>
+                    </div>
+                    <label>
+                        <input type="email" name="email" th:value="${usuario.email}" required class="input" />
+                        <span>Email</span>
+                    </label>
+                    <label>
+                        <input type="text" name="nombreUsuario" th:value="${usuario.nombreUsuario}" required
+                            class="input" />
+                        <span>Nombre de usuario</span>
+                    </label>
+                    <div class="flex">
+                        <label>
+                            <input type="password" name="password" required class="input" />
+                            <span>Contraseña</span>
+                        </label>
+                        <label>
+                            <input type="password" name="password2" required class="input" />
+                            <span>Repita la contraseña</span>
+                        </label>
+                    </div>
+                    <div class="div-contenedor">
+                        <button type="submit" class="btn-general">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
+
+</html>

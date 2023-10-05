@@ -1,0 +1,28 @@
+.contenedor-error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.error-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.error-head img{
+    max-width: 50px;
+    object-fit: cover;
+}
+
+.contenedor-error h1{
+    font-size: 4em;
+    margin: 0;
+}
+
+.contenedor-error h3{
+    display: flex;
+}

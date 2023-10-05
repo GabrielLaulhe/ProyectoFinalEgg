@@ -1,0 +1,19 @@
+<section class="errores d-flex justify-content-center">
+  <div th:if="${exito != null}" class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="d-flex align-items-center">
+      <h4 class="alert-heading">Exito!</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <hr />
+    <p class="mb-0" th:text="${exito}"></p>
+  </div>
+
+  <div th:if="${error != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="d-flex align-items-center">
+      <h4 class="alert-heading">Error</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <hr />
+    <p class="mb-0" th:text="${error}"></p>
+  </div>
+</section>
