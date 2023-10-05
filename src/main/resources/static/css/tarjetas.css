@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+.section h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
 .tarjeta {
     margin-bottom: 2rem;
     width: 468px;
@@ -21,9 +27,10 @@
     display: flex;
     align-items: center;
     padding: 0.7rem;
+    justify-content: space-between;
 }
 
-.contenedor-imagen-usuario a{
+.contenedor-imagen-usuario a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -34,10 +41,18 @@ span {
     text-decoration: none;
     transition: all 0.2s ease-in-out;
     font-size: larger;
+    font-weight: 400;
 }
 
 .contenedor-imagen-usuario a:hover span {
     color: var(--color-secundario);
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.contenedor-imagen-usuario a:hover .imagen-usuario {
+    box-shadow: 0px 0px 20px 1px #0000003f;
+    border: 1px solid rgba(0, 0, 0, 0.454);
 }
 
 .contenedor-imagen-usuario .imagen-usuario {
@@ -49,6 +64,7 @@ span {
     border: 1px solid rgba(255, 255, 255, 0.222);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
     margin: 7px;
+    transition: all 0.3s ease-in-out;
 }
 
 .contenedor-imagen {
@@ -77,14 +93,14 @@ span {
     align-items: start;
 }
 
-.contenedor-superior div:first-child{
+.contenedor-superior div:first-child {
     display: flex;
     flex-direction: column;
     gap: 5px;
     flex: 1;
 }
 
-.contenedor-superior .descripcion{
+.contenedor-superior .descripcion {
     display: flex;
     justify-content: flex-start;
     text-align: left;
@@ -358,7 +374,7 @@ textarea:focus+.textarea-border {
 
 /*boton de mostar comentarios*/
 
-.contador-comentarios{
+.contador-comentarios {
     position: absolute;
     top: 60%;
     left: 70%;
@@ -368,7 +384,7 @@ textarea:focus+.textarea-border {
     font-weight: bolder;
 }
 
-.contador-megusta{
+.contador-megusta {
     position: absolute;
     top: 59%;
     left: 70%;

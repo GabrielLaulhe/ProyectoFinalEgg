@@ -1,5 +1,6 @@
 <section class="section pad-top">
 
+    <h1 th:if="${categoria != null}" th:text="${categoria}"></h1>
     <div th:each="publicacion: ${publicaciones}" class="tarjeta">
         <div class="tarjeta-contenedor" th:id="${publicacion.id}">
 
@@ -9,10 +10,13 @@
                         onerror="this.src='/img/sinfoto.jpg';">
                     <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
                 </a>
-                <img th:if="${session.usuariosession == null}" th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}"
-                    alt="perfil" class="imagen-usuario">
-                <span th:if="${session.usuariosession == null}" th:text="${publicacion.usuario.nombreUsuario}"
-                    class="nombreUsuario"></span>
+                <div>
+                    <img th:if="${session.usuariosession == null}"
+                        th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
+                    <span th:if="${session.usuariosession == null}" th:text="${publicacion.usuario.nombreUsuario}"
+                        class="nombreUsuario"></span>
+                </div>
+                <p th:text="${publicacion.fechaPublicacion}"></p>
             </div>
 
             <div class="contenedor-imagen">
@@ -29,7 +33,8 @@
                 <div class="contenedor-superior">
                     <div>
                         <a th:if="${session.usuariosession != null}" id="texto-categoria"
-                            th:text="${publicacion.categoria}" href="/"></a>
+                            th:text="${publicacion.categoria}"
+                            th:href="@{/publicacion/categorias/__${publicacion.categoria.toString()}__}"></a>
                         <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
                         <p th:text="${publicacion.descripcion}" class="descripcion"></p>
                     </div>
@@ -58,8 +63,8 @@
                                     </button>
                                 </div>
                                 <div th:if="${publicacion.megusta.contains(usuariolog)}">
-                                    <div class="container-like">
-                                        <img style="width: 30px; height: 30px;" th:src="@{/img/corazon.png}" alt="">
+                                    <div class="boton-like">
+                                        <img th:src="@{/img/corazon.png}" class="icon" alt="Liked">
                                     </div>
                                 </div>
                             </a>

@@ -8,6 +8,7 @@
 @import "error-page.css";
 @import "reporte.css";
 @import "buscador.css";
+@import "cabeceraU.css";
 
 * {
     font-family: 'Raleway', sans-serif;

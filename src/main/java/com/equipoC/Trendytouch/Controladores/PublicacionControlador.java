@@ -149,6 +149,7 @@ public class PublicacionControlador {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesxCategoria(categoria));
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
+        modelo.addAttribute("categoria", categoria);
         return "inicio.html";
     }
 
