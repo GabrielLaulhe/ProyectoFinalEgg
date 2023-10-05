@@ -115,11 +115,12 @@ public class ReporteControlador {
 
     //Busca un Usuario por id de reporte.
     @GetMapping("/usuario/{id}")
-    public String usuariodeReporte(@PathVariable("id") String id, ModelMap modelo) {
+    public String usuariodeReporte(@PathVariable("id") String id, ModelMap modelo,HttpSession session) {
         Usuario publicador = usuarioServicio.usuarioporReporte(id);
         modelo.addAttribute("publicador", publicador);
         modelo.addAttribute("publicaciones", publicacionServicio.buscarPorUsuario(publicador));
-
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
         return "perfil.html";
     }
 

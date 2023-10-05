@@ -10,6 +10,10 @@
 
     <main class="index-main">
         <section th:replace="/fragments/errores :: section"></section>
+        <div class="flex-center gap-3 pad-top">
+            <a class="recomendacion" th:href="@{/popular}"><span class="typed"></span></a>
+            <a class="recomendacion" th:href="@{/semana}"><span class="typed2"></span></a>
+        </div>
         <section th:replace="/fragments/tarjetas :: section"></section>
     </main>
 

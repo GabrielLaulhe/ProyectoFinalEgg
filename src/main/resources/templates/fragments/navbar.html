@@ -164,7 +164,7 @@
                         </ul>
                     </li>
                 </ul>
-                <a class="main-link dropdown-toggle" href="/usuario/buscar" role="button"
+                <a class="main-link dropdown-toggle" th:if="${session.usuariosession != null}" href="/usuario/buscar" role="button"
                             aria-expanded="false">
                             <span class="actual-text">&nbsp;Buscar Usuario&nbsp;</span>
                             <span class="hover-text" aria-hidden="true">&nbsp;Buscar Usuario&nbsp;</span>

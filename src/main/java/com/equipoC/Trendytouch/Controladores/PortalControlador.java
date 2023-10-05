@@ -83,21 +83,25 @@ public class PortalControlador {
             return "redirect:/admin/dashboard";
         }
         modelo.addAttribute("publicaciones", publicacionServicio.listarPublicaciones());
-
+        modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
         return "inicio.html";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/populares")
-    public String indexPopular(ModelMap modelo) {
+    public String indexPopular(ModelMap modelo, HttpSession session) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesMasInteracciones());
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
         return "inicio.html";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
     @GetMapping("/semanales")
-    public String indexSemanal(ModelMap modelo) {
+    public String indexSemanal(ModelMap modelo,HttpSession session) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesMasInteraccionesSemanales());
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
         return "inicio.html";
     }
 

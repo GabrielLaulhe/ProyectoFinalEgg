@@ -1,5 +1,6 @@
 package com.equipoC.Trendytouch.Controladores;
 
+import com.equipoC.Trendytouch.Entidades.Usuario;
 import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
@@ -33,6 +34,8 @@ public class AdminControlador {
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo, HttpSession session) {
         modelo.addAttribute("publicaciones", publicacionServicio.listarPublicacionesMegustas());
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
         return "inicio.html";
     }
 
