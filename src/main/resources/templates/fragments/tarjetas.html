@@ -1,5 +1,6 @@
 <section class="section pad-top">
 
+    <h1 th:if="${categoria != null}" th:text="${categoria}"></h1>
     <div th:each="publicacion: ${publicaciones}" class="tarjeta">
         <div class="tarjeta-contenedor" th:id="${publicacion.id}">
 
@@ -9,10 +10,13 @@
                         onerror="this.src='/img/sinfoto.jpg';">
                     <span th:text="${publicacion.usuario.nombreUsuario}" class="nombreUsuario"></span>
                 </a>
-                <img th:if="${session.usuariosession == null}" th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}"
-                    alt="perfil" class="imagen-usuario">
-                <span th:if="${session.usuariosession == null}" th:text="${publicacion.usuario.nombreUsuario}"
-                    class="nombreUsuario"></span>
+                <div>
+                    <img th:if="${session.usuariosession == null}"
+                        th:src="@{/imagen/perfil/__${publicacion.usuario.id}__}" alt="perfil" class="imagen-usuario">
+                    <span th:if="${session.usuariosession == null}" th:text="${publicacion.usuario.nombreUsuario}"
+                        class="nombreUsuario"></span>
+                </div>
+                <p th:text="${publicacion.fechaPublicacion}"></p>
             </div>
 
             <div class="contenedor-imagen">
@@ -29,24 +33,24 @@
                 <div class="contenedor-superior">
                     <div>
                         <a th:if="${session.usuariosession != null}" id="texto-categoria"
-                            th:text="${publicacion.categoria}" href="/"></a>
+                            th:text="${publicacion.categoria}"
+                            th:href="@{/publicacion/categorias/__${publicacion.categoria.toString()}__}"></a>
                         <span th:if="${session.usuariosession == null}" th:text="${publicacion.categoria}"></span>
                         <p th:text="${publicacion.descripcion}" class="descripcion"></p>
                     </div>
 
                     <div th:if="${#request.getRequestURI() != '/publicacion/usuario'}" class="subcontenedor-botones">
                         <div th:if="${session.usuariosession != null}" class="container-comments">
-                            <button
-                                th:onclick="mostrarVentana2([[${publicacion.id}]])" class="bmc">
+                            <button th:onclick="mostrarVentana2([[${publicacion.id}]])" class="bmc">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon2" viewBox="0 0 25 25">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M21.3846 19.1947L22.1656 22.1278L19.2865 21.3203L18.5523 21.7524C17.2095 22.5427 15.6596 23 14.0001 23C9.0294 23 5 18.9706 5 13.9997C5 9.02939 9.02933 5 14.0001 5C18.9709 5 23.0001 9.02934 23.0001 13.9997C23.0001 15.6303 22.5602 17.1549 21.7969 18.4794L21.3846 19.1947ZM19.5667 23.4761C17.9321 24.4381 16.0341 25 14.0001 25C7.92481 25 3 20.0752 3 13.9997C3 7.92476 7.92481 3 14.0001 3C20.0755 3 25.0001 7.92476 25.0001 13.9997C25.0001 15.9965 24.4601 17.8637 23.5297 19.478L24.5491 23.3066C24.7483 24.0548 24.0582 24.7359 23.3127 24.5268L19.5667 23.4761Z" />
                                 </svg>
                             </button>
-                            <div class="contador-comentarios"  th:text="${#lists.size(publicacion.comentarios)}"></div>
+                            <div class="contador-comentarios" th:text="${#lists.size(publicacion.comentarios)}"></div>
                         </div>
 
-                        <div class="contenedor-likes" th:if="${session.usuariosession != null}">
+                        <div class="container-comments" th:if="${session.usuariosession != null}">
                             <a th:href="@{/publicacion/like/__${publicacion.id}__}">
                                 <div th:unless="${publicacion.megusta.contains(usuariolog)}">
                                     <button class="boton-like">
@@ -60,11 +64,11 @@
                                 </div>
                                 <div th:if="${publicacion.megusta.contains(usuariolog)}">
                                     <div class="container-like">
-                                    <img style="width: 30px; height: 30px;"  th:src="@{/img/corazon.png}" alt="">
-                                </div>
+                                        <img style="width: 30px; height: 30px;" th:src="@{/img/corazon.png}" alt="">
+                                    </div>
                                 </div>
                             </a>
-                            <div class="contador-likes" th:text="${#lists.size(publicacion.megusta)}"></div>
+                            <div class="contador-megusta" th:text="${#lists.size(publicacion.megusta)}"></div>
                         </div>
                     </div>
                 </div>
@@ -72,6 +76,12 @@
                 <div class="subcontenedor-acciones">
                     <form action="/publicacion/borrar/{__${publicacion.id}__}" method="post"
                         sec:authorize="hasRole('ADMIN')">
+                        <input type="hidden" name="id" th:value="${publicacion.id}" />
+                        <button class="boton-acciones" type="submit">Eliminar</button>
+                    </form>
+                    <form action="/publicacion/borrar/{__${publicacion.id}__}" method="post"
+                        sec:authorize="hasRole('DISENADOR')"
+                        th:if="${publicacion.usuario.id == session.usuariosession.id}">
                         <input type="hidden" name="id" th:value="${publicacion.id}" />
                         <button class="boton-acciones" type="submit">Eliminar</button>
                     </form>

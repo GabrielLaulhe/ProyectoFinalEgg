@@ -33,7 +33,7 @@ public class AdminControlador {
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo, HttpSession session) {
-        modelo.addAttribute("publicaciones", publicacionServicio.listarPublicacionesMegustas());
+        modelo.addAttribute("publicaciones", publicacionServicio.listarPublicaciones());
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
         return "inicio.html";

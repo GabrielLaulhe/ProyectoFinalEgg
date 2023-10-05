@@ -14,7 +14,7 @@
 
             <form th:action="@{/registro}" class="formulario-oculto" id="registro-form" method="POST"
                 enctype="multipart/form-data">
-                <h2 class="titulo">Regístrate!</h2>
+                <h2 class="titulo">Regístrate</h2>
                 <div class="flex">
                     <label>
                         <input type="text" class="input" name="nombre" th:value="${nombre}" required />
@@ -66,13 +66,13 @@
                     </button>
                 </div>
                 <div class="div-contenedor info">
-                    <span class="sign">Ya tienes una cuenta?</span>
+                    <span class="sign">¿Ya tienes una cuenta?</span>
                     <button type="button" id="btn-iniciar-sesion" class="submit">Iniciar sesion</button>
                 </div>
             </form>
 
             <form th:action="@{/logincheck}" class="form" id="login-form" method="post">
-                <h2 class="titulo">Inicia sesión!</h2>
+                <h2 class="titulo">Inicia sesión</h2>
                 <label>
                     <input type="email" name="email" th:value="${email}" required class="input" />
                     <span>Email</span>

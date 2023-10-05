@@ -1,68 +1,112 @@
 <section class="max-height vistas">
-    <div class="contenedor">
-        <form action="/admin/buscar" class="buscador" method="post" sec:authorize="hasRole('ADMIN')">
-            <input name="consulta" />
-            <button type="submit" >Buscar</button>
-        </form>
-        <table id="emp-table" class="tabla">
-            <thead>
-            <th col-index = 1>Usuario</th>
-            <th col-index = 2>Mail</th>
-            <th col-index = 3>Rol
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all"></option>
-                </select>
-            </th>
-            <th col-index = 4>Permisos</th>
-            <th col-index = 5>Estado
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all"></option>
-                </select>
-            </th>
-            <th col-index = 6>Acciones</th>
-            <th col-index = 7>N Reportes</th>
-            </thead>
-            <tbody>
-                <tr th:each="usuario: ${usuarios}">
-                    <td>
-                        <div class="contenedor-imagen-usuario">
-                            <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="perfil" class="imagen-usuario"
-                                 onerror="this.src='/img/sinfoto.jpg';">
-                            <p th:text="${usuario.nombreUsuario}" class="nombreUsuario"></p>
+    <div class="cat">
+        <h2>Da click para ver la lista de usuarios!</h2>
+        <button class="bml" onclick="mostrarVentana4()"><span>VER LISTA</span></button>
+    </div>
+    <div style="display: none;" id="ventana-difuminada4">
+        <div class="contenedor-tabla">
+            <div class="subcontenedor-tabla">
+
+                <form action="/admin/buscar" class="buscador" method="post" sec:authorize="hasRole('ADMIN')">
+                    <div class="dtc">
+                        <div class="inputContainer">
+                            <input id="inputField" name="consulta" placeholder="Username" type="text">
+                            <label class="usernameLabel" for="inputField">Username</label>
+                            <svg viewBox="0 0 448 512" class="userIcon">
+                                <path
+                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z">
+                                </path>
+                            </svg>
                         </div>
-                    </td>
-                    <td th:text="${usuario.email}"></td>
-                    <td th:text="${usuario.rol}"></td>
-                    <td>
-                        <form action="/admin/modificarRol/{__${usuario.id}__}" method="post"
-                              sec:authorize="hasRole('ADMIN')">
-                            <input type="hidden" name="id" th:value="${usuario.id}" />
-                            <select name="rol">
-                                <option th:value="${usuario.rol}" th:text="${usuario.rol}"></option>
-                                <option th:value="ADMIN">ADMIN</option>
-                                <option th:value="DISENADOR">DISEÑADOR</option>
-                                <option th:value="USER">USER</option>
+                        <button type="submit" class="cssbuttons-io">
+                            <span>Buscar</span>
+                        </button>
+                    </div>
+
+                    <button class="boton-volver bvt" type="button" style="margin-bottom: 10px;"
+                        onclick="ocultarVentana4()">
+                        <p>Volver</p>
+                        <svg stroke-width="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" class="h-6 w-6"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round" stroke-linecap="round">
+                            </path>
+                        </svg>
+                    </button>
+                </form>
+                <table id="emp-table" class="tabla">
+                    <thead>
+                        <th col-index=1>Usuario</th>
+                        <th col-index=2>Mail</th>
+                        <th col-index=3>Rol
+                            <select class="table-filter tf2" onchange="filter_rows()">
+                                <option value="all"></option>
                             </select>
-                            <button type="submit">Cambiar ROL</button>
-                        </form>
-                    </td>
-                    <td th:if="${usuario.alta == true}" >Alta
-                        <form th:action="@{'/admin/modificarEstado/' + ${usuario.id}}" method="get" sec:authorize="hasRole('ADMIN')">
-                            <button type="submit">Cambiar</button>
-                        </form></td>
-                    <td th:if="${usuario.alta == false}" >Baja
-                        <form th:action="@{'/admin/modificarEstado/' + ${usuario.id}}" method="get" sec:authorize="hasRole('ADMIN')">
-                            <button type="submit">Cambiar</button>
-                        </form></td>
-                    <td>
-                        <form action="/admin/borrar/{__${usuario.id}__}" method="post" sec:authorize="hasRole('ADMIN')">
-                            <input type="hidden" name="id" th:value="${usuario.id}" />
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </td>
-                    <td th:text="${#lists.size(usuario.reportes)}"></td>
-                </tr>
-            </tbody>
-        </table>
+                        </th>
+                        <th col-index=4>Permisos</th>
+                        <th col-index=5>Estado
+                            <select class="table-filter tf1" onchange="filter_rows()">
+                                <option value="all"></option>
+                            </select>
+                        </th>
+                        <th col-index=6>Acciones</th>
+                        <th col-index=7>N Reportes</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="usuario: ${usuarios}">
+                            <td>
+                                <div class="contenedor-imagen-usuario">
+                                    <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="perfil"
+                                        class="imagen-usuario" onerror="this.src='/img/sinfoto.jpg';">
+                                    <p th:text="${usuario.nombreUsuario}" class="nombreUsuario"></p>
+                                </div>
+                            </td>
+                            <td th:text="${usuario.email}"></td>
+                            <td th:text="${usuario.rol}"></td>
+                            <td>
+                                <form action="/admin/modificarRol/{__${usuario.id}__}" method="post"
+                                    sec:authorize="hasRole('ADMIN')">
+                                    <input type="hidden" name="id" th:value="${usuario.id}" />
+                                    <select name="rol">
+                                        <option th:value="${usuario.rol}" th:text="${usuario.rol}"></option>
+                                        <option th:value="ADMIN">ADMIN</option>
+                                        <option th:value="DISENADOR">DISEÑADOR</option>
+                                        <option th:value="USER">USER</option>
+                                    </select>
+                                    <button type="submit" class="cssbuttons-io">
+                                        <span>Cambiar</span>
+                                    </button>
+                                </form>
+                            </td>
+                            <td class="td-filter" th:if="${usuario.alta == true}">ALTA
+                                <form th:action="@{'/admin/modificarEstado/' + ${usuario.id}}" method="get"
+                                    sec:authorize="hasRole('ADMIN')">
+                                    <button type="submit" class="cssbuttons-io">
+                                        <span>Cambiar</span>
+                                    </button>
+                                </form>
+                            </td>
+                            <td class="td-filter" th:if="${usuario.alta == false}">BAJA
+                                <form th:action="@{'/admin/modificarEstado/' + ${usuario.id}}" method="get"
+                                    sec:authorize="hasRole('ADMIN')">
+                                    <button type="submit" class="cssbuttons-io">
+                                        <span>Cambiar</span>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="/admin/borrar/{__${usuario.id}__}" method="post"
+                                    sec:authorize="hasRole('ADMIN')">
+                                    <input type="hidden" name="id" th:value="${usuario.id}" />
+                                    <button type="submit" class="cssbuttons-io">
+                                        <span>Eliminar</span>
+                                    </button>
+                                </form>
+                            </td>
+                            <td class="td-report" th:text="${#lists.size(usuario.reportes)}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </section>

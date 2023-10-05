@@ -1,25 +1,58 @@
 .tabla-conteiner {
     margin-top: 20px;
-
 }
 
 .tabla {
     border-collapse: collapse;
     width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.222);
+    box-shadow: 0px 0px 20px 1px #0000003f;
 }
 
-.tabla th, .tabla td {
+.tabla th,
+.tabla td {
+<<<<<<< HEAD
     text-align: left;
+=======
+    text-align: center;
+>>>>>>> main
     padding: 8px;
     border: 1px solid #ddd;
+    color: black;
 }
 
 .tabla th {
     background-color: #f2f2f2;
 }
 
-.tabla select {
+<<<<<<< HEAD
+=======
+.tabla td {
+    color: rgb(49, 49, 49);
+}
+
+>>>>>>> main
+.tabla form {
+    display: flex;
+    justify-content: space-around;
+}
+
+<<<<<<< HEAD
+.subcontenedor-tabla {
+    height: 100%;
     width: 100%;
+    overflow: scroll;
+    padding: 2%;
+}
+
+.tabla select {
+    width: 52%;
+=======
+.tabla select {
+    width: 1%;
+>>>>>>> main
     padding: 6px 10px;
     border: none;
     border-radius: 4px;
@@ -27,10 +60,323 @@
     background-color: #f9f9f9;
 }
 
-.tabla button{
+<<<<<<< HEAD
+.contenedor-tabla {
+    width: 95%;
+    height: 95%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 3%;
+}
+
+.td-filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 86px !important;
+}
+
+th .tf1 {
+    width: 80%;
+}
+
+th .tf2 {
+    width: 75%;
+}
+
+.td-report {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85px;
+}
+
+.cssbuttons-io {
+    position: relative;
+    font-family: inherit;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    color: ghostwhite;
+    overflow: hidden;
+}
+
+
+
+.cssbuttons-io span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 0.8em 1.2em 0.8em 1.05em;
+}
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.cssbuttons-io::before {
+    content: "";
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.cssbuttons-io:hover::before {
+    transform: translate3d(100%, 0, 0);
+}
+
+.cssbuttons-io:active {
+    transform: scale(0.95);
+}
+
+.inputContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#inputField {
+    border: 2px solid rgb(248, 245, 245);
+    background-color: rgb(248, 245, 245);
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: black;
+    font-weight: 500;
+    outline: none;
+    caret-color: rgb(155, 78, 255);
+    transition-duration: .3s;
+    margin-right: 15px;
+    height: 47px;
+}
+
+.userIcon {
+    position: absolute;
+    fill: rgb(155, 78, 255);
+    width: 12px;
+    top: -23px;
+    left: -15px;
+    opacity: 0;
+    transition: .2s linear;
+}
+
+.usernameLabel {
+    position: absolute;
+    top: -25px;
+    left: 5px;
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    transition: .2s linear;
+    opacity: 0;
+}
+
+#inputField:focus~.usernameLabel,
+#inputField:valid~.usernameLabel {
+    transform: translateX(20px);
+    opacity: 1;
+}
+
+#inputField:focus~.userIcon,
+#inputField:valid~.userIcon {
+    transform: translateX(20px);
+    opacity: 1;
+}
+
+#inputField:focus,
+#inputField:valid {
+    background-color: rgb(248, 245, 245);
+    transition-duration: .3s;
+}
+
+.buscador {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+
+.bvt {
+    --primary-color: #111;
+    --hovered-color: linear-gradient(to right, #8e2de2, #4a00e0);
+    position: relative;
+    display: flex;
+    font-weight: 450;
+    font-size: 16px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.bvt p {
+    margin: 0;
+    position: relative;
+    font-size: 16px;
+    color: var(--primary-color)
+}
+
+.bvt::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+}
+
+.bvt p::before {
+    position: absolute;
+    content: "Volver";
+    width: 0%;
+    inset: 0;
+    color: #8e2de2;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.bvt:hover::after {
+    width: 100%;
+}
+
+.bvt:hover p::before {
+    width: 100%;
+}
+
+.bvt:hover svg {
+    color: #8e2de2;
+}
+
+.bvt svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+}
+
+.dtc {
+    width: 30%;
+    display: flex;
+}
+
+/*BTN BATMAN*/
+
+.bml {
+    margin: 10px;
+    border: none;
+    position: relative;
+    width: 200px;
+    height: 73px;
+    padding: 0;
+    z-index: 2;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+    -webkit-mask-size: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    transform: translateY(8px)
+}
+
+.bml:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0px 0 0 0 white;
+    transition: all 2s ease;
+}
+
+.bml:hover:after {
+    box-shadow: 0px -13px 56px 12px #ffffffa6;
+}
+
+.bml span {
+    position: absolute;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 100;
+    left: 50%;
+    top: 39%;
+    letter-spacing: 3px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    color: black;
+    transition: all 2s ease;
+}
+
+.bml:hover span {
+    color: white;
+}
+
+.bml:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-color: black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 1s ease;
+}
+
+.bml:hover:before {
+    width: 100%;
+}
+
+.cat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cat h2 {
+    color: black;
+    transition: .2s ease;
+}
+
+.cat h2:hover {
+    cursor: pointer;
+    color: orange;
+=======
+.tabla button {
     background-color: #820000;
     color: #ffffff;
     border: none;
+    width: 100%;
     padding: 2.5px 5px;
     border-radius: 3px;
+    transition: .9s ease;
+}
+
+.tabla button:hover {
+    color: rgb(255, 255, 255);
+    background-color: #b34a4a;
+}
+
+.tabla .contenedor-imagen-usuario {
+    justify-content: flex-start;
+    gap: 10px;
+>>>>>>> main
 }

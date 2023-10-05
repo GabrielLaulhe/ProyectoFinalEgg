@@ -4,11 +4,13 @@
             onerror="this.src='/img/sinfoto.jpg';" />
     </a>
 
-    <h2 th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h2>
+    <h3 th:text="'#' + ${session.usuariosession.nombreUsuario}"></h3>
 
-    <h5 th:text="${session.usuariosession.rol}"></h5>
+    <h5 th:if="${session.usuariosession.rol.toString() == 'USER'}">Usuario</h5>
+    <h5 th:if="${session.usuariosession.rol.toString() == 'ADMIN'}">Admin</h5>
+    <h5 th:if="${session.usuariosession.rol.toString() == 'DISENADOR'}">Deseñador</h5>
 
-    <h6 th:text="'#' + ${session.usuariosession.nombreUsuario}"></h6>
+    <h6 th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h6>
 
     <div class="dropdown-center flex-center">
         <a class="main-link dropdown-toggle flex-center" href="#" role="button" data-bs-toggle="dropdown"
