@@ -1,0 +1,25 @@
+<section class="max-height vistas">
+    <div class="contenedor">
+        <form action="/usuario/buscar" class="buscador" method="get">
+            <input name="consulta" />
+            <button type="submit" >Buscar</button>
+        </form>
+        <table id="emp-table" class="tabla">
+            <thead>
+            <th col-index = 1>Usuario</th>
+            </thead>
+            <tbody>
+                <tr th:each="usuario: ${usuarios}">
+                    <td>
+                        <div class="contenedor-imagen-usuario">
+                            <a th:if="${session.usuariosession != null}" th:href="@{/usuario/{id}(id=${usuario.id})}">
+                                <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="perfil" class="imagen-usuario"
+                                    onerror="this.src='/img/sinfoto.jpg';">
+                                <span th:text="${usuario.nombreUsuario}" class="nombreUsuario"></span>
+                            </a>
+                        </div>
+                    </td>
+            </tbody>
+        </table>
+    </div>
+</section>
