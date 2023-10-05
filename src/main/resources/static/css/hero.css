@@ -28,10 +28,23 @@
 }
 
 .hero h1,h2,h3,h4,h5,h6,p{
-    margin: 0;
-    padding: 0;
     text-align: center;
     color: rgb(133, 130, 130);    
+}
+
+.hero h3{
+    font-size: large;
+}
+
+.hero h5{
+    color: white;
+    background-color: var(--color-terciario);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.hero h6 {
+    text-wrap: wrap;
 }
 
 

@@ -25,7 +25,7 @@
                 </div>
 
                 <ul th:if="${session.usuariosession != null}" class="nav-ul">
-                    <li class="item dropdown" sec:authorize="hasAnyRole('ADMIN', 'DISENADOR')">
+                    <li class="item dropend" sec:authorize="hasAnyRole('ADMIN', 'DISENADOR')">
                         <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <span class="actual-text">&nbsp;secciones&nbsp;</span>
@@ -123,21 +123,14 @@
                     </li>
 
                     <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
-                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <a class="main-link" href="/admin/usuarios">
                             <span class="actual-text">&nbsp;usuarios&nbsp;</span>
                             <span class="hover-text" aria-hidden="true">&nbsp;usuarios&nbsp;</span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="/admin/usuarios">Gestionar</a>
-                            </li>
-                        </ul>
                     </li>
 
-                    <li class="item dropdown" sec:authorize="hasAnyRole('DISENADOR', 'ADMIN')">
-                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                    <li class="item dropend" sec:authorize="hasAnyRole('DISENADOR', 'ADMIN')">
+                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             <span class="actual-text">&nbsp;publicaciones&nbsp;</span>
                             <span class="hover-text" aria-hidden="true">&nbsp;publicaciones&nbsp;</span>
                         </a>
@@ -146,29 +139,22 @@
                                 <a class="dropdown-item" href="/publicacion/crear">Nueva</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" th:href="@{/publicacion/usuario}">Gestionar</a>
+                                <a class="dropdown-item" th:href="@{/publicacion/usuario}">Mis publis</a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
-                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                    <li class="item" sec:authorize="hasRole('ADMIN')">
+                        <a class="main-link" href="/admin/reportes">
                             <span class="actual-text">&nbsp;Reportes&nbsp;</span>
                             <span class="hover-text" aria-hidden="true">&nbsp;Reportes&nbsp;</span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="/admin/reportes">Ver Reportes</a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
-                <a class="main-link dropdown-toggle" th:if="${session.usuariosession != null}" href="/usuario/buscar" role="button"
-                            aria-expanded="false">
-                            <span class="actual-text">&nbsp;Buscar Usuario&nbsp;</span>
-                            <span class="hover-text" aria-hidden="true">&nbsp;Buscar Usuario&nbsp;</span>
-                        </a>
+                <a class="main-link" th:if="${session.usuariosession != null}" href="/usuario/buscar">
+                    <span class="actual-text">&nbsp;Buscar Usuario&nbsp;</span>
+                    <span class="hover-text" aria-hidden="true">&nbsp;Buscar Usuario&nbsp;</span>
+                </a>
             </div>
         </div>
     </div>

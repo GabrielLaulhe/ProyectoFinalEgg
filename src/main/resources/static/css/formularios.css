@@ -36,14 +36,15 @@
 }
 
 .form .titulo {
+  text-transform: uppercase;
   font-size: 28px;
-  color: #820000;
+  color: rgb(223, 0, 0);
   font-weight: 600;
   letter-spacing: -1px;
   position: relative;
   display: flex;
   align-items: center;
-  padding-left: 30px;
+  padding-left: 50px;
 }
 
 .form .titulo::before,
@@ -53,14 +54,14 @@
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  left: 0px;
+  left: 20px;
   background-color: #820000;
 }
 
 .form .titulo::before {
   width: 18px;
   height: 18px;
-  background-color: #820000;
+  background-color: rgb(223, 0, 0);
 }
 
 .form .titulo::after {
@@ -99,7 +100,7 @@
 
 .form label .input {
   width: 100%;
-  padding: 10px 10px 20px 10px;
+  padding: 20px 10px 10px 10px;
   outline: 0;
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
@@ -122,7 +123,7 @@
 
 .form label .input:focus+span,
 .form label .input:valid+span {
-  top: 30px;
+  top: 5px;
   font-size: 0.7em;
   font-weight: 600;
 }
