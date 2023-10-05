@@ -1,0 +1,49 @@
+.cabecera {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & a {
+        align-self: flex-end;
+        margin-right: 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    & .contenedor-cabecera {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 80%;
+        gap: 20px;
+
+        & img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.222);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        & .contenedor-texto {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            & h1, h5 {
+                display: flex;
+            }
+
+            & h1 {
+                font-size: 2em;
+                flex-wrap: wrap;
+            }
+
+            & h5 {
+                font-size: 1.2em;
+            }
+        }
+    }
+}

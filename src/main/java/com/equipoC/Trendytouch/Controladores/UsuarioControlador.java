@@ -145,7 +145,7 @@ public class UsuarioControlador {
     public String buscarUsuario(@RequestParam(required = false) String consulta, ModelMap modelo) {
         List<Usuario> usuario = new ArrayList<>();
         try {
-            if (consulta.isEmpty()) {
+            if (consulta == null || consulta.isEmpty()) {
                 modelo.addAttribute("usuarios", usuario);
             } else {
                 modelo.addAttribute("usuarios", usuarioServicio.busquedadeUsuarios(consulta));

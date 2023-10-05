@@ -12,7 +12,7 @@
     <section th:replace="/fragments/hero :: section"></section>
     <section th:replace="/fragments/errores :: section"></section>
 
-    <main>
+    <main class="pad-top">
         <section th:replace="/fragments/cabeceraU :: section"></section>
         <section th:if="${session.usuariosession != null}" th:replace="/fragments/tarjetas :: section"></section>
     </main>

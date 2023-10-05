@@ -8,9 +8,14 @@
 @import "error-page.css";
 @import "reporte.css";
 @import "buscador.css";
+@import "cabeceraU.css";
 
 * {
     font-family: 'Raleway', sans-serif;
+    --color-primario: #820000;
+    --color-secundario: rgb(223, 0, 0);
+    --color-terciario: rgba(255, 51, 0, 1);
+    --color-cuater: rgba(255, 119, 0, 1);
 }
 
 body {
@@ -100,24 +105,30 @@ li {
     letter-spacing: 3px;
     text-decoration: none;
     font-size: var(--fs-size);
-    /* font-family: "Arial"; */
     position: relative;
     text-transform: uppercase;
     color: transparent;
     -webkit-text-stroke: 1px var(--text-stroke-color);
 }
 
+.main-link .dropdown-toggle {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 90%;
+}
+
 .main-link .hover-text {
     position: absolute;
     box-sizing: border-box;
     content: attr(data-text);
-    color: var(--animation-color);
+    color: rgb(223, 0, 0);
     width: 0%;
     inset: 0;
     border-right: var(--border-right) solid var(--animation-color);
     overflow: hidden;
     transition: 0.5s;
-    -webkit-text-stroke: 1px var(--animation-color);
+    -webkit-text-stroke: 1px rgb(223, 0, 0);
     display: flex;
     align-items: center;
     text-wrap: nowrap;
@@ -128,22 +139,23 @@ li {
     filter: drop-shadow(0 0 23px var(--animation-color))
 }
 
-.recomendacion {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    transition: 0.1s ease;
-    font-size: 16px;
+
+/* ----- General BS------ */
+.dropdown-menu {
+    box-shadow: 1px 0px 15px 0px #0000005e;
+    background-color: transparent;
+    backdrop-filter: blur(30px);
 }
 
-.rs {
-    color: #939393;
+.dropdown-menu .dropdown-item {
+    transition: all 0.3s ease-in-out;
+    background: none;
+    background-color: transparent;
 }
 
-.recomendacion:hover {
-    color: orangered;
-}
-
-.rs:hover {
-    color: #820000
+.dropdown-menu .dropdown-item:hover {
+    font-size: larger;
+    color: white;
+    background: linear-gradient(90deg, rgba(255, 51, 0, 1) 52%, rgba(255, 119, 0, 1) 81%);
+    z-index: -1;
 }
