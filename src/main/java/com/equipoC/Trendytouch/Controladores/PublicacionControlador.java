@@ -67,6 +67,8 @@ public class PublicacionControlador {
     @GetMapping("/usuario")
     public String PublicacionesdeUsuario(HttpSession session, ModelMap modelo) {
         modelo.addAttribute("publicaciones", publicacionServicio.buscarPorUsuario((Usuario) session.getAttribute("usuariosession")));
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
         return "inicio.html";
     }
 
@@ -143,8 +145,10 @@ public class PublicacionControlador {
     //mostrar categoria de la publicacion
     @PreAuthorize("hasAnyRole('ROLE_DISENADOR', 'ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/categorias/{categoria}")
-    public String categoriaPublicacion(ModelMap modelo, @PathVariable("categoria") String categoria) {
+    public String categoriaPublicacion(ModelMap modelo, @PathVariable("categoria") String categoria,HttpSession session) {
         modelo.addAttribute("publicaciones", publicacionServicio.publicacionesxCategoria(categoria));
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
         return "inicio.html";
     }
 

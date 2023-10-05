@@ -5,6 +5,8 @@ import com.equipoC.Trendytouch.Errores.MyException;
 import com.equipoC.Trendytouch.Servicios.PublicacionServicio;
 import com.equipoC.Trendytouch.Servicios.ReporteServicio;
 import com.equipoC.Trendytouch.Servicios.UsuarioServicio;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -101,12 +103,14 @@ public class UsuarioControlador {
     public String actualizarFoto(HttpSession session, MultipartFile archivo) throws MyException {
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         usuarioServicio.cambiarFoto(archivo, logueado.getId());
-        return "inicio.html";
+        return "redirect:/inicio";
     }
 
     @GetMapping("/{id}")
     public String perfil(@PathVariable("id") String id, HttpSession session, ModelMap modelo) {
         try {
+            Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+            modelo.addAttribute("usuariolog", usuarioServicio.getOne(logueado.getId()));
             Usuario publicador = usuarioServicio.getOne(id);
             modelo.addAttribute("publicador", publicador);
             modelo.addAttribute("publicaciones", publicacionServicio.buscarPorUsuario(publicador));
@@ -135,4 +139,21 @@ public class UsuarioControlador {
         }
         return "redirect:/inicio";
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISENADOR')")
+    @GetMapping("/buscar")
+    public String buscarUsuario(@RequestParam(required = false) String consulta, ModelMap modelo) {
+        List<Usuario> usuario = new ArrayList<>();
+        try {
+            if (consulta.isEmpty()) {
+                modelo.addAttribute("usuarios", usuario);
+            } else {
+                modelo.addAttribute("usuarios", usuarioServicio.busquedadeUsuarios(consulta));
+            }
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+        }
+        return "buscarUsuario.html";
+    }
+
 }
