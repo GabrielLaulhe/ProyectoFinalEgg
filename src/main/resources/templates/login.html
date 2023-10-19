@@ -1,42 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head th:replace="/fragments/head :: head"></head>
 
-  <body>
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
     <header>
-      <nav th:replace="/fragments/navbar :: nav"></nav>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
     </header>
 
     <section th:replace="/fragments/errores :: section"></section>
+    <main class="vistas">
+        <section class="formulario-container">
 
-    <div class="container text-center">
-      <div class="container">
-        <h1>Inicia sesión</h1>
-      </div>
+            <form th:action="@{/registro}" class="formulario-oculto" id="registro-form" method="POST"
+                enctype="multipart/form-data">
+                <h2 class="titulo">Regístrate</h2>
+                <div class="flex">
+                    <label>
+                        <input type="text" class="input" name="nombre" th:value="${nombre}" required />
+                        <span>Nombre</span>
+                    </label>
+                    <label>
+                        <input type="text" class="input" name="apellido" th:value="${apellido}" required />
+                        <span>Apellido</span>
+                    </label>
+                </div>
+                <label>
+                    <input type="email" name="email" th:value="${email}" required class="input" />
+                    <span>Email</span>
+                </label>
+                <label>
+                    <input type="text" name="nombreUsuario" th:value="${nombreUsuario}" required class="input" />
+                    <span>Nombre de usuario</span>
+                </label>
+                <label>
+                    <input type="file" name="archivo" class="input" />
+                    <!-- <span>Imagen de perfil</span> -->
+                </label>
 
-      <form th:action="@{/logincheck}" method="post">
-        <div class="mb-3 form-group">
-          <input
-            type="text"
-            class="form-group"
-            name="email"
-            placeholder="Email"
-            th:value="${email}"
-          />
-        </div>
-        <div class="mb-3 form-group">
-          <input
-            type="password"
-            class="form-group"
-            name="password"
-            placeholder="Contraseña"
-          />
-        </div>
+                <div class="flex">
+                    <label>
+                        <input type="password" name="password" required class="input" />
+                        <span>Contraseña</span>
+                    </label>
+                    <label>
+                        <input type="password" name="password2" required class="input" />
+                        <span>Repita la contraseña</span>
+                    </label>
+                </div>
 
-        <button type="submit" class="btn btn-primary">Iniciar</button>
-      </form>
-    </div>
+                <div class="flex">
+                    <label>
+                        <input type="text" name="pregunta" class="input" />
+                        <span>Pregunta de seguridad</span>
+                    </label>
+
+                    <label>
+                        <input type="text" name="respuesta" class="input" />
+                        <span>Respuesta</span>
+                    </label>
+                </div>
+                <div class="div-contenedor">
+                    <button type="submit" class="btn-general">
+                        Registrarse
+                    </button>
+                </div>
+                <div class="div-contenedor info">
+                    <span class="sign">¿Ya tienes una cuenta?</span>
+                    <button type="button" id="btn-iniciar-sesion" class="submit">Iniciar sesion</button>
+                </div>
+            </form>
+
+            <form th:action="@{/logincheck}" class="form" id="login-form" method="post">
+                <h2 class="titulo">Inicia sesión</h2>
+                <label>
+                    <input type="email" name="email" th:value="${email}" required class="input" />
+                    <span>Email</span>
+                </label>
+                <label>
+                    <input type="password" name="password" required class="input" />
+                    <span>Contraseña</span>
+                </label>
+                <div class="div-contenedor">
+                    <button type="submit" class="btn-general">
+                        Iniciar Sesión
+                    </button>
+                </div>
+                <div class="div-contenedor info">
+                    <span class="sign">¿No tienes una cuenta?</span>
+                    <button type="button" id="btn-registrarse" class="submit">Regístrate</button>
+                </div>
+            </form>
+        </section>
+    </main>
 
     <script th:replace="/fragments/scripts :: script"></script>
-  </body>
+</body>
+
 </html>

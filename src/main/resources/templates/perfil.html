@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="/fragments/head :: head"></head>
+
+
+<body class="inicio-body flex-col-center">
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
+
+    <section th:replace="/fragments/hero :: section"></section>
+    <section th:replace="/fragments/errores :: section"></section>
+
+    <main class="pad-top">
+        <section th:replace="/fragments/cabeceraU :: section"></section>
+        <section th:if="${session.usuariosession != null}" th:replace="/fragments/tarjetas :: section"></section>
+    </main>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
+
+</html>

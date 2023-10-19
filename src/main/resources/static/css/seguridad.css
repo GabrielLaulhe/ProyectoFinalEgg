@@ -1,0 +1,118 @@
+.form__group {
+    position: relative;
+    padding: 20px 0 0;
+    width: 100%;
+    margin: 16px;
+}
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 17px;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+    color: transparent;
+}
+
+.form__field:placeholder-shown~.form__label {
+    font-size: 17px;
+    cursor: text;
+    top: 20px;
+}
+
+.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 17px;
+    color: #9b9b9b;
+    pointer-events: none;
+}
+
+.form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(90deg, rgba(251, 126, 0, 1) 38%, rgba(242, 199, 0, 1) 70%);
+    border-image-slice: 1;
+}
+
+.form__field:focus~.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 17px;
+    color: orange;
+    font-weight: 700;
+}
+
+/* reset input */
+.form__field:required,
+.form__field:invalid {
+    box-shadow: none;
+}
+
+
+/*boton*/
+.btn-general {
+    color: orange;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid orange;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    background: transparent;
+    position: relative;
+    transition: all 0.1s;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.btn-general:hover {
+    color: white;
+}
+
+.btn-general::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg);
+    background-color: orange;
+    z-index: -1;
+    transition: all 1s;
+}
+
+.btn-general:hover::before {
+    width: 160%;
+}
+
+/*formulario*/
+
+.formulario-seguridad {
+    width: 30vw;
+}
+
+.section-seguridad {
+    height: 20em;
+}
+
+.main-security {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

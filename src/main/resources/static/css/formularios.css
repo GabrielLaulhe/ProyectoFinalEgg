@@ -1,0 +1,263 @@
+.formulario-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 550px;
+  min-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  animation: gather 0.3s ease forwards;
+}
+
+.form img {
+  width: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.222);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+  transition: all ease .3s;
+}
+
+.form img:hover {
+  box-shadow: 0px 0px 20px 1px #0000003f;
+  border: 1px solid rgba(0, 0, 0, 0.454);
+}
+
+.form .titulo {
+  text-transform: uppercase;
+  font-size: 28px;
+  color: rgb(223, 0, 0);
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+}
+
+.form .titulo::before,
+.form .titulo::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 20px;
+  background-color: #820000;
+}
+
+.form .titulo::before {
+  width: 18px;
+  height: 18px;
+  background-color: rgb(223, 0, 0);
+}
+
+.form .titulo::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.form .mensaje,
+.form .sign {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+}
+
+.form .sign {
+  text-align: center;
+}
+
+.form .sign .a {
+  color: #820000;
+}
+
+.form .sign .a:hover {
+  text-decoration: underline #820000;
+}
+
+.form .flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 20px 10px 10px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form label .input+span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown+span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus+span,
+.form label .input:valid+span {
+  top: 5px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.form label .input:valid+span {
+  color: #820000;
+}
+
+.form .submit {
+  color: rgb(233, 0, 0);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgb(230, 0, 0);
+  padding: 7px 7px;
+  font-size: 16px;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 0.1s;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.form .submit:hover {
+  color: white;
+  border: none;
+}
+
+.form .submit::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background: linear-gradient(90deg, rgba(255, 51, 0, 1) 52%, rgba(255, 119, 0, 1) 81%);
+  z-index: -1;
+  transition: all 0.6s;
+}
+
+form .submit:hover::before {
+  width: 160%;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes gather {
+  0% {
+    transform: scale(2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animación de dispersión */
+.formulario-oculto {
+  animation: scatter 0.3s ease forwards;
+  display: none;
+}
+
+@keyframes scatter {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.btn-general {
+  color: rgb(223, 0, 0);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgb(230, 3, 3);
+  padding: 10px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 0.4s;
+  overflow: hidden;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.btn-general:hover {
+  color: white;
+  border: none;
+}
+
+.btn-general::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background: linear-gradient(90deg, rgba(214, 0, 0, 1) 14%, rgba(255, 51, 0, 1) 54%, rgba(255, 119, 0, 1) 81%);
+  z-index: -1;
+  transition: all 1s;
+}
+
+.btn-general:hover::before {
+  width: 160%;
+}
+
+.div-contenedor {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.info {
+  justify-content: space-evenly;
+}

@@ -1,94 +1,161 @@
-<nav class="navbar navbar-expand-sm bg-body-tertiary px-2">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-            <img
-                src="/img/Egg.png"
-                alt="Logo Egg"
-                height="26"
-                class="d-inline-block"
-                />
+<nav class="navbar">
+    <div class="nav-contenedor">
+        <a th:if="${session.usuariosession == null}" class="nav-logo-link" href="/">
+            <img src="/img/logo.png" alt="Logo Touch" class="logo" />
         </a>
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul th:if="${session.usuariosession == null}" class="navbar-nav ms-auto gap-3">
-                <li class="nav-item">
-                    <a class="icon-link icon-link-hover" href="/registrar">
-                        Registrate
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="icon-link icon-link-hover" href="/login"> Logueate </a>
-                </li>
-            </ul>
+        <a th:if="${session.usuariosession != null}" class="nav-logo-link" href="/inicio">
+            <img src="/img/logo.png" alt="Logo Touch" class="logo" />
+        </a>
 
-            <ul th:if="${session.usuariosession != null}" class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        >
-                        Secciones
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li sec:authorize="hasRole('ADMIN')">
-                            <a class="dropdown-item" href="/seccion/registrar">Nueva</a>
+        <div class="nav-ul-container">
+            <div class="max-height">
+                <div th:if="${session.usuariosession == null}" class="user-categorias">
+                    <div class="item">
+                        <a class="main-link" href="/registrar">
+                            <span class="actual-text">&nbsp;registrate&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;registrate&nbsp;</span>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="main-link" href="/loguear">
+                            <span class="actual-text">&nbsp;logueate&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;logueate&nbsp;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <ul th:if="${session.usuariosession != null}" class="nav-ul">
+                    <li class="item dropend" sec:authorize="hasAnyRole('ADMIN', 'DISENADOR')">
+                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="actual-text">&nbsp;secciones&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;secciones&nbsp;</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- <li sec:authorize="hasRole('ADMIN')">
+                                <a class="dropdown-item" href="/publicacion/editar">Editar</a>
+                            </li> -->
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/tendencias"
+                                    name="tendencias">Tendencias</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/MODA_SOSTENIBLE"
+                                    name="MODA_SOSTENIBLE">Moda sostenible</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/estampados"
+                                    name="estampados">Estampados</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/cabello"
+                                    name="cabello">Cabello</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/maquillaje"
+                                    name="maquillaje">Maquillaje</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/accesorios"
+                                    name="accesorios">Accesorios</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/calzado"
+                                    name="calzado">Calzado</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/categorias/indumentaria"
+                                    name="indumentaria">Indumentaria</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <ul sec:authorize="hasRole('USER')" class="user-categorias">
+                        <li>
+                            <a class="main-link" href="/publicacion/categorias/tendencias">
+                                <span class="actual-text">&nbsp;tendencias&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;tendencias&nbsp;</span>
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/seccion/lista">Explorar</a>
+                            <a class="main-link" href="/publicacion/categorias/indumentaria">
+                                <span class="actual-text">&nbsp;indumentaria&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;indumentaria&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="main-link" href="/publicacion/categorias/moda_sostenible">
+                                <span class="actual-text">&nbsp;moda sostenible&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;moda sostenible&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="main-link" href="/publicacion/categorias/estampados">
+                                <span class="actual-text">&nbsp;estampados&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;estampados&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="main-link" href="/publicacion/categorias/cabello">
+                                <span class="actual-text">&nbsp;cabello&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;cabello&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="main-link" href="/publicacion/categorias/maquillaje">
+                                <span class="actual-text">&nbsp;maquillaje&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;maquillaje&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="main-link" href="/publicacion/categorias/accesorios">
+                                <span class="actual-text">&nbsp;accesorios&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;accesorios&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="main-link" href="/publicacion/categorias/calzado">
+                                <span class="actual-text">&nbsp;calzado&nbsp;</span>
+                                <span class="hover-text" aria-hidden="true">&nbsp;calzado&nbsp;</span>
+                            </a>
                         </li>
                     </ul>
-                </li>
+                    </li>
 
-                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        >
-                        Usuarios
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="/admin/usuarios">Gestionar</a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="item dropdown" sec:authorize="hasRole('ADMIN')">
+                        <a class="main-link" href="/admin/usuarios">
+                            <span class="actual-text">&nbsp;usuarios&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;usuarios&nbsp;</span>
+                        </a>
+                    </li>
 
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        >
-                        Perfil
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" th:href="@{/perfil}">Editar</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/logout">Cerrar sesión</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                    <li class="item dropend" sec:authorize="hasAnyRole('DISENADOR', 'ADMIN')">
+                        <a class="main-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <span class="actual-text">&nbsp;publicaciones&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;publicaciones&nbsp;</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/publicacion/crear">Nueva</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/publicacion/usuario}">Mis publis</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="item" sec:authorize="hasRole('ADMIN')">
+                        <a class="main-link" href="/admin/reportes">
+                            <span class="actual-text">&nbsp;Reportes&nbsp;</span>
+                            <span class="hover-text" aria-hidden="true">&nbsp;Reportes&nbsp;</span>
+                        </a>
+                    </li>
+                </ul>
+                <a class="main-link" th:if="${session.usuariosession != null}" href="/usuario/buscar">
+                    <span class="actual-text">&nbsp;Buscar Usuario&nbsp;</span>
+                    <span class="hover-text" aria-hidden="true">&nbsp;Buscar Usuario&nbsp;</span>
+                </a>
+            </div>
         </div>
     </div>
 </nav>

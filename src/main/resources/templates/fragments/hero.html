@@ -1,0 +1,36 @@
+<section class="hero">
+    <a class="flex-center" th:href="@{/usuario/actualizar}">
+        <img class="logo" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="Imagen usuario"
+            onerror="this.src='/img/sinfoto.jpg';" />
+    </a>
+
+    <h3 th:text="'#' + ${session.usuariosession.nombreUsuario}"></h3>
+
+    <h5 th:if="${session.usuariosession.rol.toString() == 'USER'}">Usuario</h5>
+    <h5 th:if="${session.usuariosession.rol.toString() == 'ADMIN'}">Admin</h5>
+    <h5 th:if="${session.usuariosession.rol.toString() == 'DISENADOR'}">Deseñador</h5>
+
+    <h6 th:text="${session.usuariosession.nombre} + ' ' + ${session.usuariosession.apellido}"></h6>
+
+    <div class="dropdown-center flex-center">
+        <a class="main-link dropdown-toggle flex-center" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span class="actual-text">&nbsp;mi perfil&nbsp;</span>
+            <span class="hover-text" aria-hidden="true">&nbsp;mi perfil&nbsp;</span>
+        </a>
+
+        <ul class="dropdown-menu">
+            <li>
+                <a class="dropdown-item" th:href="@{/usuario/actualizar}">Editar</a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="/logout">Cerrar sesion</a>
+            </li>
+        </ul>
+    </div>
+
+    <a class="recomendacion rs" th:if="${session.usuariosession.pregunta.isEmpty()}" th:href="@{/usuario/preguntas}">
+        <span class="typed3"></span>
+    </a>
+
+</section>

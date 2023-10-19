@@ -1,6 +1,5 @@
 package com.equipoC.Trendytouch.Entidades;
 
-import com.equipoC.Trendytouch.Enums.Categoria;
 import com.equipoC.Trendytouch.Enums.Rol;
 import java.util.Date;
 import java.util.List;
@@ -37,9 +36,8 @@ public class Usuario {
     private String pregunta;
     private String respuesta;
     private boolean alta;
-    private boolean diseñador;
     private Rol rol;
-    
+
     @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
     @Temporal(TemporalType.DATE)
@@ -49,9 +47,7 @@ public class Usuario {
 
     @OneToOne
     private Imagen imagen;
-    
+
     @OneToMany
     private List<Reporte> reportes;
-    
-
 }

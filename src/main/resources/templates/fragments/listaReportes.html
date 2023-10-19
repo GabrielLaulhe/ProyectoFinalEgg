@@ -1,0 +1,164 @@
+<section class="max-height vistas">
+<<<<<<< HEAD
+
+    <div class="cat">
+        <h2>Da click para ver la lista de reportes!</h2>
+        <button class="bml" onclick="mostrarVentana5()"><span>VER LISTA</span></button>
+    </div>
+
+    <div style="display: none;" id="ventana-difuminada5">
+        <div class="contenedor-tabla">
+            <div class="subcontenedor-tabla">
+                <form action="/reporte/buscar" method="post" sec:authorize="hasRole('ADMIN')" class="buscador">
+                    <div class="dtc">
+                        <div class="inputContainer">
+                            <input id="inputField" name="consulta" placeholder="Emisor" type="text">
+                            <label class="usernameLabel" for="inputField">Emisor</label>
+                            <svg viewBox="0 0 448 512" class="userIcon">
+                                <path
+                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z">
+                                </path>
+                            </svg>
+                        </div>
+                        <button type="submit" class="cssbuttons-io">
+                            <span>Buscar</span>
+                        </button>
+                    </div>
+
+                    <button class="boton-volver bvt" type="button" style="margin-bottom: 10px;"
+                        onclick="ocultarVentana5()">
+                        <p>Volver</p>
+                        <svg stroke-width="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" class="h-6 w-6"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round" stroke-linecap="round">
+                            </path>
+                        </svg>
+                    </button>
+                </form>
+                <table id="emp-table" class="tabla">
+                    <thead>
+
+                        <th col-index=1>Categoria
+                            <select class="table-filter" onchange="filter_rows()">
+                                <option value="all"></option>
+                            </select>
+                        </th>
+                        <th col-index=2>Contenido</th>
+                        <th col-index=3>Estado
+                            <select class="table-filter" onchange="filter_rows()">
+                                <option value="all"></option>
+                            </select>
+                        </th>
+                        <th col-index=4>Emisor
+                            <select class="table-filter" onchange="filter_rows()">
+                                <option value="all"></option>
+                            </select>
+                        </th>
+                        <th col-index=5>Tipo
+                            <select class="table-filter" onchange="filter_rows()">
+                                <option value="all"></option>
+                            </select>
+                        </th>
+                        <th col_index=6>Accion</th>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${reportes.isEmpty()}">
+                            <td colspan="8">No se encontraron reportes</td>
+                        </tr>
+                        <tr th:each="reporte: ${reportes}">
+                            <td th:text="${reporte.categoria}"></td>
+                            <td th:text="${reporte.contenido}"></td>
+                            <td>
+                                <form th:action="@{/reporte/editar/{id}(id=${reporte.id})}" method="post"
+                                    sec:authorize="hasRole('ADMIN')">
+                                    <input type="hidden" name="id" th:value="${reporte.id}" />
+                                    <select name="estado">
+                                        <option th:value="${reporte.estado}" th:text="${reporte.estado}"></option>
+                                        <option th:value="PENDIENTE">PENDIENTE</option>
+                                        <option th:value="ACEPTADO">ACEPTADO</option>
+                                        <option th:value="RECHAZADO">RECHAZADO</option>
+                                    </select>
+                                    <button type="submit" class="cssbuttons-io">
+                                        <span>Cambiar</span>
+                                    </button>
+                                </form>
+                            </td>
+                            <td th:text="${reporte.emisor.nombreUsuario}"></td>
+                            <td th:text="${reporte.tipo}"></td>
+                            <td th:if="${reporte.tipo == 'Comentario'}">
+                                <a th:href="@{/reporte/comentario/{id}(id=${reporte.id})}">Comentario</a>
+                            </td>
+                            <td th:if="${reporte.tipo == 'Publicacion'}">
+                                <button type="submit" class="cssbuttons-io">
+                                    <a style="text-decoration: none; color: white;"
+                                        th:href="@{/reporte/publicacion/{id}(id=${reporte.id})}"><span>Publicacion</span></a>
+                                </button>
+                            </td>
+                            <td th:if="${reporte.tipo == 'Usuario'}">
+                                <a th:href="@{/reporte/usuario/{id}(id=${reporte.id})}">Usuario</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+=======
+    <div class="contenedor">
+        <form action="/reporte/buscar" method="post" sec:authorize="hasRole('ADMIN')" class="buscador">
+            <input name="consulta" />
+            <button type="submit">Buscar</button>
+        </form>
+        <table id="emp-table" class="tabla">
+            <thead>
+
+                <th col-index=1>Categoria
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index=2>Contenido</th>
+                <th col-index=3>Estado
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index=4>Emisor
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index=5>Tipo
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col_index=6>Accion</th>
+            </thead>
+            <tbody>
+                <tr th:if="${reportes.isEmpty()}">
+                    <td colspan="8">No se encontraron reportes</td>
+                </tr>
+                <tr th:each="reporte: ${reportes}">
+                    <td th:text="${reporte.categoria}"></td>
+                    <td th:text="${reporte.contenido}"></td>
+                    <td th:text="${reporte.estado}"></td>
+                    <td th:text="${reporte.emisor.nombreUsuario}"></td>
+                    <td th:text="${reporte.tipo}"></td>
+                    <td th:if="${reporte.tipo == 'Comentario'}">
+                        <a th:href="@{/reporte/comentario/{id}(id=${reporte.id})}">
+                            <button type="button">Comentario</button></a>
+                    </td>
+                    <td th:if="${reporte.tipo == 'Publicacion'}">
+                        <a th:href="@{/reporte/publicacion/{id}(id=${reporte.id})}">
+                            <button type="button">Publicacion</button></a>
+                    </td>
+                    <td th:if="${reporte.tipo == 'Usuario'}">
+                        <a th:href="@{/reporte/usuario/{id}(id=${reporte.id})}">
+                            <button type="button">Usuario</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+>>>>>>> main
+    </div>
+</section>

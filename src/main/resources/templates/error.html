@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body class="index-body flex-col-center">
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
+
+    <section th:if="${session.usuariosession != null}" th:replace="/fragments/hero :: section"></section>
+
+    <main class="vistas">
+        <section class="contenedor-error">
+            <div class="error-head">
+                <img src="/img/error-icon.png" alt="">
+                <h1 th:text="'Error ' + ${codigo}"></h1>
+            </div>
+            <p th:text="${mensaje}"></p>
+        </section>
+    </main>
+
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
+
+</html>

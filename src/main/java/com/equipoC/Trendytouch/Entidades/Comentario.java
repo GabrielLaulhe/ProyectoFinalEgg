@@ -13,11 +13,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@AllArgsConstructor @NoArgsConstructor
-@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Comentario {
 
     @Id
@@ -29,11 +33,12 @@ public class Comentario {
     private Date fechaComentario;
 
     private String contenido;
-    
+
     @OneToMany
     private List<Reporte> reportes;
-    
+
+    private Boolean alta;
+
     @ManyToOne
     private Usuario usuario;
-    
 }

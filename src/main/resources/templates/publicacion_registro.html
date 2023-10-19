@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+    <header>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+    </header>
+
+    <section th:replace="/fragments/errores :: section"></section>
+    <section th:replace="/fragments/hero :: section"></section>
+
+    <main class="vistas">
+        <div class="formulario-container">
+            <form th:action="@{/publicacion/crear}" method="POST" enctype="multipart/form-data" class="form">
+                <h2 class="titulo">Nueva publicacion</h2>
+
+                <label>
+                    <textarea type="text" class="input" name="descripcion" rows="10" cols="40" required></textarea>
+                    <span>Descripcion</span>
+                </label>
+
+                <select name="categoria" class="input">
+                    <option th:value="SIN_CATEGORIA">Seleccionar Categoria</option>
+                    <option th:value="TENDENCIAS">Tendencias</option>
+                    <option th:value="MODA_SOSTENIBLE">Moda Sostenible</option>
+                    <option th:value="ESTAMPADOS">Estampados</option>
+                    <option th:value="CABELLO">Cabello</option>
+                    <option th:value="MAQUILLAJE">Maquillaje</option>
+                    <option th:value="ACCESORIOS">Accesorios</option>
+                    <option th:value="CALZADO">Calzado</option>
+                    <option th:value="INDUMENTARIA">Indumentaria</option>
+                </select>
+
+                <label>
+                    <label for="formFile" class="form-label">Fotos</label>
+                    <input type="file" name="archivos" id="formFile" class="input" multiple />
+                </label>
+
+                <button type="submit" class="submit">Subir publicacion</button>
+            </form>
+        </div>
+    </main>
+    <script th:replace="/fragments/scripts :: script"></script>
+</body>
+
+</html>
